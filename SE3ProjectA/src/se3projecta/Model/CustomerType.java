@@ -8,5 +8,9 @@ package se3projecta.Model;
  *
  * @author Russell
  */
-public class Transaction {
+public class CustomerType {
+    private int id;
+    private String name;
+    private double priceMultiplier;
+    
 }

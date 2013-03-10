@@ -7,6 +7,7 @@ package se3projecta.Model;
 /**
  *
  * @author Russell
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Theatre {
     private String id;
@@ -15,4 +16,10 @@ public class Theatre {
     private int height;
     private SeatType[] seatTypes;
     
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
 }

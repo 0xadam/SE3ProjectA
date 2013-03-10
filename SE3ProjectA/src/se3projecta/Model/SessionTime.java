@@ -11,6 +11,4 @@ import java.util.Date;
 public class SessionTime {
     private String id;
     private String name;
-    private Date time;
-    
 }

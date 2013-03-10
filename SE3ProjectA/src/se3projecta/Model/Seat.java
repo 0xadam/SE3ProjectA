@@ -9,10 +9,20 @@ package se3projecta.Model;
  * @author Russell
  */
 public class Seat {
-    public enum States {
-        Empty, Held, Occupied
+    public enum State {
+        Empty,
+        Held,
+        Occupied
     }
-    private SeatType seatType;
-    private States state;
     
+    private SeatType seatType;
+    private State state;
+    
+    public Seat(SeatType type) {
+        seatType = type;
+    }
+    
+    public State getState() {
+        return state;
+    }
 }
