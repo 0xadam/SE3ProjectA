@@ -10,6 +10,6 @@ package se3projecta.Model;
  */
 public class Movie {
     private String movieName;
-    
+    private String promotionalImage;
     
 }

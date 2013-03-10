@@ -9,5 +9,9 @@ package se3projecta.Model;
  * @author Russell
  */
 public class TheatreSession {
+    private SessionTime sessionTime;
+    private Movie movie;
+    private Theatre theatre;
+    private Seat[] seats;
     
 }
