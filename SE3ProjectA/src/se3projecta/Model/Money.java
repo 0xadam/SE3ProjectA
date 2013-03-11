@@ -20,7 +20,8 @@ public class Money {
         return value/Math.pow(10, decimalPlaces);
     }
     
-    public String toString() {
+    
+    public @Override String toString() {
         return textPrefix + getValue() + textSuffix;
     }
 }
