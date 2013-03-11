@@ -17,14 +17,31 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class SeatType {
+public class SeatType implements XMLSerialize {
 
     private String name;
     private double price;
     private Character id;
 
+    @Override
+    public void load(Element n) {
+        setId(n.getAttribute("ID").charAt(0));
+        setName(n.getAttribute("Name"));
+        setPrice(Double.parseDouble(n.getAttribute("Price")));
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public Character getCharId() {
+        return id;
+    }
+
+    @Override
+    public Integer getIntId() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void setName(String name) {
@@ -50,34 +67,5 @@ public class SeatType {
     @Override
     public String toString() {
         return "SeatType: ID:" + this.id + "\tName: " + this.name + "\tPrice: " + this.price;
-    }
-
-    public static TreeMap<Character, SeatType> load(String path) {
-        TreeMap<Character, SeatType> list = new TreeMap<Character, SeatType>();
-        Document doc = null;
-        try {
-            doc = XML_Helper.LoadXML(path);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        NodeList nList = doc.getElementsByTagName("SeatType");
-
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-
-            Node nNode = nList.item(temp);
-
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                Element eElement = (Element) nNode;
-                SeatType st = new SeatType();
-                st.setId(eElement.getAttribute("ID").charAt(0));
-                st.setName(eElement.getAttribute("Name"));
-                st.setPrice(Double.parseDouble(eElement.getAttribute("Price")));
-                list.put(st.getId(), st);
-            }
-        }
-
-        return list;
     }
 }
