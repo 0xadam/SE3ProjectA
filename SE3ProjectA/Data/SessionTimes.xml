@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SessionTimes>
+    <SessionTime id="0" Name="Morning" />
+    <SessionTime id="1" Name="Matinee" />
+    <SessionTime id="2" Name="Afternoon" />
+</SessionTimes>

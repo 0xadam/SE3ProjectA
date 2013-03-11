@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Movies>
+    <movie id="0" Name="Jaws" promotionalImage="" />
+    <movie id="1" Name="Avatar" promotionalImage="" />
+    <movie id="2" Name="Star Wars: A New Hope" promotionalImage="" />
+    <movie id="3" Name="The Incredibles" PromotionalImage="" />
+</Movies>

@@ -21,7 +21,7 @@ public class SeatType {
 
     private String name;
     private double price;
-    private String id;
+    private Character id;
 
     public String getName() {
         return name;
@@ -39,11 +39,11 @@ public class SeatType {
         this.price = price;
     }
 
-    public String getId() {
+    public Character getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Character id) {
         this.id = id;
     }
 
@@ -52,35 +52,32 @@ public class SeatType {
         return "SeatType: ID:" + this.id + "\tName: " + this.name + "\tPrice: " + this.price;
     }
 
-    public static TreeMap<String, SeatType> load(String path) {
-        TreeMap<String, SeatType> list = new TreeMap<String, SeatType>();
+    public static TreeMap<Character, SeatType> load(String path) {
+        TreeMap<Character, SeatType> list = new TreeMap<Character, SeatType>();
+        Document doc = null;
         try {
-            File fXmlFile = new File(path);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-
-            NodeList nList = doc.getElementsByTagName("SeatType");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-                    SeatType st = new SeatType();
-                    st.setId(eElement.getAttribute("ID"));
-                    st.setName(eElement.getAttribute("Name"));
-                    st.setPrice(Double.parseDouble(eElement.getAttribute("Price")));
-                    list.put(st.getId(), st);
-                }
-            }
-
+            doc = XML_Helper.LoadXML(path);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+        NodeList nList = doc.getElementsByTagName("SeatType");
+
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+
+            Node nNode = nList.item(temp);
+
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                Element eElement = (Element) nNode;
+                SeatType st = new SeatType();
+                st.setId(eElement.getAttribute("ID").charAt(0));
+                st.setName(eElement.getAttribute("Name"));
+                st.setPrice(Double.parseDouble(eElement.getAttribute("Price")));
+                list.put(st.getId(), st);
+            }
+        }
+
         return list;
     }
 }
