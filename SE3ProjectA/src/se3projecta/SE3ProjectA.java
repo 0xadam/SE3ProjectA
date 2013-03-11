@@ -20,6 +20,10 @@ public class SE3ProjectA {
     }
     private TreeMap<String, Theatre> theatres;
     private TreeMap<Integer, Movie> movies;
+    private String getMoviebyId(Integer id) {
+        return movies.get(id).toString();
+    }
+    
     private TreeMap<Integer, SessionTime> sessionTimes;
     /**
      * @param args the command line arguments

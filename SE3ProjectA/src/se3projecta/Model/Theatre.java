@@ -22,6 +22,7 @@ public class Theatre {
     private int width;
     private int height;
     private SeatType[] seatTypes;
+    private int movie;
     
     public int getWidth() {
         return width;
@@ -32,7 +33,7 @@ public class Theatre {
 
     @Override
     public String toString() {
-        String value = "Theatre: ID:" + id + "\tName: " + name + "\tsize: " + width+"x"+height + "Plan:\n";
+        String value = "Theatre: ID:" + id + "\tName: " + name + "\tsize: " + width+"x"+height + "\tMovie: " + movie + "\tPlan:\n";
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 SeatType temp = seatTypes[i*width + j];
@@ -66,13 +67,13 @@ public class Theatre {
                 Theatre theatre = new Theatre();
                 theatre.id = eElement.getAttribute("id");
                 theatre.name = eElement.getAttribute("name");
+                theatre.movie = Integer.parseInt(eElement.getAttribute("movie"));
                 theatre.height = Integer.parseInt(eElement.getAttribute("height"));
                 theatre.width = Integer.parseInt(eElement.getAttribute("width"));
                 theatre.seatTypes = parseSeats(eElement.getTextContent().toCharArray(), theatre.width, theatre.height, seatTypes);
                 list.put(theatre.id, theatre);
             }
         }
-
         return list;
     }
     
