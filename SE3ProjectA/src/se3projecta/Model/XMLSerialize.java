@@ -8,8 +8,8 @@ import org.w3c.dom.Element;
  *
  * @author Russell
  */
-public interface XMLSerialize {
+public interface XMLSerialize<K> {
     public abstract void load(Element n);
-    public abstract Character getCharId();
-    public abstract Integer getIntId();
+    public abstract K getId();
+    //public abstract Integer getIntId();
 }

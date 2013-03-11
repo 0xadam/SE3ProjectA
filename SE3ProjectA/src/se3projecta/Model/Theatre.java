@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
  * @author Russell
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class Theatre implements XMLSerialize {
+public class Theatre implements XMLSerialize<Integer> {
 
     private Integer id;
     private String name;
@@ -46,14 +46,10 @@ public class Theatre implements XMLSerialize {
     }
 
     @Override
-    public Character getCharId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Integer getIntId() {
+    public Integer getId() {
         return id;
     }
+
 
     public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes) {
         this.seatTypes = parseSeats(this.rawSeatPlan.toCharArray(), this.width, this.height, seatTypes);

@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class Movie implements XMLSerialize {
+public class Movie implements XMLSerialize<Integer> {
 
     private int id;
     private String movieName;
@@ -36,12 +36,7 @@ public class Movie implements XMLSerialize {
     }
 
     @Override
-    public Character getCharId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Integer getIntId() {
+    public Integer getId() {
         return id;
     }
 

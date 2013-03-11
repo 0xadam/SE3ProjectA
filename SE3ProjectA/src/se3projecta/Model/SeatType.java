@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class SeatType implements XMLSerialize {
+public class SeatType implements XMLSerialize<Character> {
 
     private String name;
     private double price;
@@ -35,13 +35,8 @@ public class SeatType implements XMLSerialize {
     }
 
     @Override
-    public Character getCharId() {
+    public Character getId() {
         return id;
-    }
-
-    @Override
-    public Integer getIntId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void setName(String name) {
@@ -54,10 +49,6 @@ public class SeatType implements XMLSerialize {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Character getId() {
-        return id;
     }
 
     public void setId(Character id) {

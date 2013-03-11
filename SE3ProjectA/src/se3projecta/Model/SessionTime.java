@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class SessionTime implements XMLSerialize {
+public class SessionTime implements XMLSerialize<Integer> {
 
     private Integer id;
     private String name;
@@ -31,12 +31,7 @@ public class SessionTime implements XMLSerialize {
     }
 
     @Override
-    public Character getCharId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Integer getIntId() {
+    public Integer getId() {
         return id;
     }
 }

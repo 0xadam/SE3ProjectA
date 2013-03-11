@@ -14,22 +14,11 @@ import se3projecta.Model.*;
  */
 public class SE3ProjectA {
 
-    private TreeMap<Character, SeatType> SeatTypes;
-
-    public SeatType getSeatTypebyId(char id) {
-        if (SeatTypes.containsKey(id)) {
-            return SeatTypes.get(id);
-        }
-        return null;
-    }
+    private TreeMap<Character, SeatType> seatTypes;
     private TreeMap<Integer, Theatre> theatres;
     private TreeMap<Integer, Movie> movies;
-
-    private String getMoviebyId(Integer id) {
-        return movies.get(id).toString();
-    }
     private TreeMap<Integer, SessionTime> sessionTimes;
-
+    private TreeMap<Integer, CustomerType> customerTypes;
     /**
      * @param args the command line arguments
      */
@@ -77,17 +66,23 @@ public class SE3ProjectA {
         //load seatTypes;
         NodeList SeatNodes = XML_Loader.loadXML("Data/SeatTypes.xml", "SeatType");
         try {
-            SeatTypes = XML_Loader.loadCharIndexEntities(SeatNodes, SeatType.class);
+            seatTypes = XML_Loader.loadIndexEntities(SeatNodes, SeatType.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //load patronTypes
-
+        NodeList CustomerTypeNodes = XML_Loader.loadXML("Data/CustomerTypes.xml", "CustomerType");
+        try {
+            customerTypes = XML_Loader.loadIndexEntities(CustomerTypeNodes, CustomerType.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         //load Movies
         NodeList movieNodes = XML_Loader.loadXML("Data/Movies.xml", "movie");
         try {
-            movies = XML_Loader.loadIntIndexEntities(movieNodes, Movie.class);
+            movies = XML_Loader.loadIndexEntities(movieNodes, Movie.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,7 +90,7 @@ public class SE3ProjectA {
         //Load SessionTimes
         NodeList sessionTimeNodes = XML_Loader.loadXML("Data/SessionTimes.xml", "SessionTime");
         try {
-            sessionTimes = XML_Loader.loadIntIndexEntities(sessionTimeNodes, SessionTime.class);
+            sessionTimes = XML_Loader.loadIndexEntities(sessionTimeNodes, SessionTime.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,13 +98,13 @@ public class SE3ProjectA {
         //load Theatres
         NodeList theatreNodes = XML_Loader.loadXML("Data/Theatres.xml", "Theatre");
         try {
-            theatres = XML_Loader.loadIntIndexEntities(theatreNodes, Theatre.class);
+            theatres = XML_Loader.loadIndexEntities(theatreNodes, Theatre.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
         //set up seat plans.
         for (Theatre t : theatres.values()) {
-            t.loadSeatPlan(SeatTypes);
+            t.loadSeatPlan(seatTypes);
             t.loadMovie(movies);
         }
         
@@ -119,10 +114,14 @@ public class SE3ProjectA {
         //other initialisation code
 
         //TEST: test seat type loading
-        for (int i = 0; i < SeatTypes.size(); i++) {
-            System.out.println(SeatTypes.values().toArray(new SeatType[1])[i].toString());
+        for (int i = 0; i < seatTypes.size(); i++) {
+            System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());
         }
-
+        
+        for (CustomerType ct : customerTypes.values()) {
+            System.out.println(ct.toString());
+        }
+        
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(movies.values().toArray(new Movie[1])[i].toString());
         }

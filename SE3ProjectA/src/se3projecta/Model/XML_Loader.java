@@ -15,13 +15,6 @@ import org.w3c.dom.NodeList;
  * @author Russell
  */
 public class XML_Loader {
-    private TreeMap<Character, SeatType> SeatTypes;
-    private TreeMap<String, Theatre> theatres;
-    private TreeMap<Integer, Movie> movies;
-    private TreeMap<Integer, SessionTime> sessionTimes;
-    final static String SEATTYPES_PATH = "Data/SeatTypes.xml";
-    
-    
     public static NodeList loadXML(String Path, String NodeNames) {
         Document doc = null;
         try {
@@ -33,8 +26,8 @@ public class XML_Loader {
         return doc.getElementsByTagName(NodeNames);
     }
 
-    public static <V extends XMLSerialize> TreeMap<Character, V> loadCharIndexEntities(NodeList nList, Class<V> c1) throws InstantiationException, java.lang.IllegalAccessException {
-        TreeMap<Character, V> list = new TreeMap<Character, V>();
+    public static <K, V extends XMLSerialize<K>> TreeMap<K, V> loadIndexEntities(NodeList nList, Class<V> c1) throws InstantiationException, java.lang.IllegalAccessException {
+        TreeMap<K, V> list = new TreeMap<K, V>();
         for (int temp = 0; temp < nList.getLength(); temp++) {
 
             Node nNode = nList.item(temp);
@@ -43,25 +36,7 @@ public class XML_Loader {
                 Element eElement = (Element) nNode;
                 V val = c1.newInstance();
                 val.load(eElement);
-                list.put(val.getCharId(), val);
-            }
-
-        }
-
-        return list;
-    }
-    
-    public static <V extends XMLSerialize> TreeMap<Integer, V> loadIntIndexEntities(NodeList nList, Class<V> c1) throws InstantiationException, java.lang.IllegalAccessException {
-        TreeMap<Integer, V> list = new TreeMap<Integer, V>();
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-
-            Node nNode = nList.item(temp);
-
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                V val = c1.newInstance();
-                val.load(eElement);
-                list.put(val.getIntId(), val);
+                list.put(val.getId(), val);
             }
 
         }
