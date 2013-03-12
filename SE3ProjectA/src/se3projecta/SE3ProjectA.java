@@ -64,41 +64,41 @@ public class SE3ProjectA {
 
     public SE3ProjectA() {
         //load seatTypes;
-        NodeList SeatNodes = XML_Loader.loadXML("Data/SeatTypes.xml", "SeatType");
+        NodeList SeatNodes = XmlFileLoader.parseXmlFile("Data/SeatTypes.xml", "SeatType");
         try {
-            seatTypes = XML_Loader.loadIndexEntities(SeatNodes, SeatType.class);
+            seatTypes = XmlFileLoader.loadIndexEntities(SeatNodes, SeatType.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //load patronTypes
-        NodeList CustomerTypeNodes = XML_Loader.loadXML("Data/CustomerTypes.xml", "CustomerType");
+        NodeList CustomerTypeNodes = XmlFileLoader.parseXmlFile("Data/CustomerTypes.xml", "CustomerType");
         try {
-            customerTypes = XML_Loader.loadIndexEntities(CustomerTypeNodes, CustomerType.class);
+            customerTypes = XmlFileLoader.loadIndexEntities(CustomerTypeNodes, CustomerType.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
         
         //load Movies
-        NodeList movieNodes = XML_Loader.loadXML("Data/Movies.xml", "movie");
+        NodeList movieNodes = XmlFileLoader.parseXmlFile("Data/Movies.xml", "movie");
         try {
-            movies = XML_Loader.loadIndexEntities(movieNodes, Movie.class);
+            movies = XmlFileLoader.loadIndexEntities(movieNodes, Movie.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //Load SessionTimes
-        NodeList sessionTimeNodes = XML_Loader.loadXML("Data/SessionTimes.xml", "SessionTime");
+        NodeList sessionTimeNodes = XmlFileLoader.parseXmlFile("Data/SessionTimes.xml", "SessionTime");
         try {
-            sessionTimes = XML_Loader.loadIndexEntities(sessionTimeNodes, SessionTime.class);
+            sessionTimes = XmlFileLoader.loadIndexEntities(sessionTimeNodes, SessionTime.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //load Theatres
-        NodeList theatreNodes = XML_Loader.loadXML("Data/Theatres.xml", "Theatre");
+        NodeList theatreNodes = XmlFileLoader.parseXmlFile("Data/Theatres.xml", "Theatre");
         try {
-            theatres = XML_Loader.loadIndexEntities(theatreNodes, Theatre.class);
+            theatres = XmlFileLoader.loadIndexEntities(theatreNodes, Theatre.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

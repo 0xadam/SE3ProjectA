@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class SeatType implements XMLSerialize<Character> {
+public class SeatType implements XmlUnserializable<Character> {
 
     private String name;
     private double price;

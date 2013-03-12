@@ -35,7 +35,23 @@ public class TheatreSession {
     }
     
     public Seat[] placeRandom() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        throw new UnsupportedOperationException("Not implemented.");
+    }
+    
+    public int numAvailable(SeatType type) {
+        throw new UnsupportedOperationException("Not implemented.");
+    }
+    
+    public boolean hasAvailable(SeatType type, int seats) {
+        return numAvailable(type) > seats;
+    }
+    
+    public SessionTime getSessionTime() {
+        return sessionTime;
+    }
+    
+    public Movie getMovie() {
+        return movie;
     }
     
     public Theatre getTheatre() {

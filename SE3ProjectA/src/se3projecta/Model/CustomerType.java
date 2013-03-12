@@ -10,7 +10,7 @@ import org.w3c.dom.Element;
  *
  * @author Russell
  */
-public class CustomerType implements XMLSerialize<Integer> {
+public class CustomerType implements XmlUnserializable<Integer> {
 
     private int id;
     private String name;

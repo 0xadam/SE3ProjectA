@@ -8,7 +8,7 @@ import org.w3c.dom.Element;
  *
  * @author Russell
  */
-public interface XMLSerialize<K> {
+public interface XmlUnserializable<K> {
     public abstract void load(Element n);
     public abstract K getId();
     //public abstract Integer getIntId();

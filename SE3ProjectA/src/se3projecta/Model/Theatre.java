@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
  * @author Russell
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class Theatre implements XMLSerialize<Integer> {
+public class Theatre implements XmlUnserializable<Integer> {
 
     private Integer id;
     private String name;

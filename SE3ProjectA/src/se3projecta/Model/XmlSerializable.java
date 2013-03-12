@@ -8,6 +8,6 @@ import org.w3c.dom.Node;
  *
  * @author Russell
  */
-public interface XML_Savable {
+public interface XmlSerializable {
     public abstract Node Save();
 }

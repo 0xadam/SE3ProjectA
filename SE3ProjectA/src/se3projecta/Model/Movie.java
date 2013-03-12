@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class Movie implements XMLSerialize<Integer> {
+public class Movie implements XmlUnserializable<Integer> {
 
     private int id;
     private String movieName;

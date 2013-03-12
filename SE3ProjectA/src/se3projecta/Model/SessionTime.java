@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Russell
  */
-public class SessionTime implements XMLSerialize<Integer> {
+public class SessionTime implements XmlUnserializable<Integer> {
 
     private Integer id;
     private String name;
