@@ -4,6 +4,7 @@
  */
 package se3projecta.Model;
 
+import Xml.XmlUnserializable;
 import se3projecta.SE3ProjectA;
 
 import java.util.TreeMap;
@@ -23,6 +24,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     private String name;
     private int width;
     private int height;
+    private int movieId;
     private String rawSeatPlan;
     private SeatType[] seatTypes;
     public int getWidth() {
@@ -33,10 +35,15 @@ public class Theatre implements XmlUnserializable<Integer> {
         return height;
     }
 
+    public int getMovieId() {
+        return movieId;
+    }
+    
     @Override
     public void load(Element n) {
         this.id = Integer.parseInt(n.getAttribute("id"));
         this.name = n.getAttribute("name");
+        this.movieId = Integer.parseInt(n.getAttribute("movie"));
         this.height = Integer.parseInt(n.getAttribute("height"));
         this.width = Integer.parseInt(n.getAttribute("width"));
         this.rawSeatPlan = n.getTextContent();

@@ -4,6 +4,8 @@
  */
 package se3projecta;
 
+import Xml.XmlFileLoader;
+import Xml.XmlFileSaver;
 import java.util.TreeMap;
 import org.w3c.dom.NodeList;
 import se3projecta.Model.*;
@@ -109,7 +111,7 @@ public class SE3ProjectA {
         }
         
         //load Theatre sessions
-        NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile("Data/Theatres.xml", "TheatreSession");
+        NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile("Data/TheatreSessions.xml", "TheatreSession");
         if (theatreSessionNodes != null) {
             try {
             theatreSessions = XmlFileLoader.loadIndexEntities(theatreSessionNodes, TheatreSession.class);
@@ -128,9 +130,16 @@ public class SE3ProjectA {
         }
 
         //load movies, theatres and sessiontimes to sessions
-
+        for (TheatreSession ts : theatreSessions.values()) {
+            ts.loadRelations(theatres, movies, sessionTimes);
+        }
+        theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
+        
         //other initialisation code
-
+        try {
+        XmlFileSaver.save(theatreSessions, "Data/TheatreSessions.xml");
+        } catch (Exception e) {}
+        
         //TEST: test seat type loading
         for (int i = 0; i < seatTypes.size(); i++) {
             System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());

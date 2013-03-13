@@ -4,6 +4,7 @@
  */
 package se3projecta.Model;
 
+import Xml.XmlUnserializable;
 import java.util.TreeMap;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
