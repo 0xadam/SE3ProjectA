@@ -29,7 +29,6 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         theatrePanel = new javax.swing.JPanel();
         moviePanel = new javax.swing.JPanel();
@@ -38,26 +37,19 @@ public class GUI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout theatrePanelLayout = new javax.swing.GroupLayout(theatrePanel);
         theatrePanel.setLayout(theatrePanelLayout);
         theatrePanelLayout.setHorizontalGroup(
             theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 93, Short.MAX_VALUE)
+            .addGap(0, 239, Short.MAX_VALUE)
         );
         theatrePanelLayout.setVerticalGroup(
             theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 172, Short.MAX_VALUE)
+            .addGap(0, 149, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        getContentPane().add(theatrePanel, gridBagConstraints);
+        getContentPane().add(theatrePanel, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("jButton1");
 
@@ -65,27 +57,17 @@ public class GUI extends javax.swing.JFrame {
         moviePanel.setLayout(moviePanelLayout);
         moviePanelLayout.setHorizontalGroup(
             moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moviePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(0, 0, 0))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
         moviePanelLayout.setVerticalGroup(
             moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(moviePanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jButton1)
-                .addGap(0, 149, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
-        gridBagConstraints.weightx = 0.5;
-        getContentPane().add(moviePanel, gridBagConstraints);
+        getContentPane().add(moviePanel, java.awt.BorderLayout.PAGE_START);
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +80,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel.setLayout(transactionPanelLayout);
         transactionPanelLayout.setHorizontalGroup(
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transactionPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jButton3)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
         transactionPanelLayout.setVerticalGroup(
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,13 +90,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        getContentPane().add(transactionPanel, gridBagConstraints);
+        getContentPane().add(transactionPanel, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
