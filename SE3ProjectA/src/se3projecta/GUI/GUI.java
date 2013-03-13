@@ -6,7 +6,10 @@ package se3projecta.GUI;
 
 /**
  *
- * @author TV
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
     se3projecta.SE3ProjectA control;
@@ -27,22 +30,101 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        theatrePanel = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        transactionPanel = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        moviePanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(2, 0));
+
+        jButton4.setText("jButton4");
+
+        javax.swing.GroupLayout theatrePanelLayout = new javax.swing.GroupLayout(theatrePanel);
+        theatrePanel.setLayout(theatrePanelLayout);
+        theatrePanelLayout.setHorizontalGroup(
+            theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 358, Short.MAX_VALUE)
+            .addGroup(theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(theatrePanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jButton4)
+                    .addContainerGap(275, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        theatrePanelLayout.setVerticalGroup(
+            theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 172, Short.MAX_VALUE)
+            .addGroup(theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(theatrePanelLayout.createSequentialGroup()
+                    .addGap(138, 138, 138)
+                    .addComponent(jButton4)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        getContentPane().add(theatrePanel);
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout transactionPanelLayout = new javax.swing.GroupLayout(transactionPanel);
+        transactionPanel.setLayout(transactionPanelLayout);
+        transactionPanelLayout.setHorizontalGroup(
+            transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionPanelLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jButton3)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        transactionPanelLayout.setVerticalGroup(
+            transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(transactionPanel);
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout moviePanelLayout = new javax.swing.GroupLayout(moviePanel);
+        moviePanel.setLayout(moviePanelLayout);
+        moviePanelLayout.setHorizontalGroup(
+            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moviePanelLayout.createSequentialGroup()
+                .addContainerGap(228, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(57, 57, 57))
+        );
+        moviePanelLayout.setVerticalGroup(
+            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(moviePanelLayout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(moviePanel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JPanel moviePanel;
+    private javax.swing.JPanel theatrePanel;
+    private javax.swing.JPanel transactionPanel;
     // End of variables declaration//GEN-END:variables
 }

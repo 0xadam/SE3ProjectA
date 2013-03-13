@@ -11,7 +11,9 @@ import org.w3c.dom.Element;
 
 /**
  *
- * @author Russell
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Seat implements XmlSerializable, XmlUnserializable {
