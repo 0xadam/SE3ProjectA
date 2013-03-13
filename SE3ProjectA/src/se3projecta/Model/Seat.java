@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 /**
  *
  * @author Russell
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Seat implements XmlSerializable, XmlUnserializable {
     public enum State {
@@ -30,7 +31,11 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
     
     private SeatType seatType;
-    private State state;
+    private State state = State.Empty;
+    
+    public void setState(State s) {
+        state = s;
+    }
     
     public void setSeatType(SeatType s) {
         seatType = s;

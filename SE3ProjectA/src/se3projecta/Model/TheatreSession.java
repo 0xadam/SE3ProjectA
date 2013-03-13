@@ -116,6 +116,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
     
     private Seat[] getContiguousAllocation(Seat[] row, SeatType type, int width) {
+        if (width > row.length) {
+            throw new IllegalArgumentException("Cannot allocate more seats than there are in the row!");
+        }
+        
         Seat[] allocation = null;
         
         for (int spanStart = 0; spanStart < row.length; spanStart++) {
@@ -132,6 +136,9 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             
             if (found == true) {
                 allocation = Arrays.copyOfRange(row, spanStart, spanStart + width);
+                for (Seat seat : allocation) {
+                    seat.setState(Seat.State.Held);
+                }
                 break;
             }
         }
@@ -140,6 +147,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
     
     private Seat[] getContiguousAllocation(Seat[][] rows, SeatType type, int width) {
+        if (rows == null || rows.length == 0) {
+            throw new IllegalArgumentException("No rows of seats to allocate into");
+        }
+        else if (width > rows[0].length) {
+            throw new IllegalArgumentException("Spcified width greater than row");
+        }
+        
         Seat[] allocation = null;
         
         for (Seat[] row : rows) {
@@ -185,7 +199,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         return allocations;
     }
     
-    public Seat[] placeRandom(SeatType type, int seats) {
+    public Seat[] autoAllocate(SeatType type, int seats) {
         return findBestFit(type, seats);
     }
 
