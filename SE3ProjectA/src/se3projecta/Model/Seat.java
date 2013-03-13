@@ -28,10 +28,6 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         return element;
     }
     
-    public void setState(State s) {
-        state = s;
-    }
-    
     public void load(Element n) {
         this.state = State.valueOf(n.getAttribute("state"));
     }
