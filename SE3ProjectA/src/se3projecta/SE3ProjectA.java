@@ -105,11 +105,11 @@ public class SE3ProjectA {
         //set up seat plans.
         for (Theatre t : theatres.values()) {
             t.loadSeatPlan(seatTypes);
-            t.loadMovie(movies);
         }
         
         //load Theatre sessions
 
+        //load movies, theatres and sessiontimes to sessions
 
         //other initialisation code
 
