@@ -40,8 +40,8 @@ public class XmlFileSaver {
 		StreamResult result = new StreamResult(new File(Path));
  
 		// Output to console for testing
-		// StreamResult result = new StreamResult(System.out);
- 
+		//StreamResult result = new StreamResult(System.out);
+                
 		transformer.transform(source, result);
  
 		//System.out.println("File saved!");

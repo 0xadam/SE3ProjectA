@@ -35,6 +35,9 @@ public class XmlFileLoader {
         Document doc = null;
         try {
             doc = readXml(Path);
+        } catch (IOException ioe) {
+            System.err.println("File not found");
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

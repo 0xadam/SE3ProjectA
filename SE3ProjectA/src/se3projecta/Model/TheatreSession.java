@@ -31,22 +31,26 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         this.id = Integer.parseInt(n.getAttribute("id"));
         this.movieId = Integer.parseInt(n.getAttribute("movieId"));
         this.theatreId = Integer.parseInt(n.getAttribute("theatreId"));
-        this.sessionTimeId =Integer.parseInt(n.getAttribute("sesionTimeId"));
+        this.sessionTimeId = Integer.parseInt(n.getAttribute("sesionTimeId"));
         //load seats
-        Element seatsElement = (Element)n.getElementsByTagName("Seats").item(0);
-        NodeList seatNodes = seatsElement.getElementsByTagName("Seat"); 
+        Element seatsElement = (Element) n.getElementsByTagName("Seats").item(0);
+        NodeList seatNodes = seatsElement.getElementsByTagName("Seat");
         seats = new Seat[Integer.parseInt(seatsElement.getAttribute("count"))];
-        for (int i = 0; i < seats.length; i ++) {
-            seats[i].load((Element)seatNodes.item(i));
+        for (int i = 0; i < seats.length; i++) {
+            seats[i].load((Element) seatNodes.item(i));
         }
-        
+
     }
-    
+
     public TheatreSession(Theatre t, SessionTime st, int id) {
-        
+        this.id = id;
+        this.theatreId = t.getId();
+        this.sessionTimeId = st.getId();
+        this.movieId = t.getMovieId();
+        seats = new Seat[t.getHeight() * t.getWidth()];
     }
-    
-    public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes ){
+
+    public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes) {
         if (theatres.containsKey(theatreId)) {
             theatre = theatres.get(theatreId);
         }
@@ -59,6 +63,9 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         //set up seat details
         if (theatre != null) {
             for (int i = 0; i < seats.length; i++) {
+                if (seats[i] == null) {
+                    seats[i] = new Seat();
+                }
                 seats[i].setSeatType(theatre.getSeatTypebyIndex(i));
             }
         }
@@ -72,7 +79,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     @Override
     public Element Save(Document doc) {
         Element sessionElement = doc.createElement("TheatreSession");
-        
+
         sessionElement.setAttribute("id", id.toString());
         sessionElement.setAttribute("modieId", Integer.toString(movieId));
         sessionElement.setAttribute("theatreId", Integer.toString(theatreId));
@@ -114,13 +121,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return rows;
     }
-    
+
     private Seat[] getContiguousAllocation(Seat[] row, SeatType type, int width) {
         Seat[] allocation = null;
-        
+
         for (int spanStart = 0; spanStart < row.length; spanStart++) {
             boolean found = true;
-            
+
             for (int spanOffset = 0; spanOffset < width; spanOffset++) {
                 int index = spanStart + spanOffset;
                 if (!row[index].available()) {
@@ -129,51 +136,50 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
                     break;
                 }
             }
-            
+
             if (found == true) {
                 allocation = Arrays.copyOfRange(row, spanStart, spanStart + width);
                 break;
             }
         }
-        
+
         return allocation;
     }
-    
+
     private Seat[] getContiguousAllocation(Seat[][] rows, SeatType type, int width) {
         Seat[] allocation = null;
-        
+
         for (Seat[] row : rows) {
             allocation = getContiguousAllocation(row, type, width);
-            
+
             if (allocation != null) {
                 break;
             }
         }
-        
+
         return allocation;
     }
-    
+
     public Seat[] findBestFit(SeatType type, int seats) {
         if (!hasAvailable(type, seats)) {
             throw new IllegalArgumentException("Cannot allocate " + seats + " seats of type " + type.getName());
         }
-        
+
         Seat[][] rows = getSeatRows();
 
         int remainingSeats = seats;
         Seat[] allocations = new Seat[seats];
-        
+
         // allocate seats using a best-fit algorithm
-            // Try to allocate as big a span as we can each time
-            // Start with the biggest span 
-        for (int width = Math.max(theatre.getWidth(), remainingSeats); width > 0; width = Math.min(remainingSeats, width-1)) {
+        // Try to allocate as big a span as we can each time
+        // Start with the biggest span 
+        for (int width = Math.max(theatre.getWidth(), remainingSeats); width > 0; width = Math.min(remainingSeats, width - 1)) {
             while (true) {
                 Seat[] allocation = getContiguousAllocation(rows, type, width);
 
                 if (allocation == null) {
                     break;
-                }
-                else {
+                } else {
                     for (Seat seat : allocation) {
                         allocations[seats - remainingSeats] = seat;
                         remainingSeats--;
@@ -181,10 +187,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
                 }
             };
         }
-        
+
         return allocations;
     }
-    
+
     public Seat[] placeRandom(SeatType type, int seats) {
         return findBestFit(type, seats);
     }
@@ -194,13 +200,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         // stored in TheatreSession when the available flag on each seat is
         // changed.
         int count = 0;
-        
+
         for (Seat seat : seats) {
             if (seat.getType() == type && seat.available()) {
                 count++;
             }
         }
-        
+
         return count;
     }
 
