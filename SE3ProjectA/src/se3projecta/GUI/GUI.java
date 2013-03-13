@@ -29,41 +29,63 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         theatrePanel = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        transactionPanel = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
         moviePanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        transactionPanel = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(2, 0));
-
-        jButton4.setText("jButton4");
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout theatrePanelLayout = new javax.swing.GroupLayout(theatrePanel);
         theatrePanel.setLayout(theatrePanelLayout);
         theatrePanelLayout.setHorizontalGroup(
             theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-            .addGroup(theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(theatrePanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jButton4)
-                    .addContainerGap(275, Short.MAX_VALUE)))
+            .addGap(0, 93, Short.MAX_VALUE)
         );
         theatrePanelLayout.setVerticalGroup(
             theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 172, Short.MAX_VALUE)
-            .addGroup(theatrePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(theatrePanelLayout.createSequentialGroup()
-                    .addGap(138, 138, 138)
-                    .addComponent(jButton4)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(theatrePanel);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        getContentPane().add(theatrePanel, gridBagConstraints);
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout moviePanelLayout = new javax.swing.GroupLayout(moviePanel);
+        moviePanel.setLayout(moviePanelLayout);
+        moviePanelLayout.setHorizontalGroup(
+            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moviePanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(0, 0, 0))
+        );
+        moviePanelLayout.setVerticalGroup(
+            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(moviePanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jButton1)
+                .addGap(0, 149, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.weightx = 0.5;
+        getContentPane().add(moviePanel, gridBagConstraints);
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -77,40 +99,25 @@ public class GUI extends javax.swing.JFrame {
         transactionPanelLayout.setHorizontalGroup(
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionPanelLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(0, 0, 0)
                 .addComponent(jButton3)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         transactionPanelLayout.setVerticalGroup(
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jButton3)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(transactionPanel);
-
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout moviePanelLayout = new javax.swing.GroupLayout(moviePanel);
-        moviePanel.setLayout(moviePanelLayout);
-        moviePanelLayout.setHorizontalGroup(
-            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, moviePanelLayout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(57, 57, 57))
-        );
-        moviePanelLayout.setVerticalGroup(
-            moviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(moviePanelLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(moviePanel);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        getContentPane().add(transactionPanel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,7 +129,6 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel moviePanel;
     private javax.swing.JPanel theatrePanel;
     private javax.swing.JPanel transactionPanel;
