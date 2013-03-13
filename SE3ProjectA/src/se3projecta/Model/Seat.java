@@ -22,7 +22,15 @@ public class Seat {
         seatType = type;
     }
     
+    public SeatType getType() {
+        return seatType;
+    }
+    
     public State getState() {
         return state;
+    }
+    
+    public boolean available() {
+        return state == State.Empty;
     }
 }
