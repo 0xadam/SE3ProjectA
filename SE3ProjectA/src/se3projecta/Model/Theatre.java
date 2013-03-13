@@ -46,7 +46,10 @@ public class Theatre implements XmlUnserializable<Integer> {
     public Integer getId() {
         return id;
     }
-
+    
+    SeatType getSeatTypebyIndex(int index) {
+        return seatTypes[index];
+    }
 
     public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes) {
         this.seatTypes = parseSeats(this.rawSeatPlan.toCharArray(), this.width, this.height, seatTypes);

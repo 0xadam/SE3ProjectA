@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.TreeMap;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -32,7 +33,31 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         this.theatreId = Integer.parseInt(n.getAttribute("theatreId"));
         this.sessionTimeId =Integer.parseInt(n.getAttribute("sesionTimeId"));
         //load seats
+        Element seatsElement = (Element)n.getElementsByTagName("Seats").item(0);
+        NodeList seatNodes = seatsElement.getElementsByTagName("Seat"); 
+        seats = new Seat[Integer.parseInt(seatsElement.getAttribute("count"))];
+        for (int i = 0; i < seats.length; i ++) {
+            seats[i].load((Element)seatNodes.item(i));
+        }
         
+    }
+    
+    public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes ){
+        if (theatres.containsKey(theatreId)) {
+            theatre = theatres.get(theatreId);
+        }
+        if (movies.containsKey(movieId)) {
+            movie = movies.get(movieId);
+        }
+        if (sessionTimes.containsKey(sessionTimeId)) {
+            sessionTime = sessionTimes.get(sessionTimeId);
+        }
+        //set up seat details
+        if (theatre != null) {
+            for (int i = 0; i < seats.length; i++) {
+                seats[i].setSeatType(theatre.getSeatTypebyIndex(i));
+            }
+        }
     }
 
     @Override
@@ -55,7 +80,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         seatsElement.setAttribute("count", Integer.toString(seats.length));
 
         for (int i = 0; i < seats.length; i++) {
-            seatsElement.appendChild(seats[i].toXml(doc));
+            seatsElement.appendChild(seats[i].Save(doc));
         }
 
         return sessionElement;
