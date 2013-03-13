@@ -19,6 +19,7 @@ public class SE3ProjectA {
     private TreeMap<Integer, Movie> movies;
     private TreeMap<Integer, SessionTime> sessionTimes;
     private TreeMap<Integer, CustomerType> customerTypes;
+    private TreeMap<Integer, TheatreSession> theatreSessions;
     /**
      * @param args the command line arguments
      */
@@ -108,6 +109,23 @@ public class SE3ProjectA {
         }
         
         //load Theatre sessions
+        NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile("Data/Theatres.xml", "TheatreSession");
+        if (theatreSessionNodes != null) {
+            try {
+            theatreSessions = XmlFileLoader.loadIndexEntities(theatreSessionNodes, TheatreSession.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        } else {
+            int i = 0;
+            theatreSessions = new TreeMap<Integer, TheatreSession>();
+            for (Theatre t : theatres.values()) {
+                for (SessionTime st : sessionTimes.values()) {
+                    TheatreSession ts = new TheatreSession(t, st, i++);
+                    theatreSessions.put(ts.getId(), ts);
+                }
+            }
+        }
 
         //load movies, theatres and sessiontimes to sessions
 

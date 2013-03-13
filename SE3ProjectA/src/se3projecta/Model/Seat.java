@@ -47,4 +47,8 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     public boolean available() {
         return state == State.Empty;
     }
+    
+    public Integer getId() {
+        return 0;
+    }
 }

@@ -42,6 +42,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         
     }
     
+    public TheatreSession(Theatre t, SessionTime st, int id) {
+        
+    }
+    
     public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes ){
         if (theatres.containsKey(theatreId)) {
             theatre = theatres.get(theatreId);
