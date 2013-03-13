@@ -57,6 +57,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         return state == State.Empty;
     }
     
+    // Crazy Russell hack
     public Integer getId() {
         return 0;
     }
