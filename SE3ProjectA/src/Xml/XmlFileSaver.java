@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package se3projecta.Model;
+package Xml;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
 import java.util.TreeMap;
+import javax.xml.transform.OutputKeys;
 import org.w3c.dom.Element;
 /**
  *
@@ -29,6 +30,7 @@ public class XmlFileSaver {
 		Document doc = docBuilder.newDocument();
                 
                 Element root = doc.createElement("Root");
+                doc.appendChild(root);
                 for (V v : file.values()) {
                     root.appendChild(v.Save(doc));
                 }
@@ -36,6 +38,7 @@ public class XmlFileSaver {
 		// write the content into xml file
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		DOMSource source = new DOMSource(doc);
 		StreamResult result = new StreamResult(new File(Path));
  

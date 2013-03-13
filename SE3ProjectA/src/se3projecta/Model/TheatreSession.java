@@ -4,6 +4,8 @@
  */
 package se3projecta.Model;
 
+import Xml.XmlSerializable;
+import Xml.XmlUnserializable;
 import java.util.Arrays;
 import java.util.TreeMap;
 import org.w3c.dom.Document;
@@ -31,15 +33,20 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         this.id = Integer.parseInt(n.getAttribute("id"));
         this.movieId = Integer.parseInt(n.getAttribute("movieId"));
         this.theatreId = Integer.parseInt(n.getAttribute("theatreId"));
-        this.sessionTimeId = Integer.parseInt(n.getAttribute("sesionTimeId"));
+        this.sessionTimeId = Integer.parseInt(n.getAttribute("sessionTimeId"));
         //load seats
         Element seatsElement = (Element) n.getElementsByTagName("Seats").item(0);
-        NodeList seatNodes = seatsElement.getElementsByTagName("Seat");
+        NodeList seatNodes = n.getElementsByTagName("Seat");
         seats = new Seat[Integer.parseInt(seatsElement.getAttribute("count"))];
         for (int i = 0; i < seats.length; i++) {
+            seats[i] = new Seat();
             seats[i].load((Element) seatNodes.item(i));
         }
 
+    }
+    
+    public TheatreSession() {
+        
     }
 
     public TheatreSession(Theatre t, SessionTime st, int id) {
@@ -81,7 +88,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         Element sessionElement = doc.createElement("TheatreSession");
 
         sessionElement.setAttribute("id", id.toString());
-        sessionElement.setAttribute("modieId", Integer.toString(movieId));
+        sessionElement.setAttribute("movieId", Integer.toString(movieId));
         sessionElement.setAttribute("theatreId", Integer.toString(theatreId));
         sessionElement.setAttribute("sessionTimeId", Integer.toString(sessionTimeId));
 

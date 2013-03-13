@@ -4,6 +4,8 @@
  */
 package se3projecta.Model;
 
+import Xml.XmlSerializable;
+import Xml.XmlUnserializable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -23,6 +25,10 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         element.setAttribute("state", (state == State.Occupied ? state.toString() : State.Empty.toString()));
         
         return element;
+    }
+    
+    public void setState(State s) {
+        state = s;
     }
     
     public void load(Element n) {
