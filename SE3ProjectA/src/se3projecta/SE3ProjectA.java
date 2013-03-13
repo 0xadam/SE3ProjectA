@@ -131,6 +131,7 @@ public class SE3ProjectA {
         for (TheatreSession ts : theatreSessions.values()) {
             ts.loadRelations(theatres, movies, sessionTimes);
         }
+        theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
         
         //other initialisation code
         try {
