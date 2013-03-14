@@ -59,9 +59,9 @@ public class Repository {
     private final String SESSION_TIME_TAG = "SessionTime";
     
     private final String THEATRES_PATH = DATA_DIR + "/Theatres.xml";
-    private final String THEATRE_TAG = "TheatreTag";
+    private final String THEATRE_TAG = "Theatre";
     
-    private final String THEATRE_SESSIONS_PATH = DATA_DIR + "/Theatres.xml";
+    private final String THEATRE_SESSIONS_PATH = DATA_DIR + "/TheatreSession.xml";
     private final String THEATRE_SESSION_TAG = "TheatreSession";
     
     public Repository() {
