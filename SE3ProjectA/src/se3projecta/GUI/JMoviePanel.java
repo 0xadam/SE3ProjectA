@@ -30,7 +30,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         JComboBox theatreDropdown = new JComboBox();
         JLabel label = null;
         try {
-            BufferedImage movieImage = ImageIO.read(new File("data\\asdf.jpg"));
+            BufferedImage movieImage = ImageIO.read(new File("data\\noimage.jpg"));
             ImageIcon pic = new ImageIcon(movieImage);
             label = new JLabel(pic);
             label.setPreferredSize(new Dimension(100, 150));
@@ -41,9 +41,8 @@ public class JMoviePanel extends javax.swing.JPanel {
             movieDropdown.addItem(movie);
         }
         for (SessionTime session : sessionTimes) {
-            sessionTimeDropdown.addItem(session.getName());
+            sessionTimeDropdown.addItem(session);
         }
-
         dropdowns.add(movieDropdown);
         dropdowns.add(sessionTimeDropdown);
         dropdowns.add(theatreDropdown);
