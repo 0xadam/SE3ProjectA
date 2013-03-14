@@ -22,6 +22,7 @@ public class SE3ProjectA {
     private TreeMap<Integer, SessionTime> sessionTimes;
     private TreeMap<Integer, CustomerType> customerTypes;
     private TreeMap<Integer, TheatreSession> theatreSessions;
+
     /**
      * @param args the command line arguments
      */
@@ -34,35 +35,36 @@ public class SE3ProjectA {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
-         try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-         if ("Nimbus".equals(info.getName())) {
-         javax.swing.UIManager.setLookAndFeel(info.getClassName());
-         break;
-         }
-         }
-         } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         }
-         
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
 
         //</editor-fold>
         /* Create and display the form */
-        
-         java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new se3projecta.GUI.GUI(control).setVisible(true);
-                
-         }
-         });
-         
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new se3projecta.GUI.GUI(control).setVisible(true);
+
+            }
+        });
+
     }
 
     public SE3ProjectA() {
@@ -81,7 +83,7 @@ public class SE3ProjectA {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         //load Movies
         NodeList movieNodes = XmlFileLoader.parseXmlFile("Data/Movies.xml", "movie");
         try {
@@ -109,15 +111,15 @@ public class SE3ProjectA {
         for (Theatre t : theatres.values()) {
             t.loadSeatPlan(seatTypes);
         }
-        
+
         //load Theatre sessions
         NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile("Data/TheatreSessions.xml", "TheatreSession");
         if (theatreSessionNodes != null) {
             try {
-            theatreSessions = XmlFileLoader.loadIndexEntities(theatreSessionNodes, TheatreSession.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                theatreSessions = XmlFileLoader.loadIndexEntities(theatreSessionNodes, TheatreSession.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             int i = 0;
             theatreSessions = new TreeMap<Integer, TheatreSession>();
@@ -134,21 +136,23 @@ public class SE3ProjectA {
             ts.loadRelations(theatres, movies, sessionTimes);
         }
         theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
-        
+
         //other initialisation code
         try {
-        XmlFileSaver.save(theatreSessions, "Data/TheatreSessions.xml");
-        } catch (Exception e) {}
-        
+            XmlFileSaver.save(theatreSessions, "Data/TheatreSessions.xml");
+        } catch (Exception e) {
+            // TO-DO remove this code
+        }
+
         //TEST: test seat type loading
         for (int i = 0; i < seatTypes.size(); i++) {
             System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());
         }
-        
+
         for (CustomerType ct : customerTypes.values()) {
             System.out.println(ct.toString());
         }
-        
+
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(movies.values().toArray(new Movie[1])[i].toString());
         }

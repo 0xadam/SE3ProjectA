@@ -22,14 +22,16 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         Held,
         Occupied
     }
-    
-    public Element Save(Document doc) {
+
+    @Override
+    public Element save(Document doc) {
         Element element = doc.createElement("Seat");
         element.setAttribute("state", (state == State.Occupied ? state.toString() : State.Empty.toString()));
         
         return element;
     }
     
+    @Override
     public void load(Element n) {
         this.state = State.valueOf(n.getAttribute("state"));
     }
@@ -58,6 +60,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
     
     // Crazy Russell hack
+    @Override
     public Integer getId() {
         return 0;
     }

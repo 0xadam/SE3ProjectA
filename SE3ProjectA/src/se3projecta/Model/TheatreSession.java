@@ -86,7 +86,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     @Override
-    public Element Save(Document doc) {
+    public Element save(Document doc) {
         Element sessionElement = doc.createElement("TheatreSession");
 
         sessionElement.setAttribute("id", id.toString());
@@ -100,7 +100,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         seatsElement.setAttribute("count", Integer.toString(seats.length));
 
         for (int i = 0; i < seats.length; i++) {
-            seatsElement.appendChild(seats[i].Save(doc));
+            seatsElement.appendChild(seats[i].save(doc));
         }
 
         return sessionElement;
@@ -115,7 +115,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     public Seat[] getSeats() {
-        return seats;
+        return seats.clone();
     }
 
     public Seat[][] getSeatRows() {
@@ -208,7 +208,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
                         remainingSeats--;
                     }
                 }
-            };
+            }
         }
 
         return allocations;

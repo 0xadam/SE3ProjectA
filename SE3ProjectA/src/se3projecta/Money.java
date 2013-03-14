@@ -17,6 +17,14 @@ public class Money {
     private static final String textSuffix = "";
     
     private int value;
+
+    public void setValue(double v) {
+        value = (int)(v * Math.pow(10, decimalPlaces));
+    }
+    
+    public void setValue(int v) {
+        value = v;
+    }
     
     public double getValue() {
         return value/Math.pow(10, decimalPlaces);

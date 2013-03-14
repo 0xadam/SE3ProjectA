@@ -10,5 +10,5 @@ import org.w3c.dom.Element;
  * @author Russell
  */
 public interface XmlSerializable {
-    public abstract Element Save(Document dom);
+    public abstract Element save(Document dom);
 }

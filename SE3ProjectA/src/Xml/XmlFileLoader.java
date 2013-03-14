@@ -32,9 +32,9 @@ public class XmlFileLoader {
     }
 
     public static NodeList parseXmlFile(String Path, String NodeNames) {
-        Document doc = null;
         try {
-            doc = readXml(Path);
+            Document doc = readXml(Path);
+            return doc.getElementsByTagName(NodeNames);
         } catch (IOException ioe) {
             System.err.println("File not found");
             return null;
@@ -42,8 +42,6 @@ public class XmlFileLoader {
             e.printStackTrace();
             return null;
         }
-        
-        return doc.getElementsByTagName(NodeNames);
     }
 
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)

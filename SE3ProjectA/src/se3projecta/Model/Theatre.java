@@ -5,13 +5,9 @@
 package se3projecta.Model;
 
 import Xml.XmlUnserializable;
-import se3projecta.SE3ProjectA;
 
 import java.util.TreeMap;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
@@ -66,20 +62,28 @@ public class Theatre implements XmlUnserializable<Integer> {
 
     @Override
     public String toString() {
-        String value = "Theatre: ID:" + id + "\tName: " + name + "\tsize: " + width + "x" + height + "\tPlan:\n";
+        StringBuilder builder = new StringBuilder();
+        
+        builder.append("Theatre: ID:").append(id).
+                append("\tName: ").append(name).
+                append("\tsize: ").append(width).
+                append("x").append(height).
+                append("\tPlan:\n");
+        
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 SeatType temp = seatTypes[i * width + j];
                 if (temp == null) {
-                    value += " ";
+                    builder.append(' ');
                 } else {
-                    value += temp.getId();
+                    builder.append(temp.getId());
                 }
-                value += '\t';
+                builder.append('\t');
             }
-            value += "\n";
+            builder.append('\n');
         }
-        return value;
+        
+        return builder.toString();
     }
 
     private static SeatType[] parseSeats(char[] Seatlist, int width, int height, TreeMap<Character, SeatType> seatTypes) {

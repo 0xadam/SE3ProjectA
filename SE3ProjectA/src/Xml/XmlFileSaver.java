@@ -32,7 +32,7 @@ public class XmlFileSaver {
                 Element root = doc.createElement("Root");
                 doc.appendChild(root);
                 for (V v : file.values()) {
-                    root.appendChild(v.Save(doc));
+                    root.appendChild(v.save(doc));
                 }
  
 		// write the content into xml file
