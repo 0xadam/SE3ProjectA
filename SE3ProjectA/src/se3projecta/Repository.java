@@ -5,6 +5,7 @@
 package se3projecta;
 
 import java.util.TreeMap;
+import java.util.Collection;
 import org.w3c.dom.NodeList;
 import se3projecta.Model.*;
 import se3projecta.Persistance.XmlFileLoader;
@@ -22,6 +23,14 @@ public class Repository {
     private TreeMap<Integer, SessionTime> sessionTimes;
     private TreeMap<Integer, CustomerType> customerTypes;
     private TreeMap<Integer, TheatreSession> theatreSessions;
+    
+    public Collection<Movie> getMovies() {
+        return movies.values();
+    }
+    
+    public Collection<SessionTime> getSessionTimes() {
+        return sessionTimes.values();
+    }
     
     private final String DATA_DIR = "data";
     private final String SEAT_TYPES_PATH = DATA_DIR + "/SeatTypes.xml";
