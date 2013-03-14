@@ -21,25 +21,32 @@ import java.util.Collection;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    public JMoviePanel(Collection<Movie> movies,Collection<SessionTime> sessionTimes) {
+    public JMoviePanel(Collection<Movie> movies, Collection<SessionTime> sessionTimes) {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         JPanel dropdowns = new JPanel();
-        dropdowns.setLayout(new BoxLayout(dropdowns,BoxLayout.Y_AXIS));
-        JComboBox movieDropdown = new JComboBox(); //array of items loaded here?
+        dropdowns.setLayout(new BoxLayout(dropdowns, BoxLayout.Y_AXIS));
+        JComboBox movieDropdown = new JComboBox(); //array of items loaded here?       
+        JComboBox sessionTimeDropdown = new JComboBox();
         JComboBox theatreDropdown = new JComboBox();
-        JComboBox movieTimeDropdown = new JComboBox();
         JLabel label = null;
         try {
-            BufferedImage movieImage = ImageIO.read(new File("Data\\asdf.jpg"));
+            BufferedImage movieImage = ImageIO.read(new File("data\\asdf.jpg"));
             ImageIcon pic = new ImageIcon(movieImage);
             label = new JLabel(pic);
-             label.setPreferredSize(new Dimension(100,150));
+            label.setPreferredSize(new Dimension(100, 150));
         } catch (IOException e) {
             System.out.println("Unable to find poster for movie. Not displayed..."); //maybe have a no image text
         }
+        for (Movie movie : movies) {
+            movieDropdown.addItem(movie);
+        }
+        for (SessionTime session : sessionTimes) {
+            sessionTimeDropdown.addItem(session.getName());
+        }
+
         dropdowns.add(movieDropdown);
-        dropdowns.add(movieTimeDropdown);
-        dropdowns.add(theatreDropdown);       
+        dropdowns.add(sessionTimeDropdown);
+        dropdowns.add(theatreDropdown);
         add(dropdowns);
         add(label);
     }
