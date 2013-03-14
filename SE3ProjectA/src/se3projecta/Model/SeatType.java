@@ -4,7 +4,7 @@
  */
 package se3projecta.Model;
 
-import Xml.XmlUnserializable;
+import se3projecta.Persistance.XmlUnserializable;
 import org.w3c.dom.Element;
 
 /**

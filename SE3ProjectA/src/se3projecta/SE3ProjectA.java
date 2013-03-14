@@ -4,8 +4,8 @@
  */
 package se3projecta;
 
-import Xml.XmlFileLoader;
-import Xml.XmlFileSaver;
+import se3projecta.Persistance.XmlFileLoader;
+import se3projecta.Persistance.XmlFileSaver;
 import java.util.TreeMap;
 import org.w3c.dom.NodeList;
 import se3projecta.Model.*;
