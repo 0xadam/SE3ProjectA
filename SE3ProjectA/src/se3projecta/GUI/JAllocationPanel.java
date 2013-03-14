@@ -11,6 +11,11 @@ package se3projecta.GUI;
  * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JAllocationPanel {
+public class JAllocationPanel extends javax.swing.JPanel {
+    
+   void renderTheatreSession()
+   {
+       
+   }
     
 }

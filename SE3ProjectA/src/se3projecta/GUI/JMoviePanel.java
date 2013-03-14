@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
+import se3projecta.Model.*;
+import java.util.Collection;
 
 /**
  *
@@ -19,7 +21,7 @@ import java.io.*;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    public JMoviePanel() {
+    public JMoviePanel(Collection<Movie> movies,Collection<SessionTime> sessionTimes) {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         JPanel dropdowns = new JPanel();
         dropdowns.setLayout(new BoxLayout(dropdowns,BoxLayout.Y_AXIS));
@@ -31,16 +33,14 @@ public class JMoviePanel extends javax.swing.JPanel {
             BufferedImage movieImage = ImageIO.read(new File("Data\\asdf.jpg"));
             ImageIcon pic = new ImageIcon(movieImage);
             label = new JLabel(pic);
-             label.setPreferredSize(new Dimension(40,100));
+             label.setPreferredSize(new Dimension(100,150));
         } catch (IOException e) {
             System.out.println("Unable to find poster for movie. Not displayed..."); //maybe have a no image text
         }
         dropdowns.add(movieDropdown);
         dropdowns.add(movieTimeDropdown);
-        dropdowns.add(theatreDropdown);
+        dropdowns.add(theatreDropdown);       
         add(dropdowns);
         add(label);
-
-
     }
 }

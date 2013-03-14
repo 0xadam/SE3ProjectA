@@ -28,7 +28,7 @@ public class GUI extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        JMoviePanel moviePanel = new JMoviePanel();
+        JMoviePanel moviePanel = new JMoviePanel(repository.getMovies(),repository.getSessionTimes());
         getContentPane().add(moviePanel);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
