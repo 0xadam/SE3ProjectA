@@ -3,5 +3,6 @@
     <movie id="0" Name="Jaws" promotionalImage="" />
     <movie id="1" Name="Avatar" promotionalImage="" />
     <movie id="2" Name="Star Wars: A New Hope" promotionalImage="" />
-    <movie id="3" Name="The Incredibles" PromotionalImage="" />
+    <movie id="3" Name="The Incredibles" promotionalImage="" />
+    <movie id="4" Name="The Dark Knight" promotionalImage="Data/asdf.jpg" />
 </Movies>
