@@ -12,6 +12,7 @@ import java.io.*;
 import se3projecta.Model.*;
 import java.util.Collection;
 import java.awt.event.*;
+import se3projecta.*;
 
 /**
  *
@@ -23,37 +24,60 @@ import java.awt.event.*;
 public class JMoviePanel extends javax.swing.JPanel {
 
     JLabel label = new JLabel();
+    Repository repository;
+    JPanel dropdowns = new JPanel();
+    JComboBox theatreDropdown = new JComboBox();
+    JComboBox movieDropdown = new JComboBox();
+    JComboBox sessionTimeDropdown = new JComboBox();
 
-    public JMoviePanel(Collection<Movie> movies, Collection<SessionTime> sessionTimes) {
+    public JMoviePanel(Repository repository_) {
+        repository = repository_;
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         //create items
-        JPanel dropdowns = new JPanel();
+
         dropdowns.setLayout(new BoxLayout(dropdowns, BoxLayout.Y_AXIS));
-        JComboBox movieDropdown = new JComboBox();
+
         movieDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                label.setIcon(loadPromoImage(((Movie) ((JComboBox) e.getSource()).getSelectedItem()).getPromotionalImage()));
+                label.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
 
             }
         });
-        JComboBox sessionTimeDropdown = new JComboBox();
-        JComboBox theatreDropdown = new JComboBox();
         //add movies to combobox
-        for (Movie movie : movies) {
+        for (Movie movie : repository.getMovies()) {
             movieDropdown.addItem(movie);
         }
         //add sessionTimes to combobox
-        for (SessionTime session : sessionTimes) {
+        for (SessionTime session : repository.getSessionTimes()) {
             sessionTimeDropdown.addItem(session);
         }
+        movieDropdown.addActionListener(new JMoviePanelAL());
+        sessionTimeDropdown.addActionListener(new JMoviePanelAL());
+        updateTheatreSessions();
         label.setPreferredSize(new Dimension(100, 150));
         dropdowns.add(movieDropdown);
         dropdowns.add(sessionTimeDropdown);
         dropdowns.add(theatreDropdown);
         add(dropdowns);
         add(label);
+    }
+
+    public class JMoviePanelAL implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            updateTheatreSessions();
+        }
+    }
+
+    private void updateTheatreSessions() {
+        theatreDropdown.removeAllItems();
+        Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
+        for (TheatreSession theatreSession : theatreSessions) {
+            theatreDropdown.addItem(theatreSession.getTheatre());
+        }
     }
 
     private ImageIcon loadPromoImage(String promoImageURI) {

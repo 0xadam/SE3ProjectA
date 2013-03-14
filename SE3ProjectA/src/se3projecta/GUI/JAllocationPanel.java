@@ -4,6 +4,9 @@
  */
 package se3projecta.GUI;
 
+import se3projecta.Model.Seat;
+import se3projecta.Model.TheatreSession;
+
 /**
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
@@ -12,10 +15,24 @@ package se3projecta.GUI;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JAllocationPanel extends javax.swing.JPanel {
-    
-   void renderTheatreSession()
-   {
-       
-   }
-    
+
+    TheatreSession tSession = null;
+
+    public JAllocationPanel(TheatreSession tSession_) {
+        setTheatreSession(tSession_);
+        renderTheatreSession();
+    }
+
+    public void setTheatreSession(TheatreSession tSession_) {
+        tSession = tSession_;
+    }
+
+    public void renderTheatreSession() {
+        Seat[][] rows = tSession.getSeatRows();
+        for (int i = 0; i < rows.length; i++) {
+            for (int j = 0; j < rows[0].length; j++) { //length is the same for all
+                System.out.println(rows[i][j].getType().toString());
+            }
+        }
+    }
 }
