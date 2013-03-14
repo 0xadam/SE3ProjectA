@@ -19,7 +19,7 @@ public class SeatType implements XmlUnserializable<Character> {
     private String name;
     private double price;
     private Character id;
-
+        
     @Override
     public void load(Element n) {
         setId(n.getAttribute("ID").charAt(0));

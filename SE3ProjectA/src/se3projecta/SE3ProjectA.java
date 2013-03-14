@@ -4,6 +4,12 @@
  */
 package se3projecta;
 
+import se3projecta.Model.CustomerType;
+import se3projecta.Model.Movie;
+import se3projecta.Model.SeatType;
+import se3projecta.Model.SessionTime;
+import se3projecta.Model.Theatre;
+
 /**
  *
  * @author Tobias
@@ -16,6 +22,8 @@ public class SE3ProjectA {
     public static void main(String[] args) {
         // TODO code application logic here
         final Repository repository = new Repository();
+
+        repository.testDump();
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
