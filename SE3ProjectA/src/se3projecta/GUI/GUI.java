@@ -16,13 +16,13 @@ import se3projecta.*;
  */
 public class GUI extends javax.swing.JFrame {
 
-    se3projecta.SE3ProjectA control;
+    se3projecta.Repository repository;
 
     /**
      * Creates new form GUI
      */
-    public GUI(se3projecta.SE3ProjectA control_) {
-        control = control_;
+    public GUI(se3projecta.Repository repository_) {
+        repository = repository_;
         initComponents();
     }
 

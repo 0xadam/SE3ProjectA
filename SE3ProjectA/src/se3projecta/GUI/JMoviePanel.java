@@ -20,7 +20,9 @@ import java.io.*;
 public class JMoviePanel extends javax.swing.JPanel {
 
     public JMoviePanel() {
-        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        JPanel dropdowns = new JPanel();
+        dropdowns.setLayout(new BoxLayout(dropdowns,BoxLayout.Y_AXIS));
         JComboBox movieDropdown = new JComboBox(); //array of items loaded here?
         JComboBox theatreDropdown = new JComboBox();
         JComboBox movieTimeDropdown = new JComboBox();
@@ -29,15 +31,16 @@ public class JMoviePanel extends javax.swing.JPanel {
             BufferedImage movieImage = ImageIO.read(new File("Data\\asdf.jpg"));
             ImageIcon pic = new ImageIcon(movieImage);
             label = new JLabel(pic);
+             label.setPreferredSize(new Dimension(40,100));
         } catch (IOException e) {
             System.out.println("Unable to find poster for movie. Not displayed..."); //maybe have a no image text
         }
-       add(label);
-        add(movieDropdown);
-                add(movieTimeDropdown);
-        add(theatreDropdown);
-        //movieTimeDropdown.setVisible(false);
-         
-        
+        dropdowns.add(movieDropdown);
+        dropdowns.add(movieTimeDropdown);
+        dropdowns.add(theatreDropdown);
+        add(dropdowns);
+        add(label);
+
+
     }
 }
