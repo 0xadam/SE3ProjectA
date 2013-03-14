@@ -24,7 +24,6 @@ public class JMoviePanel extends javax.swing.JPanel {
 
     JLabel label = new JLabel();
 
-    //need to error check all uses of label
     public JMoviePanel(Collection<Movie> movies, Collection<SessionTime> sessionTimes) {
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -50,31 +49,25 @@ public class JMoviePanel extends javax.swing.JPanel {
             sessionTimeDropdown.addItem(session);
         }
         label.setPreferredSize(new Dimension(100, 150));
-
         dropdowns.add(movieDropdown);
-
         dropdowns.add(sessionTimeDropdown);
-
         dropdowns.add(theatreDropdown);
-
         add(dropdowns);
-
         add(label);
     }
 
     private ImageIcon loadPromoImage(String promoImageURI) {
-        ImageIcon pic = null;
-        File promoImage = new File(promoImageURI);
-        if (!promoImage.exists()) {
-            promoImage = new File("data\\noimage.jpg");
+        ImageIcon promoImage = new ImageIcon();
+        File promoImageFile = new File(promoImageURI);
+        if (!promoImageFile.exists()) {
+            promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            BufferedImage movieImage = ImageIO.read(promoImage);
-            pic = new ImageIcon(movieImage);
+            promoImage.setImage(ImageIO.read(promoImageFile));
         } catch (IOException e) {
             System.out.println("Unable to load image.");
         } finally {
-            return pic;
+            return promoImage;
         }
     }
 }
