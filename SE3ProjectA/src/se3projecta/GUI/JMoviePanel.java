@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package se3projecta;
+package se3projecta.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,24 +19,25 @@ import java.io.*;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    public JMoviePanel(LayoutManager layout) {
-        super(layout);
+    public JMoviePanel() {
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         JComboBox movieDropdown = new JComboBox(); //array of items loaded here?
         JComboBox theatreDropdown = new JComboBox();
         JComboBox movieTimeDropdown = new JComboBox();
-
+        JLabel label = null;
         try {
             BufferedImage movieImage = ImageIO.read(new File("Data\\asdf.jpg"));
             ImageIcon pic = new ImageIcon(movieImage);
-            JLabel label = new JLabel(pic);
-            add(label);
+            label = new JLabel(pic);
         } catch (IOException e) {
-            System.out.println("Unable to find poster for movie. Not added...");
-            e.printStackTrace();
-            System.exit(-1);
+            System.out.println("Unable to find poster for movie. Not displayed..."); //maybe have a no image text
         }
+       add(label);
         add(movieDropdown);
+                add(movieTimeDropdown);
         add(theatreDropdown);
-        add(movieTimeDropdown);
+        //movieTimeDropdown.setVisible(false);
+         
+        
     }
 }
