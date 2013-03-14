@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package se3projecta.Persistance;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -17,36 +18,38 @@ import org.w3c.dom.Document;
 import java.util.TreeMap;
 import javax.xml.transform.OutputKeys;
 import org.w3c.dom.Element;
+
 /**
  *
  * @author Russell
  */
 public class XmlFileSaver {
-    public static <K, V extends XmlSerializable> void save(TreeMap<K, V> file, String Path) throws ParserConfigurationException, TransformerConfigurationException, TransformerException  { 
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
- 
-		//create Document.
-		Document doc = docBuilder.newDocument();
-                
-                Element root = doc.createElement("Root");
-                doc.appendChild(root);
-                for (V v : file.values()) {
-                    root.appendChild(v.save(doc));
-                }
- 
-		// write the content into xml file
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(new File(Path));
- 
-		// Output to console for testing
-		//StreamResult result = new StreamResult(System.out);
-                
-		transformer.transform(source, result);
- 
-		//System.out.println("File saved!");
+
+    public static <K, V extends XmlSerializable> void save(TreeMap<K, V> file, String Path) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+        //create Document.
+        Document doc = docBuilder.newDocument();
+
+        Element root = doc.createElement("Root");
+        doc.appendChild(root);
+        for (V v : file.values()) {
+            root.appendChild(v.save(doc));
+        }
+
+        // write the content into xml file
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(new File(Path));
+
+        // Output to console for testing
+        //StreamResult result = new StreamResult(System.out);
+
+        transformer.transform(source, result);
+
+        //System.out.println("File saved!");
     }
 }

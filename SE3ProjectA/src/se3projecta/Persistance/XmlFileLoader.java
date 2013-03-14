@@ -24,10 +24,10 @@ public class XmlFileLoader {
 
     private static Document readXml(String path) throws ParserConfigurationException, SAXException, IOException {
         File fXmlFile = new File(path);
-        
+
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        
+
         return dBuilder.parse(fXmlFile);
     }
 
@@ -44,10 +44,9 @@ public class XmlFileLoader {
         }
     }
 
-    
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)
             throws InstantiationException, java.lang.IllegalAccessException {
-        
+
         TreeMap<K, V> list = new TreeMap<K, V>();
         for (int temp = 0; temp < nodes.getLength(); temp++) {
 
