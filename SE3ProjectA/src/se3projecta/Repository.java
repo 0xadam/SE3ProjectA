@@ -6,7 +6,6 @@ package se3projecta;
 
 import java.util.TreeMap;
 import java.util.Collection;
-import java.util.ArrayList;
 import org.w3c.dom.NodeList;
 import se3projecta.Model.*;
 import se3projecta.Persistance.XmlFileLoader;
@@ -33,26 +32,30 @@ public class Repository {
         return sessionTimes.values();
     }
     
-    public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
-        ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
-        for (TheatreSession ts : theatreSessions.values()) {
-            if (ts.getSessionTime().getId() == sessionTime.getId() && ts.getMovie().getId() == movie.getId()) {
-                theatreSessionsList.add(ts);
-            }
-        }
-        return theatreSessionsList;
-    }
     
     private final String DATA_DIR = "data";
+    
     private final String SEAT_TYPES_PATH = DATA_DIR + "/SeatTypes.xml";
+    private final String SEAT_TYPE_TAG = "SeatType";
+    
     private final String CUSTOMER_TYPES_PATH = DATA_DIR + "/CustomerTypes.xml";
+    private final String CUSTOMER_TYPE_TAG = "CustomerType";
+    
     private final String MOVIES_PATH = DATA_DIR + "/Movies.xml";
+    private final String MOVIE_TAG = "Movie";
+    
     private final String SESSION_TIMES_PATH = DATA_DIR + "/SessionTimes.xml";
+    private final String SESSION_TIME_TAG = "SessionTime";
+    
     private final String THEATRES_PATH = DATA_DIR + "/Theatres.xml";
+    private final String THEATRE_TAG = "TheatreTag";
+    
+    private final String THEATRE_SESSIONS_PATH = DATA_DIR + "/Theatres.xml";
+    private final String THEATRE_SESSION_TAG = "TheatreSession";
     
     public Repository() {
         //load seatTypes;
-        NodeList SeatNodes = XmlFileLoader.parseXmlFile(SEAT_TYPES_PATH, "SeatType");
+        NodeList SeatNodes = XmlFileLoader.parseXmlFile(SEAT_TYPES_PATH, SEAT_TYPE_TAG);
         try {
             seatTypes = XmlFileLoader.loadIndexEntities(SeatNodes, SeatType.class);
         } catch (Exception e) {
@@ -60,7 +63,7 @@ public class Repository {
         }
 
         //load patronTypes
-        NodeList CustomerTypeNodes = XmlFileLoader.parseXmlFile(CUSTOMER_TYPES_PATH, "CustomerType");
+        NodeList CustomerTypeNodes = XmlFileLoader.parseXmlFile(CUSTOMER_TYPES_PATH, CUSTOMER_TYPE_TAG);
         try {
             customerTypes = XmlFileLoader.loadIndexEntities(CustomerTypeNodes, CustomerType.class);
         } catch (Exception e) {
@@ -68,7 +71,7 @@ public class Repository {
         }
 
         //load Movies
-        NodeList movieNodes = XmlFileLoader.parseXmlFile(MOVIES_PATH, "movie");
+        NodeList movieNodes = XmlFileLoader.parseXmlFile(MOVIES_PATH, MOVIE_TAG);
         try {
             movies = XmlFileLoader.loadIndexEntities(movieNodes, Movie.class);
         } catch (Exception e) {
@@ -76,7 +79,7 @@ public class Repository {
         }
 
         //Load SessionTimes
-        NodeList sessionTimeNodes = XmlFileLoader.parseXmlFile(SESSION_TIMES_PATH, "SessionTime");
+        NodeList sessionTimeNodes = XmlFileLoader.parseXmlFile(SESSION_TIMES_PATH, SESSION_TIME_TAG);
         try {
             sessionTimes = XmlFileLoader.loadIndexEntities(sessionTimeNodes, SessionTime.class);
         } catch (Exception e) {
@@ -84,7 +87,7 @@ public class Repository {
         }
 
         //load Theatres
-        NodeList theatreNodes = XmlFileLoader.parseXmlFile(THEATRES_PATH, "Theatre");
+        NodeList theatreNodes = XmlFileLoader.parseXmlFile(THEATRES_PATH, THEATRE_TAG);
         try {
             theatres = XmlFileLoader.loadIndexEntities(theatreNodes, Theatre.class);
         } catch (Exception e) {
@@ -96,7 +99,7 @@ public class Repository {
         }
 
         //load Theatre sessions
-        NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile("data/TheatreSessions.xml", "TheatreSession");
+        NodeList theatreSessionNodes = XmlFileLoader.parseXmlFile(THEATRE_SESSIONS_PATH, THEATRE_SESSION_TAG);
         if (theatreSessionNodes != null) {
             try {
                 theatreSessions = XmlFileLoader.loadIndexEntities(theatreSessionNodes, TheatreSession.class);
@@ -126,8 +129,10 @@ public class Repository {
         } catch (Exception e) {
             // TO-DO remove this code
         }
-
-        //TEST: test seat type loading
+    }
+    
+    public void testDump() {
+        // TODO remove later
         for (int i = 0; i < seatTypes.size(); i++) {
             System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());
         }
@@ -146,6 +151,7 @@ public class Repository {
 
         for (int i = 0; i < theatres.size(); i++) {
             System.out.println(theatres.values().toArray(new Theatre[1])[i].toString());
-        }
+        }                
+
     }
 }
