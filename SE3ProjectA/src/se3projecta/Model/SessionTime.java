@@ -21,7 +21,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
 
     @Override
     public String toString() {
-        return "SessionTime: ID:" + id + "\tName: " + name;
+        return name;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     public Integer getId() {
         return id;
     }
-    
+
     public String getName() {
         return name;
     }

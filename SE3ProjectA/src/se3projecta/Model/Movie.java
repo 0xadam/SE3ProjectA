@@ -42,6 +42,6 @@ public class Movie implements XmlUnserializable<Integer> {
 
     @Override
     public String toString() {
-        return "Movie: ID:" + id + "\tName: " + movieName + "\tPromotionalImage: " + promotionalImage;
+        return movieName;
     }
 }
