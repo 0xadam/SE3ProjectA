@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SeatTypes>
-	<SeatType Name="Gold" Price="18.72" ID="G" />
-	<SeatType Name="Silver" Price="17.16" ID="S" />
-	<SeatType Name="Bronze" Price="15.6" ID="B" />
-</SeatTypes>

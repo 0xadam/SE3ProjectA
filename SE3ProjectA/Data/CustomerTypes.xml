@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomerTypes>
-    <CustomerType id="0" Name="Adult" pricemultiplier="1" />
-    <CustomerType id="1" Name="Child" pricemultiplier="0.5" />
-    <CustomerType id="2" Name="Concession" pricemultiplier="0.75" />
-</CustomerTypes>
