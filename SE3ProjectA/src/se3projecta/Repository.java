@@ -121,6 +121,8 @@ public class Repository {
         for (TheatreSession ts : theatreSessions.values()) {
             ts.loadRelations(theatres, movies, sessionTimes);
         }
+        
+        // TODO remove following line
         theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
 
         //other initialisation code
