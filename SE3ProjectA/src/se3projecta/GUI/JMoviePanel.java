@@ -22,26 +22,39 @@ import java.util.Collection;
 public class JMoviePanel extends javax.swing.JPanel {
 
     public JMoviePanel(Collection<Movie> movies, Collection<SessionTime> sessionTimes) {
+        //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
+        //create items
         JPanel dropdowns = new JPanel();
         dropdowns.setLayout(new BoxLayout(dropdowns, BoxLayout.Y_AXIS));
-        JComboBox movieDropdown = new JComboBox(); //array of items loaded here?       
+        JComboBox movieDropdown = new JComboBox();
         JComboBox sessionTimeDropdown = new JComboBox();
         JComboBox theatreDropdown = new JComboBox();
         JLabel label = null;
+
+        //add movies to combobox
+        for (Movie movie : movies) {
+            movieDropdown.addItem(movie);
+        }
+
+        //add sessionTimes to combobox
+        for (SessionTime session : sessionTimes) {
+            sessionTimeDropdown.addItem(session);
+        }
+
+        //load image
+        File promoImage = new File(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage());
+        if (!promoImage.exists()) {
+            promoImage = new File("data\\noimage.jpg");
+        }
         try {
-            BufferedImage movieImage = ImageIO.read(new File("data\\noimage.jpg"));
+            BufferedImage movieImage = ImageIO.read(promoImage);
             ImageIcon pic = new ImageIcon(movieImage);
             label = new JLabel(pic);
             label.setPreferredSize(new Dimension(100, 150));
         } catch (IOException e) {
-            System.out.println("Unable to find poster for movie. Not displayed..."); //maybe have a no image text
-        }
-        for (Movie movie : movies) {
-            movieDropdown.addItem(movie);
-        }
-        for (SessionTime session : sessionTimes) {
-            sessionTimeDropdown.addItem(session);
+            System.out.println("Unable to load image.");
         }
         dropdowns.add(movieDropdown);
         dropdowns.add(sessionTimeDropdown);
