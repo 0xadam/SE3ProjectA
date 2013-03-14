@@ -4,6 +4,7 @@
  */
 package se3projecta;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Collection;
 import org.w3c.dom.NodeList;
@@ -30,6 +31,16 @@ public class Repository {
     
     public Collection<SessionTime> getSessionTimes() {
         return sessionTimes.values();
+    }
+    
+    public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
+        ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
+        for (TheatreSession ts : theatreSessions.values()) {
+            if (ts.getSessionTime().getId() == sessionTime.getId() && ts.getMovie().getId() == movie.getId()) {
+                theatreSessionsList.add(ts);
+            }
+        }
+        return theatreSessionsList;
     }
     
     
