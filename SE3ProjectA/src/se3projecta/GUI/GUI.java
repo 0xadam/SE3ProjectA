@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 package se3projecta.GUI;
-import javax.swing.*;
+
 import java.awt.*;
+import se3projecta.*;
+
 /**
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
@@ -26,10 +28,8 @@ public class GUI extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        JPanel moviePanel = new JPanel(new BorderLayout());
-        JComboBox movieDropdown = new JComboBox(); //array of items loaded here?
-        moviePanel.add(movieDropdown);
-        
+        JMoviePanel moviePanel = new JMoviePanel(new BorderLayout());
+        getContentPane().add(moviePanel);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
     }
