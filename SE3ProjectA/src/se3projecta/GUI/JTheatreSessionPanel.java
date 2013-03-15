@@ -6,6 +6,7 @@ package se3projecta.GUI;
 
 import se3projecta.Model.Seat;
 import se3projecta.Model.TheatreSession;
+import java.awt.*;
 
 /**
  *
@@ -19,11 +20,9 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
     private TheatreSession tSession = null;
     //  private SeatButton[][] seatButtons;
 
-    public JTheatreSessionPanel() {
-    }
-
     public void setTheatreSession(TheatreSession tSession_) {
         tSession = tSession_;
+        this.setLayout(new GridLayout(tSession.getSeatRows().length, tSession.getSeatRows()[0].length));
         renderTheatreSession();
     }
 
@@ -41,6 +40,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
     @Override
     public void updateTheatreSession(TheatreSession ts) {
         tSession = ts;
+        this.setLayout(new GridLayout(tSession.getSeatRows().length, tSession.getSeatRows()[0].length));
         renderTheatreSession();
     }
 }
