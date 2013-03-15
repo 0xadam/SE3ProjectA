@@ -5,6 +5,7 @@
 package se3projecta.GUI;
 
 import java.awt.*;
+import javax.swing.BoxLayout;
 import se3projecta.*;
 
 /**
@@ -35,14 +36,15 @@ public class GUI extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        theatreSessionPanel = new JTheatreSessionPanel();
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
         moviePanel = new JMoviePanel(repository);
-        getContentPane().add(moviePanel);
-        getContentPane().add(theatreSessionPanel);
-        moviePanel.updateTheatreSessions();
-        
+        theatreSessionPanel = new JTheatreSessionPanel();
+        contentPane.add(theatreSessionPanel);
+        contentPane.add(moviePanel);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
-        
+        moviePanel.updateTheatreSessions();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
     }
