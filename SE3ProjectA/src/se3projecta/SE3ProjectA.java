@@ -9,6 +9,7 @@ import se3projecta.Model.Movie;
 import se3projecta.Model.SeatType;
 import se3projecta.Model.SessionTime;
 import se3projecta.Model.Theatre;
+import se3projecta.Model.ImportException;
 
 /**
  *
@@ -21,10 +22,6 @@ public class SE3ProjectA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        final Repository repository = new Repository();
-
-        repository.testDump();
-        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -49,6 +46,15 @@ public class SE3ProjectA {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Repository repository = null;
+                try {
+                    repository = new Repository();
+                } catch (ImportException ie) {
+                    //TODO deal with errors.
+                }
+                if (repository != null) {
+                    repository.testDump();
+                }
                 new se3projecta.GUI.GUI(repository).setVisible(true);
             }
         });
