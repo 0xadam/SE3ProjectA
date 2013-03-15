@@ -50,7 +50,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     public SeatType getType() {
         return seatType;
     }
-    
+       
     public State getState() {
         return state;
     }
