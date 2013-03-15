@@ -5,6 +5,6 @@
     <Theatre id="2" name="test3" width="3" height="2" movie="2">G0GSSB</Theatre>
     <Theatre id="3" name="test4" width="3" height="2" movie="3">G0GSSB</Theatre>
     <Theatre id="4" name="test5" width="3" height="2" movie="4">G0GSSB</Theatre>
-    <Theatre id="5" name="test6" width="3" height="2" movie="3">G0GSSB</Theatre>
+    <Theatre id="5" name="test6" width="3" height="2" movie="3">BB0GSS</Theatre>
     <Theatre id="6" name="test7" width="3" height="2" movie="1">G0GSSB</Theatre>
 </Theatres>

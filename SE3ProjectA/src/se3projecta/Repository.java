@@ -210,7 +210,9 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(THEATRE_SESSIONS_PATH, THEATRE_SESSION_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            //ie.addSuppressed(FNFE);
+            //ignore file not found and recreate empty sessions from scratch.
+            LoadedNodes = null;
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
             ie.addSuppressed(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
