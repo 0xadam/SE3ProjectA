@@ -12,6 +12,12 @@ import java.util.List;
  * @author Russell
  */
 public class ImportException extends Throwable {
+        
+    public boolean hasSuppressed() {
+        return !suppressedExceptions.isEmpty();
+    }
+    
+    //Everything below here is copied from 1.7 code to ensure backward compatibility with java 1.6.
 
     /**
      * The list of suppressed exceptions, as returned by {@link
@@ -116,9 +122,5 @@ public class ImportException extends Throwable {
         } else {
             return suppressedExceptions.toArray(EMPTY_THROWABLE_ARRAY);
         }
-    }
-    
-    public boolean hasSuppressed() {
-        return !suppressedExceptions.isEmpty();
     }
 }
