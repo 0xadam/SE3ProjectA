@@ -18,7 +18,7 @@ public class GUI extends javax.swing.JFrame {
 
     private Repository repository;
     private JMoviePanel moviePanel;
-    private JAllocationPanel allocationPanel;
+    private JTheatreSessionPanel theatreSessionPanel;
     private JTransactionPanel transactionPanel;
 
     /**
@@ -30,16 +30,19 @@ public class GUI extends javax.swing.JFrame {
     }
 
     protected void setAllocationPanelTheatreSession(se3projecta.Model.TheatreSession tSession) {
-        allocationPanel.setTheatreSession(tSession);
+        theatreSessionPanel.setTheatreSession(tSession);
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        allocationPanel = new JAllocationPanel();
+        theatreSessionPanel = new JTheatreSessionPanel();
         moviePanel = new JMoviePanel(repository);
         getContentPane().add(moviePanel);
-        getContentPane().add(allocationPanel);
+        getContentPane().add(theatreSessionPanel);
         moviePanel.updateTheatreSessions();
+        
+        moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
     }

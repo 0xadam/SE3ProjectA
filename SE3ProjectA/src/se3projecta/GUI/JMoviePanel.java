@@ -12,6 +12,7 @@ import java.io.*;
 import se3projecta.Model.*;
 import java.util.Collection;
 import java.awt.event.*;
+import java.util.ArrayList;
 import se3projecta.*;
 
 /**
@@ -29,9 +30,24 @@ public class JMoviePanel extends javax.swing.JPanel {
     JComboBox theatreDropdown = new JComboBox();
     JComboBox movieDropdown = new JComboBox();
     JComboBox sessionTimeDropdown = new JComboBox();
+    
+    ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
 
+    public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
+        theatreSessionSubscribers.add(subscriber);
+    }
+    
+    public void notifyTheatreSessionSubscribers(TheatreSession ts) {
+        for (TheatreSessionSubscriber tss : theatreSessionSubscribers) {
+            tss.updateTheatreSession(ts);
+        }
+    }
+    
     public JMoviePanel(Repository repository_) {
         repository = repository_;
+        
+        theatreSessionSubscribers = new ArrayList<TheatreSessionSubscriber>();
+        
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         //create items
@@ -77,8 +93,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         for (TheatreSession theatreSession : theatreSessions) {
             theatreDropdown.addItem(theatreSession.getTheatre());
             //TODO fix hacky. Only works when there is one theatreSession (which is currently the case)
-             GUI parent=; //somehow get GUI so I can call setAllocationPanelTheatreSession
-       parent.setAllocationPanelTheatreSession((theatreSession));
+            notifyTheatreSessionSubscribers(theatreSession);
         }
     }
 

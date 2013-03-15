@@ -14,11 +14,11 @@ import se3projecta.Model.TheatreSession;
  * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JAllocationPanel extends javax.swing.JPanel {
+public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreSessionSubscriber {
 
     private TheatreSession tSession = null;
 
-    public JAllocationPanel() {
+    public JTheatreSessionPanel() {
     }
 
     public void setTheatreSession(TheatreSession tSession_) {
@@ -33,5 +33,10 @@ public class JAllocationPanel extends javax.swing.JPanel {
                 System.out.println(rows[i][j].getType().toString());
             }
         }
+    }
+
+    @Override
+    public void updateTheatreSession(TheatreSession ts) {
+        tSession = ts;
     }
 }
