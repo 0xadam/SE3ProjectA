@@ -16,15 +16,14 @@ import se3projecta.Model.TheatreSession;
  */
 public class JAllocationPanel extends javax.swing.JPanel {
 
-    TheatreSession tSession = null;
+    private TheatreSession tSession = null;
 
-    public JAllocationPanel(TheatreSession tSession_) {
-        setTheatreSession(tSession_);
-        renderTheatreSession();
+    public JAllocationPanel() {
     }
 
     public void setTheatreSession(TheatreSession tSession_) {
         tSession = tSession_;
+        renderTheatreSession();
     }
 
     public void renderTheatreSession() {

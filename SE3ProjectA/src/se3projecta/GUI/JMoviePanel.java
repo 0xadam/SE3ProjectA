@@ -55,7 +55,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
-        updateTheatreSessions();
         label.setPreferredSize(new Dimension(100, 150));
         dropdowns.add(movieDropdown);
         dropdowns.add(sessionTimeDropdown);
@@ -72,11 +71,14 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
     }
 
-    private void updateTheatreSessions() {
+    public void updateTheatreSessions() {
         theatreDropdown.removeAllItems();
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
             theatreDropdown.addItem(theatreSession.getTheatre());
+            //TODO fix hacky. Only works when there is one theatreSession (which is currently the case)
+             GUI parent=; //somehow get GUI so I can call setAllocationPanelTheatreSession
+       parent.setAllocationPanelTheatreSession((theatreSession));
         }
     }
 
