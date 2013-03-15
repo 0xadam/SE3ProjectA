@@ -62,6 +62,12 @@ public class Theatre implements XmlUnserializable<Integer> {
 
     @Override
     public String toString() {
+        return this.name;
+    }
+
+    
+    
+    public String toDebugString() {
         StringBuilder builder = new StringBuilder();
         
         builder.append("Theatre: ID:").append(id).
