@@ -22,6 +22,7 @@ public class SeatButton extends JButton {
         seat = seat_;
         if (seat.getType() == null) {
             setIcon(new ImageIcon("data\\noseat.gif"));
+            setEnabled(false);
         } else if (seat.getType().getName().equals("Gold")) {
             if (seat.getState() == seat.getState().Empty) {
                 setIcon(new ImageIcon("data\\unoccupied.gif"));
