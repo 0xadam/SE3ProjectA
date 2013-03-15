@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Functionality is taken from 1.7 java version but necessary for  backward compatibility
+ * having this class allows for easier handling of errors eg catch (ImportException ie)
+ * 
+ * Code has been modified to reduce some functionality that was not needed and 1 addition method was added
+ * for ease of use in this context.
  * @author Russell
  */
 public class ImportException extends Throwable {
@@ -16,8 +20,6 @@ public class ImportException extends Throwable {
     public boolean hasSuppressed() {
         return !suppressedExceptions.isEmpty();
     }
-    
-    //Everything below here is copied from 1.7 code to ensure backward compatibility with java 1.6.
 
     /**
      * The list of suppressed exceptions, as returned by {@link
