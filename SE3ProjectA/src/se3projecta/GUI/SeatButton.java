@@ -20,6 +20,12 @@ public class SeatButton extends JButton {
 
     public SeatButton(Seat seat_) {
         seat = seat_;
+        setIcon();
+        setBorder(null); //remove the button look
+        setContentAreaFilled(false); //make opaque so as to just show icon
+    }
+
+    private void setIcon() {
         if (seat.getType() == null) {
             setIcon(new ImageIcon("data\\noseat.gif"));
             setEnabled(false);
@@ -42,8 +48,5 @@ public class SeatButton extends JButton {
                 setIcon(new ImageIcon("data\\occupied.gif"));
             }
         }
-
-        setBorder(null); //remove the button look
-        setContentAreaFilled(false); //make opaque so as to just show icon
     }
 }

@@ -28,9 +28,9 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
 
     public void renderTheatreSession() {
         Seat[][] rows = tSession.getSeatRows();
-        removeAll();
+        removeAll(); //remove all previous seats
         for (int i = 0; i < rows.length; i++) {
-            for (int j = 0; j < rows[0].length; j++) { //length is the same for all
+            for (int j = 0; j < rows[0].length; j++) { //length is the same for all rows of seats
                 add(new SeatButton(rows[i][j]));
             }
         }
