@@ -30,13 +30,19 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
         Seat[][] rows = tSession.getSeatRows();
         for (int i = 0; i < rows.length; i++) {
             for (int j = 0; j < rows[0].length; j++) { //length is the same for all
-                System.out.println(rows[i][j].getType().toString());
+                if (rows[i][j].getType() != null) {
+                    System.out.print(rows[i][j].getType().getName());
+                } else {
+                    System.out.print("n");
+                }
             }
+            System.out.println();
         }
     }
 
     @Override
     public void updateTheatreSession(TheatreSession ts) {
         tSession = ts;
+        renderTheatreSession();
     }
 }
