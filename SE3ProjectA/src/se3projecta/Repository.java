@@ -57,7 +57,7 @@ public class Repository {
     private final String THEATRE_SESSIONS_PATH = DATA_DIR + "/TheatreSessions.xml";
     private final String THEATRE_SESSION_TAG = "TheatreSession";
 
-    public Repository() throws ImportException{
+    public Repository() throws ImportException {
         ImportException ie = new ImportException();
         NodeList LoadedNodes = null;
         //load seatTypes;
@@ -251,7 +251,7 @@ public class Repository {
         }
 
         //other initialisation code
-        
+
         //if any errors occured throw the list of them
         if (ie.hasSuppressed()) {
             throw ie;
@@ -265,6 +265,10 @@ public class Repository {
 
     public void testDump() {
         theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
+        try {
+            save();
+        } catch (Exception e) {
+        } //TODO add good error handling when this code is actually used
         // TODO remove later
         for (int i = 0; i < seatTypes.size(); i++) {
             System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());
