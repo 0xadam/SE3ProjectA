@@ -33,7 +33,6 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
             for (int j = 0; j < rows[0].length; j++) { //length is the same for all
                 add(new SeatButton(rows[i][j]));
             }
-            //offset seat into new row here
         }
     }
 
