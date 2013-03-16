@@ -6,7 +6,6 @@ package se3projecta.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
 import se3projecta.Model.*;
@@ -24,36 +23,34 @@ import se3projecta.*;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    JLabel label = new JLabel();
-    Repository repository;
-    JPanel dropdowns = new JPanel();
-    JComboBox theatreDropdown = new JComboBox();
-    JComboBox movieDropdown = new JComboBox();
-    JComboBox sessionTimeDropdown = new JComboBox();
-    
+    private JLabel label = new JLabel();
+    private Repository repository;
+    private JPanel dropdowns = new JPanel();
+    private JComboBox theatreDropdown = new JComboBox();
+    private JComboBox movieDropdown = new JComboBox();
+    private JComboBox sessionTimeDropdown = new JComboBox();
+    private JButton bookTicketsButton = new JButton();
     ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
 
     public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
         theatreSessionSubscribers.add(subscriber);
     }
-    
+
     public void notifyTheatreSessionSubscribers(TheatreSession ts) {
         for (TheatreSessionSubscriber tss : theatreSessionSubscribers) {
             tss.updateTheatreSession(ts);
         }
     }
-    
+
     public JMoviePanel(Repository repository_) {
         repository = repository_;
-        
+
         theatreSessionSubscribers = new ArrayList<TheatreSessionSubscriber>();
-        
+
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        //create items
-
         dropdowns.setLayout(new BoxLayout(dropdowns, BoxLayout.Y_AXIS));
-
+        //create items
         movieDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
