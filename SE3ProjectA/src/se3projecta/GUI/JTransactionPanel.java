@@ -17,8 +17,12 @@ import se3projecta.Repository;
 public class JTransactionPanel extends JPanel {
 
     Repository repository;
+    JAllocationPanel allocationPanel;
 
     public JTransactionPanel(Repository repository_) {
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
+        allocationPanel = new JAllocationPanel(repository);
+        add(allocationPanel);
     }
 }
