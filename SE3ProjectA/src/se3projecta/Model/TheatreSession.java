@@ -4,7 +4,6 @@
  */
 package se3projecta.Model;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import se3projecta.Persistance.XmlSerializable;
 import se3projecta.Persistance.XmlUnserializable;
 import java.util.Arrays;
