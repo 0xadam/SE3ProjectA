@@ -37,7 +37,7 @@ public class CustomerType implements XmlUnserializable<Integer> {
      */
     @Override
     public String toString() {
-        return "CustomerType: ID:" + id + "\tName: " + name + "\tpriceMultiplier: " + priceMultiplier;
+        return name;
     }
     
     /**

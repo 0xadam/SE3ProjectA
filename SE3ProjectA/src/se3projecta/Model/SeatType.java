@@ -86,6 +86,6 @@ public class SeatType implements XmlUnserializable<Character> {
      */
     @Override
     public String toString() {
-        return "SeatType: ID:" + this.id + "\tName: " + this.name + "\tPrice: " + this.price;
+        return name;
     }
 }
