@@ -34,6 +34,14 @@ public class Repository {
         return sessionTimes.values();
     }
 
+    public Collection<SeatType> getSeatTypes() {
+        return seatTypes.values();
+    }
+
+    public Collection<CustomerType> getCustomerTypes() {
+        return customerTypes.values();
+    }
+
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
         ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
         for (TheatreSession ts : theatreSessions.values()) {
