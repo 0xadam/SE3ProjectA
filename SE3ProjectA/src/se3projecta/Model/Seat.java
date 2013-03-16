@@ -22,7 +22,12 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         Held,
         Occupied
     }
-
+    
+    /**
+     * Creates and returns an XML seat element, which stores seat state. 
+     * @param doc an XML document used to create the seat element
+     * @return an XML seat element, which stores seat state
+     */
     @Override
     public Element save(Document doc) {
         Element element = doc.createElement("Seat");
@@ -31,6 +36,10 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         return element;
     }
     
+    /**
+     * loads seat data from XML
+     * @param n an XML node which contains seat data
+     */
     @Override
     public void load(Element n) {
         this.state = State.valueOf(n.getAttribute("state"));
@@ -39,26 +48,50 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     private SeatType seatType;
     private State state = State.Empty;
     
+    /**
+     * sets seat state
+     * @param s state to set seat to
+     */
     public void setState(State s) {
         state = s;
     }
     
+    /**
+     * sets seat type
+     * @param s type to set seat type to
+     */
     public void setSeatType(SeatType s) {
         seatType = s;
     }
     
+    /**
+     * gets seat type
+     * @return seat type
+     */
     public SeatType getType() {
         return seatType;
     }
        
+    /**
+     * gets seat state
+     * @return seat state
+     */
     public State getState() {
         return state;
     }
     
+    /**
+     * get seat availability
+     * @return seat availability
+     */
     public boolean available() {
         return state == State.Empty;
     }
     
+    /**
+     * get seat ID
+     * @return seat ID
+     */
     // Crazy Russell hack
     @Override
     public Integer getId() {
