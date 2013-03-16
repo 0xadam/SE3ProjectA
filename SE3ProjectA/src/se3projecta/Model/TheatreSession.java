@@ -4,6 +4,7 @@
  */
 package se3projecta.Model;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import se3projecta.Persistance.XmlSerializable;
 import se3projecta.Persistance.XmlUnserializable;
 import java.util.Arrays;
@@ -29,7 +30,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     private int theatreId;
     private Theatre theatre;
     private Seat[] seats;
-
+    
+    /**
+     * loads theatre session data from XML
+     * @param n an XML node which contains theatre session data
+     */
     @Override
     public void load(Element n) {
         this.id = Integer.parseInt(n.getAttribute("id"));
@@ -50,7 +55,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     public TheatreSession() {
         
     }
-
+    
+    /**
+     * creates a theatre session, which links a Theatre and a session time
+     * @param t the theatre which is part of this theatre session
+     * @param st the session time which is part of this theatre session
+     * @param id id of this theatre session
+     */
     public TheatreSession(Theatre t, SessionTime st, int id) {
         this.id = id;
         this.theatreId = t.getId();
@@ -58,7 +69,14 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         this.movieId = t.getMovieId();
         seats = new Seat[t.getHeight() * t.getWidth()];
     }
-
+    
+    /**
+     * Loads Theatre Session Relations - gets related objects objects (Theatre,
+     * Movie, sessionTime) from their IDs. Also sets up seats details.
+     * @param theatres collection of theatres
+     * @param movies collection of movies
+     * @param sessionTimes collection of sessionTimes
+     */
     public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes) {
         if (theatres.containsKey(theatreId)) {
             theatre = theatres.get(theatreId);
@@ -79,12 +97,23 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             }
         }
     }
-
+    
+    /**
+     * get theatre session ID
+     * @return theatre session ID
+     */
     @Override
     public Integer getId() {
         return id;
     }
-
+    
+    /**
+     * Creates and returns a XML TheatreSession element, which stores
+     * theatre session details, including seat state 
+     * @param doc a XML document used to create the TheatreSession element
+     * @return a XML TheatreSession element, which stores
+     * theatre session details, including seat state
+     */
     @Override
     public Element save(Document doc) {
         Element sessionElement = doc.createElement("TheatreSession");
@@ -105,7 +134,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return sessionElement;
     }
-
+    
+    /**
+     * load the Movie object from movieID
+     * @param movies collection of movies
+     */
     public void loadMovie(TreeMap<Integer, Movie> movies) {
         if (movies.containsKey(movieId)) {
             this.movie = movies.get(movieId);
@@ -113,11 +146,19 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             this.movie = null;
         }
     }
-
+    
+    /**
+     * get array of Seats
+     * @return array of Seats
+     */
     public Seat[] getSeats() {
         return seats.clone();
     }
-
+    
+    /**
+     * Get 2-dimensional array of Seats. Useful for random seat allocation.
+     * @return 2-dimensional of Seats
+     */
     public Seat[][] getSeatRows() {
         Seat[][] rows = new Seat[theatre.getHeight()][theatre.getWidth()];
 
@@ -182,8 +223,16 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return allocation;
     }
-
-    public Seat[] findBestFit(SeatType type, int seats) {
+    
+    /**
+     * attempts to find a best fit of a specified number of seats of a specified
+     * type
+     * @param type type of seats to fit
+     * @param seats number of seats to fit
+     * @return an array of Seat Objects representing best fit
+     * @throws IllegalArgumentException
+     */
+    public Seat[] findBestFit(SeatType type, int seats) throws IllegalArgumentException{
         if (!hasAvailable(type, seats)) {
             throw new IllegalArgumentException("Cannot allocate " + seats + " seats of type " + type.getName());
         }
@@ -213,11 +262,19 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return allocations;
     }
-
+    
+    //TODO: write JavaDoc for this - same as findBestFit
     public Seat[] placeRandom(SeatType type, int seats) {
         return findBestFit(type, seats);
     }
-
+    
+    /**
+     * gets the number of available seats for a specified seat type for this
+     * theatre session
+     * @param type the seat type to check seat availability for
+     * @return the number of available seats for a specified seat type for this
+     * theatre session
+     */
     public int numAvailable(SeatType type) {
         // This could be optimized quite significantly by updating a counter
         // stored in TheatreSession when the available flag on each seat is
@@ -232,19 +289,39 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return count;
     }
-
+    
+    /**
+     * checks whether or not this theatre session has a specified number of
+     * available seats of the specified seat type
+     * @param type the seat type to check seat availability for
+     * @param seats the number of seats to check seat availability for
+     * @return whether or not this theatre session has a specified number of
+     * available seats of the specified seat type
+     */
     public boolean hasAvailable(SeatType type, int seats) {
         return numAvailable(type) > seats;
     }
-
+    
+    /**
+     * get session time for this theatre session
+     * @return session time for this theatre session
+     */
     public SessionTime getSessionTime() {
         return sessionTime;
     }
-
+    
+    /**
+     * get movie showing in this theatre session
+     * @return movie showing in this theatre session
+     */
     public Movie getMovie() {
         return movie;
     }
-
+    
+    /**
+     * get theatre for this theatre session
+     * @return theatre for this theatre session
+     */
     public Theatre getTheatre() {
         return theatre;
     }
