@@ -83,9 +83,10 @@ public class JMoviePanel extends javax.swing.JPanel {
         dropdownPanel.add(movieDropdown);
         dropdownPanel.add(sessionTimeDropdown);
         dropdownPanel.add(theatreDropdown);
+        dropdownPanel.add(bookTicketsButton);
         add(dropdownPanel);
         add(label);
-        dropdownPanel.add(bookTicketsButton);
+        dropdownPanel.setMaximumSize(new Dimension(184,110));
     }
 
     public class JMoviePanelAL implements ActionListener {
