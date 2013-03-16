@@ -25,6 +25,6 @@ public class JAllocationPanel extends JPanel {
         seatTypeLabel.setText("Seat Type");
         numberOfTicketsLabel.setText("Number of Tickets");
         costLabel.setText("Cost");
-        //ticketTypeComboBox.addItem(repository.getSeatTypes());
+        ticketTypeComboBox.addItem(repository.getSeatTypes());
     }
 }

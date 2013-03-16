@@ -5,6 +5,7 @@
 package se3projecta.GUI;
 
 import javax.swing.*;
+import se3projecta.Repository;
 
 /**
  *
@@ -15,6 +16,9 @@ import javax.swing.*;
  */
 public class JTransactionPanel extends JPanel {
 
-    public JTransactionPanel() {
+    Repository repository;
+
+    public JTransactionPanel(Repository repository_) {
+        repository = repository_;
     }
 }
