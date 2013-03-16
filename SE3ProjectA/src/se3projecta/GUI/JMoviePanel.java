@@ -23,7 +23,6 @@ import se3projecta.*;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    private GUI gui;
     private Repository repository;
     private JLabel label = new JLabel();
     private JPanel dropdownPanel = new JPanel();
@@ -43,8 +42,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
     }
 
-    public JMoviePanel(GUI gui_, Repository repository_) {
-        gui = gui_;
+    public JMoviePanel(Repository repository_) {
         repository = repository_;
         theatreSessionSubscribers = new ArrayList<TheatreSessionSubscriber>();
 
@@ -76,7 +74,7 @@ public class JMoviePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 JButton button = (JButton) e.getSource();
                 ((JPanel) button.getParent().getParent()).setVisible(false); //hides the JMoviePanel
-                gui.setTransactionPanelVisibility(true);
+               ((GUI) SwingUtilities.getWindowAncestor(button)).setTransactionPanelVisibility(true);
             }
         });
         dropdownPanel.add(movieDropdown);
