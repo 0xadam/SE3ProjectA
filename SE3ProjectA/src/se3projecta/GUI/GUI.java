@@ -16,7 +16,7 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     private Repository repository;
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
@@ -29,11 +29,12 @@ public class GUI extends javax.swing.JFrame {
         repository = repository_;
         initComponents();
     }
-    
+
     public void setTransactionPanelVisibility(boolean visibility) {
         transactionPanel.setVisible(visibility);
+        pack();
     }
-    
+
     @SuppressWarnings("unchecked")
     private void initComponents() {
         Container contentPane = getContentPane();
@@ -47,7 +48,7 @@ public class GUI extends javax.swing.JFrame {
         contentPane.add(transactionPanel);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
         moviePanel.updateTheatreSessions();
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
     }

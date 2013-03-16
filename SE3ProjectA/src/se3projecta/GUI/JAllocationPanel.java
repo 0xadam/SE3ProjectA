@@ -35,7 +35,8 @@ public class JAllocationPanel extends JPanel {
             numberOfTicketsComboBox.addItem(i);
         }
         costTextField = new JTextField("0");
-        costTextField.setEnabled(false);
+        costTextField.setEditable(false);
+        addAllocationButton = new JButton("+");
 
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
@@ -48,7 +49,20 @@ public class JAllocationPanel extends JPanel {
         seatTypePanel.add(seatTypeLabel);
         seatTypePanel.add(seatTypeComboBox);
 
+        JPanel numberOfTicketsPanel = new JPanel();
+        numberOfTicketsPanel.setLayout(new BoxLayout(numberOfTicketsPanel, BoxLayout.Y_AXIS));
+        numberOfTicketsPanel.add(numberOfTicketsLabel);
+        numberOfTicketsPanel.add(numberOfTicketsComboBox);
+
+        JPanel costPanel = new JPanel();
+        costPanel.setLayout(new BoxLayout(costPanel, BoxLayout.Y_AXIS));
+        costPanel.add(costLabel);
+        costPanel.add(costTextField);
+
         add(ticketTypePanel);
         add(seatTypePanel);
+        add(numberOfTicketsPanel);
+        add(costPanel);
+        add(addAllocationButton);
     }
 }
