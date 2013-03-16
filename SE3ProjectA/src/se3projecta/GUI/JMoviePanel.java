@@ -22,7 +22,7 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JMoviePanel extends javax.swing.JPanel {
-
+    
     private GUI gui;
     private Repository repository;
     private JLabel promoImage = new JLabel();
@@ -32,17 +32,17 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
     ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
-
+    
     public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
         theatreSessionSubscribers.add(subscriber);
     }
-
+    
     public void notifyTheatreSessionSubscribers(TheatreSession ts) {
         for (TheatreSessionSubscriber tss : theatreSessionSubscribers) {
             tss.updateTheatreSession(ts);
         }
     }
-
+    
     public JMoviePanel(GUI gui_, Repository repository_) {
         gui = gui_;
         repository = repository_;
@@ -55,8 +55,9 @@ public class JMoviePanel extends javax.swing.JPanel {
         movieDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO shrink to fit
                 promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
-
+                
             }
         });
         //add movies to combobox
@@ -69,7 +70,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
-        promoImage.setPreferredSize(new Dimension(100, 150));
+        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
         promoImage.setMaximumSize(new Dimension(100, 150));
         bookTicketsButton.setText("Select Tickets");
         bookTicketsButton.addActionListener(new ActionListener() {
@@ -88,16 +89,18 @@ public class JMoviePanel extends javax.swing.JPanel {
         add(dropdownPanel);
         add(promoImage);
         dropdownPanel.setMaximumSize(new Dimension(184, 110));
+        dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
-
+    
     public class JMoviePanelAL implements ActionListener {
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             updateTheatreSessions();
         }
     }
-
+    
     public void updateTheatreSessions() {
         theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
@@ -107,7 +110,7 @@ public class JMoviePanel extends javax.swing.JPanel {
             notifyTheatreSessionSubscribers(theatreSession);
         }
     }
-
+    
     private ImageIcon loadPromoImage(String promoImageURI) {
         ImageIcon promoImage = new ImageIcon();
         File promoImageFile = new File(promoImageURI);
