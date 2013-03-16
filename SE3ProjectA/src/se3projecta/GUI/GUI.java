@@ -40,7 +40,7 @@ public class GUI extends javax.swing.JFrame {
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
         moviePanel = new JMoviePanel(this, repository);
         theatreSessionPanel = new JTheatreSessionPanel();
-        transactionPanel = new JTransactionPanel();
+        transactionPanel = new JTransactionPanel(repository);
         contentPane.add(theatreSessionPanel);
         contentPane.add(moviePanel);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
