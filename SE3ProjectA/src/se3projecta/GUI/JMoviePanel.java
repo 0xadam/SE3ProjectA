@@ -23,9 +23,10 @@ import se3projecta.*;
  */
 public class JMoviePanel extends javax.swing.JPanel {
 
-    private JLabel label = new JLabel();
+    private GUI gui;
     private Repository repository;
-    private JPanel dropdowns = new JPanel();
+    private JLabel label = new JLabel();
+    private JPanel dropdownPanel = new JPanel();
     private JComboBox theatreDropdown = new JComboBox();
     private JComboBox movieDropdown = new JComboBox();
     private JComboBox sessionTimeDropdown = new JComboBox();
@@ -42,14 +43,14 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
     }
 
-    public JMoviePanel(Repository repository_) {
+    public JMoviePanel(GUI gui_, Repository repository_) {
+        gui = gui_;
         repository = repository_;
-
         theatreSessionSubscribers = new ArrayList<TheatreSessionSubscriber>();
 
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        dropdowns.setLayout(new BoxLayout(dropdowns, BoxLayout.Y_AXIS));
+        dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
         //create items
         movieDropdown.addActionListener(new ActionListener() {
             @Override
@@ -69,11 +70,21 @@ public class JMoviePanel extends javax.swing.JPanel {
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
         label.setPreferredSize(new Dimension(100, 150));
-        dropdowns.add(movieDropdown);
-        dropdowns.add(sessionTimeDropdown);
-        dropdowns.add(theatreDropdown);
-        add(dropdowns);
+        bookTicketsButton.setText("Select Tickets");
+        bookTicketsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton) e.getSource();
+                ((JPanel) button.getParent().getParent()).setVisible(false); //hides the JMoviePanel
+                gui.setTransactionPanelVisibility(true);
+            }
+        });
+        dropdownPanel.add(movieDropdown);
+        dropdownPanel.add(sessionTimeDropdown);
+        dropdownPanel.add(theatreDropdown);
+        add(dropdownPanel);
         add(label);
+        dropdownPanel.add(bookTicketsButton);
     }
 
     public class JMoviePanelAL implements ActionListener {
@@ -85,7 +96,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     }
 
     public void updateTheatreSessions() {
-        theatreDropdown.removeAllItems();
+        theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
             theatreDropdown.addItem(theatreSession.getTheatre());

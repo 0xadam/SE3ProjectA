@@ -30,16 +30,17 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    protected void setAllocationPanelTheatreSession(se3projecta.Model.TheatreSession tSession) {
-        theatreSessionPanel.setTheatreSession(tSession);
+    public void setTransactionPanelVisibility(boolean visibility) {
+        transactionPanel.setVisible(visibility);
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
         Container contentPane = getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
-        moviePanel = new JMoviePanel(repository);
+        moviePanel = new JMoviePanel(this, repository);
         theatreSessionPanel = new JTheatreSessionPanel();
+        transactionPanel = new JTransactionPanel();
         contentPane.add(theatreSessionPanel);
         contentPane.add(moviePanel);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);

@@ -4,6 +4,8 @@
  */
 package se3projecta.GUI;
 
+import javax.swing.*;
+
 /**
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
@@ -11,5 +13,8 @@ package se3projecta.GUI;
  * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JTransactionPanel {
+public class JTransactionPanel extends JPanel {
+
+    public JTransactionPanel() {
+    }
 }
