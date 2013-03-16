@@ -76,7 +76,8 @@ public class JMoviePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 JButton button = (JButton) e.getSource();
                 ((JPanel) button.getParent().getParent()).setVisible(false); //hides the JMoviePanel (TODO make less hacky)
-                gui.setTransactionPanelVisibility(true);
+                gui.removeMoviePanel();
+                gui.addTransactionPanel();
             }
         });
         dropdownPanel.add(movieDropdown);

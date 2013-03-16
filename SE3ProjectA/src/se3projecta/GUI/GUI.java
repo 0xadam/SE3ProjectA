@@ -21,6 +21,7 @@ public class GUI extends javax.swing.JFrame {
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
     private JTransactionPanel transactionPanel;
+    private Container contentPane;
 
     /**
      * Creates new form GUI
@@ -30,22 +31,24 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void setTransactionPanelVisibility(boolean visibility) {
-        transactionPanel.setVisible(visibility);
-        pack();
+    public void addTransactionPanel() {
+        contentPane.add(transactionPanel, BorderLayout.LINE_END);
+    }
+
+    public void removeMoviePanel() {
+        remove(moviePanel);
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
+        contentPane = getContentPane();
+        // contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
+        contentPane.setLayout(new BorderLayout());
         moviePanel = new JMoviePanel(this, repository);
         theatreSessionPanel = new JTheatreSessionPanel();
         transactionPanel = new JTransactionPanel(repository);
-        transactionPanel.setVisible(false);
-        contentPane.add(theatreSessionPanel);
-        contentPane.add(moviePanel);
-        contentPane.add(transactionPanel);
+        contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
+        contentPane.add(moviePanel, BorderLayout.LINE_END);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
         moviePanel.updateTheatreSessions();
 
