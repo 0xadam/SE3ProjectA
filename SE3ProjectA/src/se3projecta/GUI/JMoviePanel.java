@@ -25,7 +25,7 @@ public class JMoviePanel extends javax.swing.JPanel {
 
     private GUI gui;
     private Repository repository;
-    private JLabel label = new JLabel();
+    private JLabel promoImage = new JLabel();
     private JPanel dropdownPanel = new JPanel();
     private JComboBox theatreDropdown = new JComboBox();
     private JComboBox movieDropdown = new JComboBox();
@@ -55,7 +55,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         movieDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                label.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
+                promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
 
             }
         });
@@ -69,7 +69,8 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
-        label.setPreferredSize(new Dimension(100, 150));
+        promoImage.setPreferredSize(new Dimension(100, 150));
+        promoImage.setMaximumSize(new Dimension(100, 150));
         bookTicketsButton.setText("Select Tickets");
         bookTicketsButton.addActionListener(new ActionListener() {
             @Override
@@ -85,8 +86,8 @@ public class JMoviePanel extends javax.swing.JPanel {
         dropdownPanel.add(theatreDropdown);
         dropdownPanel.add(bookTicketsButton);
         add(dropdownPanel);
-        add(label);
-        dropdownPanel.setMaximumSize(new Dimension(184,110));
+        add(promoImage);
+        dropdownPanel.setMaximumSize(new Dimension(184, 110));
     }
 
     public class JMoviePanelAL implements ActionListener {
