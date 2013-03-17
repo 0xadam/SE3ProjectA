@@ -48,4 +48,9 @@ public class CustomerType implements XmlUnserializable<Integer> {
     public Integer getId() {
         return id;
     }
+    
+    public double getPriceMultiplier()
+    {
+        return this.priceMultiplier;
+    }
 }
