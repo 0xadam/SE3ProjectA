@@ -30,12 +30,31 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void fixWindowSize() { //TODO Fix this ugly hack
+        if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) { //if window is not maximized
+            int oldPaneWidth = contentPane.getWidth();
+            int oldPaneHeight = contentPane.getHeight();
+            System.out.println(oldPaneWidth);
+            System.out.println(oldPaneHeight);
+            setVisible(false);
+            pack();
+            int newPaneWidth = contentPane.getWidth() > oldPaneWidth ? contentPane.getWidth() : oldPaneWidth;
+            int newPaneHeight = contentPane.getHeight() > oldPaneHeight ? contentPane.getHeight() : oldPaneHeight;
+            System.out.println(newPaneWidth);
+            System.out.println(newPaneHeight);
+            //contentPane.setPreferredSize(new Dimension(newPaneWidth, newPaneHeight));
+            setSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
+            setVisible(true);
+        }
+
+    }
+
     public void addTransactionPanel() {
         contentPane.add(transactionPanel, BorderLayout.LINE_END);
-        if((this.getExtendedState() & MAXIMIZED_BOTH)!=MAXIMIZED_BOTH)
-        {
-            pack();
-        }
+        fixWindowSize();
+        /*if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) {
+         //    pack();
+         }*/
     }
 
     public void removeMoviePanel() {

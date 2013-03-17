@@ -77,6 +77,5 @@ public class JAllocationPanel extends JPanel {
         numberOfTicketsPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
-        System.out.println(costPanel.getBounds().getHeight());
     }
 }
