@@ -22,7 +22,7 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JMoviePanel extends javax.swing.JPanel {
-    
+
     private GUI gui;
     private Repository repository;
     private JLabel promoImage = new JLabel();
@@ -32,17 +32,17 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
     ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
-    
+
     public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
         theatreSessionSubscribers.add(subscriber);
     }
-    
+
     public void notifyTheatreSessionSubscribers(TheatreSession ts) {
         for (TheatreSessionSubscriber tss : theatreSessionSubscribers) {
             tss.updateTheatreSession(ts);
         }
     }
-    
+
     public JMoviePanel(GUI gui_, Repository repository_) {
         gui = gui_;
         repository = repository_;
@@ -57,7 +57,7 @@ public class JMoviePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 //TODO shrink to fit
                 promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
-                
+
             }
         });
         //add movies to combobox
@@ -93,37 +93,40 @@ public class JMoviePanel extends javax.swing.JPanel {
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
-    
+
     public class JMoviePanelAL implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             updateTheatreSessions();
         }
     }
-    
+
     public void updateTheatreSessions() {
         theatreDropdown.removeAllItems(); //clear the panel
+       // theatreDropdown.validate();
+       // theatreDropdown.repaint();
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
-            theatreDropdown.addItem(theatreSession.getTheatre());
-            //TODO fix hacky. Only works when there is one theatreSession (which is currently the case)
-            notifyTheatreSessionSubscribers(theatreSession);
+            //System.out.println(theatreSession);
+            theatreDropdown.addItem(theatreSession);
         }
+        //TODO fix hacky. Only works when there is one theatreSession (which is currently the case)
+        notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
     }
-    
+
     private ImageIcon loadPromoImage(String promoImageURI) {
-        ImageIcon promoImage = new ImageIcon();
+        ImageIcon lpromoImage = new ImageIcon();
         File promoImageFile = new File(promoImageURI);
         if (!promoImageFile.exists()) {
             promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            promoImage.setImage(ImageIO.read(promoImageFile));
+            lpromoImage.setImage(ImageIO.read(promoImageFile));
         } catch (IOException e) {
             System.out.println("Unable to load image.");
         } finally {
-            return promoImage;
+            return lpromoImage;
         }
     }
 }

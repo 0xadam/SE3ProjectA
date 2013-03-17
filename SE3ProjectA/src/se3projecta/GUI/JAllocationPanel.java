@@ -84,7 +84,7 @@ public class JAllocationPanel extends JPanel {
         costTextField = new JTextField("0");
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
-        costTextField.setPreferredSize(new Dimension(60,0)); //TODO fix hardcodedness
+        costTextField.setPreferredSize(new Dimension(60,0)); //TODO fix hardcodedness (allows for big money values)
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setEditable(false);
         seatsRemainingTextField.setFocusable(false);
