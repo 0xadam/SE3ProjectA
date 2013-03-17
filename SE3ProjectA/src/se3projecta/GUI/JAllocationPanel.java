@@ -8,6 +8,9 @@ import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
 import se3projecta.Repository;
+import se3projecta.Model.SeatType;
+import se3projecta.Money;
+import se3projecta.Model.CustomerType;
 
 /**
  *
@@ -70,13 +73,18 @@ public class JAllocationPanel extends JPanel {
         costLabel = new JLabel("Cost");
         seatsRemainingLabel = new JLabel("Seats Remaining");
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
+        ticketTypeComboBox.addActionListener(new ComboBoxAL());
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
+        seatTypeComboBox.addActionListener(new ComboBoxAL());
         numberOfTicketsComboBox = new JComboBox();
+        numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
         for (int i = 0; i <= 10; i++) {
             numberOfTicketsComboBox.addItem(i);
         }
         costTextField = new JTextField("0");
         costTextField.setEditable(false);
+        costTextField.setFocusable(false);
+        costTextField.setPreferredSize(new Dimension(60,0)); //TODO fix hardcodedness
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setEditable(false);
         addAllocationButton = new JButton("+");
@@ -142,5 +150,23 @@ public class JAllocationPanel extends JPanel {
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatsRemainingPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+    }
+
+    private void calculateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+        if (costTextField != null) {
+            int numberOfTickets = ((Integer) numberOfTicketsComboBox.getSelectedItem());
+            double ticketCost = ((SeatType) seatTypeComboBox.getSelectedItem()).getPrice();
+            double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
+            Money cost = new Money(ticketCost * multiplier * numberOfTickets);
+            costTextField.setText(cost.toString());
+        }
+    }
+
+    public class ComboBoxAL implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            calculateCost();
+        }
     }
 }
