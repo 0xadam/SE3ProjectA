@@ -70,6 +70,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
+        theatreDropdown.addActionListener(new JMoviePanelAL());
         promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
         promoImage.setMaximumSize(new Dimension(100, 150));
         bookTicketsButton.setText("Select Tickets");
