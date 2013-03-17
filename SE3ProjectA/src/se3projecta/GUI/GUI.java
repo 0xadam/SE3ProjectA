@@ -55,6 +55,8 @@ public class GUI extends javax.swing.JFrame {
             case SelectTheaterSession:
                 remove(transactionPanel);
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
+                //remove all allocations.
+                transactionPanel.clearAllocations();
                 break;
             case SelectSeating:
                 contentPane.add(transactionPanel, BorderLayout.LINE_END);;
