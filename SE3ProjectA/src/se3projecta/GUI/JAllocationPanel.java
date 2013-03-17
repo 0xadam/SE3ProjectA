@@ -63,7 +63,7 @@ public class JAllocationPanel extends JPanel {
 
     public JAllocationPanel(int id_, Repository repository_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setMaximumSize(new Dimension(493, 42));
+        setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
         repository = repository_;
         id = id_;
         ticketTypeLabel = new JLabel("Ticket Type");
@@ -87,6 +87,7 @@ public class JAllocationPanel extends JPanel {
         costTextField.setPreferredSize(new Dimension(60,0)); //TODO fix hardcodedness
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setEditable(false);
+        seatsRemainingTextField.setFocusable(false);
         addAllocationButton = new JButton("+");
         addAllocationButton.addActionListener(new ActionListener() {
             @Override
