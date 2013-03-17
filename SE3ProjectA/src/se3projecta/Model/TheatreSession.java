@@ -29,9 +29,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     private int theatreId;
     private Theatre theatre;
     private Seat[] seats;
-    
+
     /**
      * loads theatre session data from XML
+     *
      * @param n an XML node which contains theatre session data
      */
     @Override
@@ -50,13 +51,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         }
 
     }
-    
+
     public TheatreSession() {
-        
     }
-    
+
     /**
      * creates a theatre session, which links a Theatre and a session time
+     *
      * @param t the theatre which is part of this theatre session
      * @param st the session time which is part of this theatre session
      * @param id id of this theatre session
@@ -68,10 +69,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         this.movieId = t.getMovieId();
         seats = new Seat[t.getHeight() * t.getWidth()];
     }
-    
+
     /**
      * Loads Theatre Session Relations - gets related objects objects (Theatre,
      * Movie, sessionTime) from their IDs. Also sets up seats details.
+     *
      * @param theatres collection of theatres
      * @param movies collection of movies
      * @param sessionTimes collection of sessionTimes
@@ -96,22 +98,24 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             }
         }
     }
-    
+
     /**
      * get theatre session ID
+     *
      * @return theatre session ID
      */
     @Override
     public Integer getId() {
         return id;
     }
-    
+
     /**
-     * Creates and returns a XML TheatreSession element, which stores
-     * theatre session details, including seat state 
+     * Creates and returns a XML TheatreSession element, which stores theatre
+     * session details, including seat state
+     *
      * @param doc a XML document used to create the TheatreSession element
-     * @return a XML TheatreSession element, which stores
-     * theatre session details, including seat state
+     * @return a XML TheatreSession element, which stores theatre session
+     * details, including seat state
      */
     @Override
     public Element save(Document doc) {
@@ -133,9 +137,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return sessionElement;
     }
-    
+
     /**
      * load the Movie object from movieID
+     *
      * @param movies collection of movies
      */
     public void loadMovie(TreeMap<Integer, Movie> movies) {
@@ -145,17 +150,19 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             this.movie = null;
         }
     }
-    
+
     /**
      * get array of Seats
+     *
      * @return array of Seats
      */
     public Seat[] getSeats() {
         return seats.clone();
     }
-    
+
     /**
      * Get 2-dimensional array of Seats. Useful for random seat allocation.
+     *
      * @return 2-dimensional of Seats
      */
     public Seat[][] getSeatRows() {
@@ -175,7 +182,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         if (width > row.length) {
             throw new IllegalArgumentException("Cannot allocate more seats than there are in the row!");
         }
-        
+
         Seat[] allocation = null;
 
         for (int spanStart = 0; spanStart < row.length; spanStart++) {
@@ -205,11 +212,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     private Seat[] getContiguousAllocation(Seat[][] rows, SeatType type, int width) {
         if (rows == null || rows.length == 0) {
             throw new IllegalArgumentException("No rows of seats to allocate into");
-        }
-        else if (width > rows[0].length) {
+        } else if (width > rows[0].length) {
             throw new IllegalArgumentException("Spcified width greater than row");
         }
-        
+
         Seat[] allocation = null;
 
         for (Seat[] row : rows) {
@@ -222,16 +228,17 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return allocation;
     }
-    
+
     /**
      * attempts to find a best fit of a specified number of seats of a specified
      * type
+     *
      * @param type type of seats to fit
      * @param seats number of seats to fit
      * @return an array of Seat Objects representing best fit
      * @throws IllegalArgumentException
      */
-    public Seat[] findBestFit(SeatType type, int seats) throws IllegalArgumentException{
+    public Seat[] findBestFit(SeatType type, int seats) throws IllegalArgumentException {
         if (!hasAvailable(type, seats)) {
             throw new IllegalArgumentException("Cannot allocate " + seats + " seats of type " + type.getName());
         }
@@ -261,15 +268,16 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return allocations;
     }
-    
+
     //TODO: write JavaDoc for this - same as findBestFit
     public Seat[] placeRandom(SeatType type, int seats) {
         return findBestFit(type, seats);
     }
-    
+
     /**
      * gets the number of available seats for a specified seat type for this
      * theatre session
+     *
      * @param type the seat type to check seat availability for
      * @return the number of available seats for a specified seat type for this
      * theatre session
@@ -288,10 +296,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return count;
     }
-    
+
     /**
      * checks whether or not this theatre session has a specified number of
      * available seats of the specified seat type
+     *
      * @param type the seat type to check seat availability for
      * @param seats the number of seats to check seat availability for
      * @return whether or not this theatre session has a specified number of
@@ -300,28 +309,36 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     public boolean hasAvailable(SeatType type, int seats) {
         return numAvailable(type) > seats;
     }
-    
+
     /**
      * get session time for this theatre session
+     *
      * @return session time for this theatre session
      */
     public SessionTime getSessionTime() {
         return sessionTime;
     }
-    
+
     /**
      * get movie showing in this theatre session
+     *
      * @return movie showing in this theatre session
      */
     public Movie getMovie() {
         return movie;
     }
-    
+
     /**
      * get theatre for this theatre session
+     *
      * @return theatre for this theatre session
      */
     public Theatre getTheatre() {
         return theatre;
+    }
+
+    @Override
+    public String toString() {
+        return theatre.toString();
     }
 }
