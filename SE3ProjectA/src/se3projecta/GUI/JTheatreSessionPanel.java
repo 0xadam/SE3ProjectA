@@ -6,7 +6,10 @@ package se3projecta.GUI;
 
 import se3projecta.Model.Seat;
 import se3projecta.Model.TheatreSession;
+import se3projecta.Model.SeatType;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -16,17 +19,22 @@ import java.awt.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreSessionSubscriber {
+    
+    public JTheatreSessionPanel()
+    {
+        setBackground(Color.white);
+    }
 
     private TheatreSession tSession = null;
     private Seat[][] seats;
     private SeatButton[][] seatButtons;
-    int rows,columns;
+    int rows, columns;
 
     public void setTheatreSession(TheatreSession tSession_) {
         tSession = tSession_;
         seats = tSession.getSeatRows();
-        rows=seats.length;
-        columns=seats[0].length;
+        rows = seats.length;
+        columns = seats[0].length;
         this.setLayout(new GridLayout(rows, columns));
         renderTheatreSession();
     }
@@ -45,5 +53,14 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
     @Override
     public void updateTheatreSession(TheatreSession ts) {
         setTheatreSession(ts);
+    }
+
+    public class seatButtonAL implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SeatButton seatButton = (SeatButton) e.getSource();
+            SeatType seatType = seatButton.getSeatType();
+        }
     }
 }

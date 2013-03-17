@@ -34,4 +34,8 @@ public class SeatButton extends JButton {
             setEnabled(false);
         }
     }
+
+    public SeatType getSeatType() {
+        return seat.getType();
+    }
 }
