@@ -81,7 +81,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         dropdownPanel.add(bookTicketsButton);
         add(dropdownPanel);
         add(promoImage);
-        dropdownPanel.setMaximumSize(new Dimension(184, 110));
+        dropdownPanel.setMaximumSize(new Dimension(184, 110)); //TODO don't hardcode?
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
