@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SeatTypes>
     <SeatType Name="Gold" Price="18.72" ID="G" >
-        <Icon id="Empty" path="unoccupied.gif" />
-        <Icon id="Held" path="selected.gif" />
-        <Icon id="Occupied" path="occupied.gif" />
+        <Icon id="Empty" path="data/unoccupied.gif" />
+        <Icon id="Held" path="data/selected.gif" />
+        <Icon id="Occupied" path="data/occupied.gif" />
     </SeatType>
     <SeatType Name="Silver" Price="17.16" ID="S">
-        <Icon id="Empty" path="unoccupied.gif" />
-        <Icon id="Held" path="selected.gif" />
-        <Icon id="Occupied" path="occupied.gif" />
+        <Icon id="Empty" path="data/unoccupied.gif" />
+        <Icon id="Held" path="data/selected.gif" />
+        <Icon id="Occupied" path="data/occupied.gif" />
     </SeatType>
     <SeatType Name="Bronze" Price="15.6" ID="B">
-        <Icon id="Empty" path="unoccupied.gif" />
-        <Icon id="Held" path="selected.gif" />
-        <Icon id="Occupied" path="occupied.gif" />
+        <Icon id="Empty" path="data/unoccupied.gif" />
+        <Icon id="Held" path="data/selected.gif" />
+        <Icon id="Occupied" path="data/occupied.gif" />
     </SeatType>
 </SeatTypes>
