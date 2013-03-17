@@ -34,8 +34,6 @@ public class GUI extends javax.swing.JFrame {
         if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) { //if window is not maximized
             int oldPaneWidth = contentPane.getWidth();
             int oldPaneHeight = contentPane.getHeight();
-            System.out.println(oldPaneWidth);
-            System.out.println(oldPaneHeight);
             setVisible(false);
             pack();
             int newPaneWidth = contentPane.getWidth();
