@@ -14,20 +14,21 @@ import se3projecta.Repository;
  */
 public class JAllocationPanel extends JPanel {
 
-    JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel;
+    JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
     JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
-    JTextField costTextField;
+    JTextField costTextField, seatsRemainingTextField;
     JButton addAllocationButton;
     Repository repository;
 
     public JAllocationPanel(Repository repository_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setMaximumSize(new Dimension(393, 42));
+        setMaximumSize(new Dimension(493, 42));
         repository = repository_;
         ticketTypeLabel = new JLabel("Ticket Type");
         seatTypeLabel = new JLabel("Seat Type");
         numberOfTicketsLabel = new JLabel("Number of Tickets");
         costLabel = new JLabel("Cost");
+        seatsRemainingLabel = new JLabel("Seats Remaining");
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         numberOfTicketsComboBox = new JComboBox();
@@ -36,6 +37,8 @@ public class JAllocationPanel extends JPanel {
         }
         costTextField = new JTextField("0");
         costTextField.setEditable(false);
+        seatsRemainingTextField = new JTextField("0");
+        seatsRemainingTextField.setEditable(false);
         addAllocationButton = new JButton("+");
 
         //creating panels for layout
@@ -59,6 +62,11 @@ public class JAllocationPanel extends JPanel {
         costPanel.add(costLabel);
         costPanel.add(costTextField);
 
+        JPanel seatsRemainingPanel = new JPanel();
+        seatsRemainingPanel.setLayout(new BoxLayout(seatsRemainingPanel, BoxLayout.Y_AXIS));
+        seatsRemainingPanel.add(seatsRemainingLabel);
+        seatsRemainingPanel.add(seatsRemainingTextField);
+
         JPanel addAllocationButtonPanel = new JPanel();
         addAllocationButtonPanel.setLayout(new BoxLayout(addAllocationButtonPanel, BoxLayout.Y_AXIS));
         addAllocationButtonPanel.add(Box.createRigidArea(new Dimension(1, 15))); //padding for the button to be aligned
@@ -68,12 +76,14 @@ public class JAllocationPanel extends JPanel {
         add(seatTypePanel);
         add(numberOfTicketsPanel);
         add(costPanel);
+        add(seatsRemainingPanel);
         add(addAllocationButtonPanel);
 
         ticketTypePanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatTypePanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         numberOfTicketsPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        seatsRemainingPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
 }
