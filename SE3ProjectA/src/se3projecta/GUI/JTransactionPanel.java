@@ -24,12 +24,17 @@ public class JTransactionPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
         allocationPanels = new ArrayList<JAllocationPanel>();
-        allocationPanels.add(new JAllocationPanel(repository));
+        allocationPanels.add(new JAllocationPanel(0, repository));
         add(allocationPanels.get(0));
     }
 
+    public void removeAllocationPanel(JAllocationPanel allocationPanel) {
+        remove(allocationPanel);
+        allocationPanels.remove(allocationPanel);
+    }
+
     public void addAllocationPanel() {
-        allocationPanels.add(new JAllocationPanel(repository));
+        allocationPanels.add(new JAllocationPanel(allocationPanels.size(), repository));
         add(allocationPanels.get(allocationPanels.size() - 1));
     }
 }

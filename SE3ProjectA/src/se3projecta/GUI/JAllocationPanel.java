@@ -20,27 +20,49 @@ public class JAllocationPanel extends JPanel {
     private JTextField costTextField, seatsRemainingTextField;
     private JButton addAllocationButton;
     private Repository repository;
+    private int id;
+
+    @Override
+    public boolean equals(Object obj) { //enables removal from ArrayList
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof JAllocationPanel)) {
+            return false;
+        }
+        JAllocationPanel o = (JAllocationPanel) obj;
+        return o.getID() == this.getID();
+    }
+
+    public int getID() {
+        return id;
+    }
 
     public void setRemovable() {
-            addAllocationButton.setText("-");
-            addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
-            addAllocationButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JAllocationPanel allocationPanel = (JAllocationPanel) ((JButton) e.getSource()).getParent().getParent();
-                    JTransactionPanel transactionPanel = (JTransactionPanel) allocationPanel.getParent();
-                    transactionPanel.remove(allocationPanel); //TODO fix hacks. gets button, then the panel, then the JAllocationPanel
-                    transactionPanel.revalidate();
-                    transactionPanel.repaint();
-                }
-            });
+        addAllocationButton.setText("-");
+        addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
+        addAllocationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JAllocationPanel allocationPanel = (JAllocationPanel) ((JButton) e.getSource()).getParent().getParent();
+                JTransactionPanel transactionPanel = (JTransactionPanel) allocationPanel.getParent();
+                //TODO fix hacks. gets button, then the panel, then the JAllocationPanel
+                transactionPanel.removeAllocationPanel(allocationPanel);
+                transactionPanel.revalidate();
+                transactionPanel.repaint();
+            }
+        });
 
     }
 
-    public JAllocationPanel(Repository repository_) {
+    public JAllocationPanel(int id_, Repository repository_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 42));
         repository = repository_;
+        id = id_;
         ticketTypeLabel = new JLabel("Ticket Type");
 
         seatTypeLabel = new JLabel("Seat Type");
