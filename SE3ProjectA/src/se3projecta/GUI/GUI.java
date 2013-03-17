@@ -40,8 +40,6 @@ public class GUI extends javax.swing.JFrame {
             pack();
             int newPaneWidth = contentPane.getWidth() > oldPaneWidth ? contentPane.getWidth() : oldPaneWidth;
             int newPaneHeight = contentPane.getHeight() > oldPaneHeight ? contentPane.getHeight() : oldPaneHeight;
-            System.out.println(newPaneWidth);
-            System.out.println(newPaneHeight);
             //contentPane.setPreferredSize(new Dimension(newPaneWidth, newPaneHeight));
             setSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
             setVisible(true);
