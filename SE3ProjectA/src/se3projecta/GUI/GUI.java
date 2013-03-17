@@ -15,7 +15,7 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     private Repository repository;
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
@@ -29,15 +29,19 @@ public class GUI extends javax.swing.JFrame {
         repository = repository_;
         initComponents();
     }
-    
+
     public void addTransactionPanel() {
         contentPane.add(transactionPanel, BorderLayout.LINE_END);
+        if((this.getExtendedState() & MAXIMIZED_BOTH)!=MAXIMIZED_BOTH)
+        {
+            pack();
+        }
     }
-    
+
     public void removeMoviePanel() {
         remove(moviePanel);
     }
-    
+
     @SuppressWarnings("unchecked")
     private void initComponents() {
         contentPane = getContentPane();
@@ -50,7 +54,6 @@ public class GUI extends javax.swing.JFrame {
         contentPane.add(moviePanel, BorderLayout.LINE_END);
         moviePanel.addTheatreSessionSubscriber(theatreSessionPanel);
         moviePanel.updateTheatreSessions();
-        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
     }
