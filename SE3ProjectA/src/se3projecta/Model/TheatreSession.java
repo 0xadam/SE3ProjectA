@@ -177,6 +177,14 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return rows;
     }
+    
+    public void clearHeld() {
+        for (Seat s : seats) {
+            if (s.getState() == SeatState.Held) {
+                s.setState(SeatState.Empty);
+            }
+        }
+    }
 
     private Seat[] getContiguousAllocation(Seat[] row, SeatType type, int width) {
         if (width > row.length) {
