@@ -6,6 +6,7 @@ package se3projecta.GUI;
 
 import java.awt.Dimension;
 import javax.swing.*;
+import java.awt.event.*;
 import se3projecta.Repository;
 
 /**
@@ -41,6 +42,12 @@ public class JAllocationPanel extends JPanel {
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setEditable(false);
         addAllocationButton = new JButton("+");
+        addAllocationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((JTransactionPanel)getParent()).addAllocationPanel();
+            }
+        });
 
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
