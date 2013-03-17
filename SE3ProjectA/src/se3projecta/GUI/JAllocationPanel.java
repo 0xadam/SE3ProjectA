@@ -21,8 +21,7 @@ public class JAllocationPanel extends JPanel {
     private JButton addAllocationButton;
     private Repository repository;
 
-    public void setRemovable(boolean removable) {
-        if (removable) {
+    public void setRemovable() {
             addAllocationButton.setText("-");
             addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
             addAllocationButton.addActionListener(new ActionListener() {
@@ -35,7 +34,7 @@ public class JAllocationPanel extends JPanel {
                     transactionPanel.repaint();
                 }
             });
-        }
+
     }
 
     public JAllocationPanel(Repository repository_) {
@@ -63,7 +62,7 @@ public class JAllocationPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) { //TODO kinda hacky. Probably a better way to do it
                 ((JTransactionPanel) getParent()).addAllocationPanel();
-                ((JAllocationPanel) (((JButton) e.getSource()).getParent().getParent())).setRemovable(true);
+                ((JAllocationPanel) (((JButton) e.getSource()).getParent().getParent())).setRemovable();
             }
         });
 
