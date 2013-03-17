@@ -15,15 +15,17 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
+
     enum GUIState {
+
         SelectTheaterSession, SelectSeating, PlaceSeats
     }
-    
     private GUIState state;
     private Repository repository;
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
     private JTransactionPanel transactionPanel;
+    private JSeatSelectionInformationPanel seatSelectionInformationPanel;
     private Container contentPane;
 
     /**
@@ -48,7 +50,7 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-    
+
     public void setState(GUIState s) {
         state = s;
         switch (state) {
@@ -61,7 +63,8 @@ public class GUI extends javax.swing.JFrame {
                 remove(moviePanel);
                 break;
             case PlaceSeats:
-                
+                contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
+                remove(transactionPanel);
                 break;
         }
         fixWindowSize();
@@ -74,7 +77,7 @@ public class GUI extends javax.swing.JFrame {
         contentPane.setLayout(new BorderLayout());
         moviePanel = new JMoviePanel(this, repository);
         transactionPanel = new JTransactionPanel(repository, this);
-        
+        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(transactionPanel);
         theatreSessionPanel = new JTheatreSessionPanel();
         contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
         contentPane.add(moviePanel, BorderLayout.LINE_END);

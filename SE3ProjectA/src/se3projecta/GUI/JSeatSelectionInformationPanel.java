@@ -4,15 +4,17 @@
  */
 package se3projecta.GUI;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Adam
  */
-public class JSeatInformationPanel {
+public class JSeatSelectionInformationPanel extends JPanel {
 
     JTransactionPanel transactionPanel;
 
-    public JSeatInformationPanel(JTransactionPanel transactionPanel_) { //can probably pass the specifically needed data here
+    public JSeatSelectionInformationPanel(JTransactionPanel transactionPanel_) { //can probably pass the specifically needed data here
         transactionPanel = transactionPanel_;
     }
 }
