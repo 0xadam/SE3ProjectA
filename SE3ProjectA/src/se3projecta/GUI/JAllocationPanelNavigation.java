@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.*;
+import se3projecta.Money;
 /**
  *
  * @author Russell
@@ -34,6 +35,10 @@ public class JAllocationPanelNavigation extends JPanel {
         add(navigateBack);
         add(navigateForward);
         add(totalPrice);
+    }
+    
+    public void setTotalPrice(Money p) {
+        totalPrice.setText(p.toString());
     }
     
 }

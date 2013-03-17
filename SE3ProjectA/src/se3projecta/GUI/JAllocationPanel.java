@@ -7,6 +7,7 @@ package se3projecta.GUI;
 import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Observable;
 import se3projecta.Repository;
 import se3projecta.Model.SeatType;
 import se3projecta.Money;
@@ -17,13 +18,13 @@ import se3projecta.Model.CustomerType;
  * @author Adam
  */
 public class JAllocationPanel extends JPanel {
-
     private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
     private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
     private JTextField costTextField, seatsRemainingTextField;
     private JButton addAllocationButton;
-    private Repository repository;
+    private Money cost;
     private int id;
+    private PriceAggregator priceAggregator;
 
     @Override
     public boolean equals(Object obj) { //enables removal from ArrayList
@@ -61,29 +62,39 @@ public class JAllocationPanel extends JPanel {
 
     }
 
-    public JAllocationPanel(int id_, Repository repository_) {
+    public JAllocationPanel(int id, PriceAggregator pa, Repository repository) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
-        repository = repository_;
-        id = id_;
+        
+        this.id = id;
+        this.priceAggregator = pa;
+        
         ticketTypeLabel = new JLabel("Ticket Type");
+        
         seatTypeLabel = new JLabel("Seat Type");
+        
         numberOfTicketsLabel = new JLabel("Number of Tickets");
+        
         costLabel = new JLabel("Cost");
+        
         seatsRemainingLabel = new JLabel("Seats Remaining");
+        
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         ticketTypeComboBox.addActionListener(new ComboBoxAL());
+        
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         seatTypeComboBox.addActionListener(new ComboBoxAL());
+        
         numberOfTicketsComboBox = new JComboBox();
         numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
+        
         for (int i = 0; i <= 10; i++) {
             numberOfTicketsComboBox.addItem(i);
         }
-        costTextField = new JTextField("0");
+        costTextField = new JTextField(new Money(0).toString());
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
-        costTextField.setPreferredSize(new Dimension(60,0)); //TODO fix hardcodedness (allows for big money values)
+        costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setEditable(false);
         seatsRemainingTextField.setFocusable(false);
@@ -152,21 +163,27 @@ public class JAllocationPanel extends JPanel {
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
 
-    private void calculateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+    private void updateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+        int numberOfTickets = ((Integer) numberOfTicketsComboBox.getSelectedItem());
+        double ticketCost = ((SeatType) seatTypeComboBox.getSelectedItem()).getPrice();
+        double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
+        cost = new Money(ticketCost * multiplier * numberOfTickets);
+        priceAggregator.updatePrice();
+
         if (costTextField != null) {
-            int numberOfTickets = ((Integer) numberOfTicketsComboBox.getSelectedItem());
-            double ticketCost = ((SeatType) seatTypeComboBox.getSelectedItem()).getPrice();
-            double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
-            Money cost = new Money(ticketCost * multiplier * numberOfTickets);
             costTextField.setText(cost.toString());
         }
+    }
+    
+    public Money getCost() {
+        return cost;
     }
 
     public class ComboBoxAL implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            calculateCost();
+            updateCost();
         }
     }
 }
