@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SeatTypes>
-	<SeatType Name="Gold" Price="18.72" ID="G" />
-	<SeatType Name="Silver" Price="17.16" ID="S" />
-	<SeatType Name="Bronze" Price="15.6" ID="B" />
+    <SeatType Name="Gold" Price="18.72" ID="G" >
+        <Image id="Empty" path="unoccupied.gif" />
+        <Image id="Held" path="selected.gif" />
+        <Image id="Occupied" path="occupied.gif" />
+    </SeatType>
+    <SeatType Name="Silver" Price="17.16" ID="S">
+        <Image id="Empty" path="unoccupied.gif" />
+        <Image id="Held" path="selected.gif" />
+        <Image id="Occupied" path="occupied.gif" />
+    </SeatType>
+    <SeatType Name="Bronze" Price="15.6" ID="B">
+        <Image id="Empty" path="unoccupied.gif" />
+        <Image id="Held" path="selected.gif" />
+        <Image id="Occupied" path="occupied.gif" />
+    </SeatType>
 </SeatTypes>

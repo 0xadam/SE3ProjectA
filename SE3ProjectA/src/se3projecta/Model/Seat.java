@@ -17,11 +17,7 @@ import org.w3c.dom.Element;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Seat implements XmlSerializable, XmlUnserializable {
-    public enum State {
-        Empty,
-        Held,
-        Occupied
-    }
+
     
     /**
      * Creates and returns an XML seat element, which stores seat state. 
@@ -31,7 +27,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     @Override
     public Element save(Document doc) {
         Element element = doc.createElement("Seat");
-        element.setAttribute("state", (state == State.Occupied ? state.toString() : State.Empty.toString()));
+        element.setAttribute("state", (state == SeatState.Occupied ? state.toString() : SeatState.Empty.toString()));
         
         return element;
     }
@@ -42,17 +38,17 @@ public class Seat implements XmlSerializable, XmlUnserializable {
      */
     @Override
     public void load(Element n) {
-        this.state = State.valueOf(n.getAttribute("state"));
+        this.state = SeatState.valueOf(n.getAttribute("state"));
     }
     
     private SeatType seatType;
-    private State state = State.Empty;
+    private SeatState state = SeatState.Empty;
     
     /**
      * sets seat state
      * @param s state to set seat to
      */
-    public void setState(State s) {
+    public void setState(SeatState s) {
         state = s;
     }
     
@@ -76,7 +72,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
      * gets seat state
      * @return seat state
      */
-    public State getState() {
+    public SeatState getState() {
         return state;
     }
     
@@ -85,7 +81,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
      * @return seat availability
      */
     public boolean available() {
-        return state == State.Empty;
+        return state == SeatState.Empty;
     }
     
     /**
