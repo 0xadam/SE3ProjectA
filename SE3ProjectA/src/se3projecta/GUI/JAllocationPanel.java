@@ -25,10 +25,15 @@ public class JAllocationPanel extends JPanel {
         setMaximumSize(new Dimension(493, 42));
         repository = repository_;
         ticketTypeLabel = new JLabel("Ticket Type");
+
         seatTypeLabel = new JLabel("Seat Type");
+        seatTypeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         numberOfTicketsLabel = new JLabel("Number of Tickets");
+        numberOfTicketsLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         costLabel = new JLabel("Cost");
+        costLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         seatsRemainingLabel = new JLabel("Seats Remaining");
+        seatsRemainingLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         numberOfTicketsComboBox = new JComboBox();
@@ -44,26 +49,36 @@ public class JAllocationPanel extends JPanel {
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
         ticketTypePanel.setLayout(new BoxLayout(ticketTypePanel, BoxLayout.Y_AXIS));
+        ticketTypeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        ticketTypeComboBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         ticketTypePanel.add(ticketTypeLabel);
         ticketTypePanel.add(ticketTypeComboBox);
 
         JPanel seatTypePanel = new JPanel();
         seatTypePanel.setLayout(new BoxLayout(seatTypePanel, BoxLayout.Y_AXIS));
+        seatTypeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        seatTypeComboBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         seatTypePanel.add(seatTypeLabel);
         seatTypePanel.add(seatTypeComboBox);
 
         JPanel numberOfTicketsPanel = new JPanel();
         numberOfTicketsPanel.setLayout(new BoxLayout(numberOfTicketsPanel, BoxLayout.Y_AXIS));
+        numberOfTicketsLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        numberOfTicketsComboBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         numberOfTicketsPanel.add(numberOfTicketsLabel);
         numberOfTicketsPanel.add(numberOfTicketsComboBox);
 
         JPanel costPanel = new JPanel();
         costPanel.setLayout(new BoxLayout(costPanel, BoxLayout.Y_AXIS));
+        costLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        costTextField.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         costPanel.add(costLabel);
         costPanel.add(costTextField);
 
         JPanel seatsRemainingPanel = new JPanel();
         seatsRemainingPanel.setLayout(new BoxLayout(seatsRemainingPanel, BoxLayout.Y_AXIS));
+        seatsRemainingLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        seatsRemainingTextField.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         seatsRemainingPanel.add(seatsRemainingLabel);
         seatsRemainingPanel.add(seatsRemainingTextField);
 
