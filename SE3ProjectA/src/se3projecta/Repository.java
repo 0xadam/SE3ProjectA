@@ -272,7 +272,7 @@ public class Repository {
     }
 
     public void testDump() {
-        theatreSessions.get(0).getSeats()[0].setState(Seat.State.Occupied);
+        theatreSessions.get(0).getSeats()[0].setState(SeatState.Occupied);
         try {
             save();
         } catch (Exception e) {

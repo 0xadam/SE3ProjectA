@@ -26,27 +26,12 @@ public class SeatButton extends JButton {
     }
 
     private void setIcon() {
-        if (seat.getType() == null) {
+        String path;
+        if ((path = seat.getIcon()) != null) {
+            setIcon(new ImageIcon(path));
+        } else if (seat.getType() == null) {
             setIcon(new ImageIcon("data\\noseat.gif"));
             setEnabled(false);
-        } else if (seat.getType().getName().equals("Gold")) {
-            if (seat.getState() == seat.getState().Empty) {
-                setIcon(new ImageIcon("data\\unoccupied.gif"));
-            } else if (seat.getState() == seat.getState().Occupied) {
-                setIcon(new ImageIcon("data\\occupied.gif"));
-            }
-        } else if (seat.getType().getName().equals("Silver")) {
-            if (seat.getState() == seat.getState().Empty) {
-                setIcon(new ImageIcon("data\\unoccupied.gif"));
-            } else if (seat.getState() == seat.getState().Occupied) {
-                setIcon(new ImageIcon("data\\occupied.gif"));
-            }
-        } else if (seat.getType().getName().equals("Bronze")) {
-            if (seat.getState() == seat.getState().Empty) {
-                setIcon(new ImageIcon("data\\unoccupied.gif"));
-            } else if (seat.getState() == seat.getState().Occupied) {
-                setIcon(new ImageIcon("data\\occupied.gif"));
-            }
         }
     }
 }

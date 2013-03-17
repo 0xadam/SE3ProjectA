@@ -200,7 +200,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             if (found == true) {
                 allocation = Arrays.copyOfRange(row, spanStart, spanStart + width);
                 for (Seat seat : allocation) {
-                    seat.setState(Seat.State.Held);
+                    seat.setState(SeatState.Held);
                 }
                 break;
             }
