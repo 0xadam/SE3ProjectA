@@ -6,6 +6,7 @@ package se3projecta.GUI;
 
 import javax.swing.*;
 import se3projecta.Repository;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,12 +18,13 @@ import se3projecta.Repository;
 public class JTransactionPanel extends JPanel {
 
     Repository repository;
-    JAllocationPanel allocationPanel;
+    ArrayList<JAllocationPanel> allocationPanels;
 
     public JTransactionPanel(Repository repository_) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
-        allocationPanel = new JAllocationPanel(repository);
-        add(allocationPanel);
+        allocationPanels = new ArrayList<JAllocationPanel>();
+        allocationPanels.add(new JAllocationPanel(repository));
+        add(allocationPanels.get(0));
     }
 }
