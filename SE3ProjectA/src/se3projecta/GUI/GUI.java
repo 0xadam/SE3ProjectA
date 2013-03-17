@@ -15,7 +15,11 @@ import se3projecta.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
-
+    enum GUIState {
+        SelectTheaterSession, SelectSeating, PlaceSeats
+    }
+    
+    private GUIState state;
     private Repository repository;
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
@@ -44,17 +48,23 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-
-    public void addTransactionPanel() {
-        contentPane.add(transactionPanel, BorderLayout.LINE_END);
+    
+    public void setState(GUIState s) {
+        state = s;
+        switch (state) {
+            case SelectTheaterSession:
+                remove(transactionPanel);
+                contentPane.add(moviePanel, BorderLayout.LINE_END);
+                break;
+            case SelectSeating:
+                contentPane.add(transactionPanel, BorderLayout.LINE_END);;
+                remove(moviePanel);
+                break;
+            case PlaceSeats:
+                
+                break;
+        }
         fixWindowSize();
-        /*if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) {
-         //    pack();
-         }*/
-    }
-
-    public void removeMoviePanel() {
-        remove(moviePanel);
     }
 
     @SuppressWarnings("unchecked")
@@ -63,7 +73,8 @@ public class GUI extends javax.swing.JFrame {
         // contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
         contentPane.setLayout(new BorderLayout());
         moviePanel = new JMoviePanel(this, repository);
-        transactionPanel = new JTransactionPanel(repository);
+        transactionPanel = new JTransactionPanel(repository, this);
+        
         theatreSessionPanel = new JTheatreSessionPanel();
         contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
         contentPane.add(moviePanel, BorderLayout.LINE_END);

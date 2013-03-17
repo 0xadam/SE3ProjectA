@@ -19,13 +19,16 @@ public class JTransactionPanel extends JPanel {
 
     private Repository repository;
     private ArrayList<JAllocationPanel> allocationPanels;
+    private JAllocationPanelNavigation navigate;
 
-    public JTransactionPanel(Repository repository_) {
+    public JTransactionPanel(Repository repository_, GUI gui) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
         allocationPanels = new ArrayList<JAllocationPanel>();
         allocationPanels.add(new JAllocationPanel(0, repository));
         add(allocationPanels.get(0));
+        navigate = new JAllocationPanelNavigation(gui);
+        add(navigate);
     }
 
     public void removeAllocationPanel(JAllocationPanel allocationPanel) {
@@ -35,6 +38,6 @@ public class JTransactionPanel extends JPanel {
 
     public void addAllocationPanel() {
         allocationPanels.add(new JAllocationPanel(allocationPanels.size(), repository));
-        add(allocationPanels.get(allocationPanels.size() - 1));
+        add(allocationPanels.get(allocationPanels.size() - 1), allocationPanels.size() - 1);
     }
 }

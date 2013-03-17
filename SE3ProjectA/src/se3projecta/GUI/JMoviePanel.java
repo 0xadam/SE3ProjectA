@@ -69,10 +69,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         bookTicketsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JButton button = (JButton) e.getSource();
-                ((JPanel) button.getParent().getParent()).setVisible(false); //hides the JMoviePanel (TODO make less hacky)
-                gui.removeMoviePanel();
-                gui.addTransactionPanel();
+                gui.setState(GUI.GUIState.SelectSeating);
             }
         });
         dropdownPanel.add(movieDropdown);
