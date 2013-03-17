@@ -22,9 +22,10 @@ public class SeatType implements XmlUnserializable<Character> {
     private double price;
     private Character id;
     private TreeMap<SeatState, String> icons;
-    
+
     /**
      * loads seat type data from XML
+     *
      * @param n an XML node which contains seat type data
      */
     @Override
@@ -48,66 +49,76 @@ public class SeatType implements XmlUnserializable<Character> {
             }
         }
     }
-    
+
     /**
      * get seat type name
+     *
      * @return seat type name
      */
     public String getName() {
         return name;
     }
-    
+
     /**
      * get seat type ID
+     *
      * @return seat type ID
      */
     @Override
     public Character getId() {
         return id;
     }
-    
+
     /**
      * set seat type name
+     *
      * @param name name to set to seat type
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
      * get seat type price
+     *
      * @return seat type price
      */
     public double getPrice() {
         return price;
     }
-    
+
     /**
      * set seat type price
+     *
      * @param price price to give this seat type
      */
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
     /**
      * set seat type id
+     *
      * @param id id to give this seat type
      */
     public void setId(Character id) {
         this.id = id;
     }
-    
+
     /**
      * returns a string representation of the seat type
+     *
      * @return a string representation of the seat type
      */
     @Override
     public String toString() {
         return name;
     }
-    
+
     public String getIcon(SeatState ss) {
-        return icons.get(ss);
+        if (icons.containsKey(ss)) {
+            return icons.get(ss);
+        }
+        return null;
     }
 }
