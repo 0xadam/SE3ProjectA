@@ -15,11 +15,11 @@ import se3projecta.Repository;
  */
 public class JAllocationPanel extends JPanel {
 
-    JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
-    JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
-    JTextField costTextField, seatsRemainingTextField;
-    JButton addAllocationButton;
-    Repository repository;
+    private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
+    private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
+    private JTextField costTextField, seatsRemainingTextField;
+    private JButton addAllocationButton;
+    private Repository repository;
 
     public JAllocationPanel(Repository repository_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -45,7 +45,7 @@ public class JAllocationPanel extends JPanel {
         addAllocationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ((JTransactionPanel)getParent()).addAllocationPanel();
+                ((JTransactionPanel) getParent()).addAllocationPanel();
             }
         });
 
