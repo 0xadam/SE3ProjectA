@@ -61,7 +61,8 @@ public class Theatre implements XmlUnserializable<Integer> {
         this.movieId = Integer.parseInt(n.getAttribute("movie"));
         this.height = Integer.parseInt(n.getAttribute("height"));
         this.width = Integer.parseInt(n.getAttribute("width"));
-        this.rawSeatPlan = n.getTextContent();
+        this.rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
+        
     }
     
     /**
