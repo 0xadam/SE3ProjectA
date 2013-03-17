@@ -61,7 +61,7 @@ public class JAllocationPanel extends JPanel {
         addAllocationButton = new JButton("+");
         addAllocationButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { //TODO kinda hacky. Probably a better way to do it
                 ((JTransactionPanel) getParent()).addAllocationPanel();
                 ((JAllocationPanel) (((JButton) e.getSource()).getParent().getParent())).setRemovable(true);
             }
