@@ -67,7 +67,6 @@ public class JAllocationPanel extends JPanel {
         repository = repository_;
         id = id_;
         ticketTypeLabel = new JLabel("Ticket Type");
-
         seatTypeLabel = new JLabel("Seat Type");
         numberOfTicketsLabel = new JLabel("Number of Tickets");
         costLabel = new JLabel("Cost");

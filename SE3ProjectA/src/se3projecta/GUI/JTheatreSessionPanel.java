@@ -7,7 +7,7 @@ package se3projecta.GUI;
 import se3projecta.Model.Seat;
 import se3projecta.Model.TheatreSession;
 import se3projecta.Model.SeatType;
-import se3projecta.GUI.JTransactionPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +20,8 @@ import java.awt.event.ActionListener;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreSessionSubscriber {
-
-    JTransactionPanel transactionpanel;
-
-    public JTheatreSessionPanel(JTransactionPanel transactionPanel_) {
-        transactionpanel = transactionPanel_;
+    
+    public JTheatreSessionPanel() {
         setBackground(Color.white);
     }
     private TheatreSession tSession = null;
