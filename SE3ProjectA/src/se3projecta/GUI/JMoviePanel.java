@@ -103,16 +103,14 @@ public class JMoviePanel extends javax.swing.JPanel {
     }
 
     public void updateTheatreSessions() {
+        theatreDropdown.removeActionListener(theatreDropdown.getActionListeners()[0]); //only ever one actionlistener. Removed to stop ActionListener being called on adding of theatres
         theatreDropdown.removeAllItems(); //clear the panel
-       // theatreDropdown.validate();
-       // theatreDropdown.repaint();
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
-            //System.out.println(theatreSession);
             theatreDropdown.addItem(theatreSession);
         }
-        //TODO fix hacky. Only works when there is one theatreSession (which is currently the case)
         notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
+        theatreDropdown.addActionListener(new JMoviePanelAL()); //Add the ActionListener back
     }
 
     private ImageIcon loadPromoImage(String promoImageURI) {
