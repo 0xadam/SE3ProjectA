@@ -93,4 +93,11 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     public Integer getId() {
         return 0;
     }
+    
+    public String getIcon() {
+        if (seatType != null) {
+            return seatType.getIcon(state);
+        }
+        return null;
+    }
 }

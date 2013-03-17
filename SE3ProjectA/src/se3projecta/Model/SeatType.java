@@ -5,7 +5,9 @@
 package se3projecta.Model;
 
 import se3projecta.Persistance.XmlUnserializable;
+import java.util.TreeMap;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -19,6 +21,7 @@ public class SeatType implements XmlUnserializable<Character> {
     private String name;
     private double price;
     private Character id;
+    private TreeMap<SeatState, String> icons;
     
     /**
      * loads seat type data from XML
@@ -29,6 +32,21 @@ public class SeatType implements XmlUnserializable<Character> {
         setId(n.getAttribute("ID").charAt(0));
         setName(n.getAttribute("Name"));
         setPrice(Double.parseDouble(n.getAttribute("Price")));
+        //get icon nodes
+        NodeList iconNodes = n.getElementsByTagName("Icon");
+        icons = new TreeMap<SeatState, String>();
+        //load into tree map.
+        SeatState s;
+        String path;
+        Element e;
+        for (int i = 0; i < iconNodes.getLength(); i++) {
+            e = (Element) iconNodes.item(i);
+            s = SeatState.valueOf(e.getAttribute("id"));
+            path = e.getAttribute("path");
+            if (!icons.containsKey(s)) {
+                icons.put(s, path);
+            }
+        }
     }
     
     /**
@@ -87,5 +105,9 @@ public class SeatType implements XmlUnserializable<Character> {
     @Override
     public String toString() {
         return name;
+    }
+    
+    public String getIcon(SeatState ss) {
+        return icons.get(ss);
     }
 }
