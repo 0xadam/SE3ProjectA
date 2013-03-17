@@ -27,13 +27,9 @@ public class JAllocationPanel extends JPanel {
         ticketTypeLabel = new JLabel("Ticket Type");
 
         seatTypeLabel = new JLabel("Seat Type");
-        seatTypeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         numberOfTicketsLabel = new JLabel("Number of Tickets");
-        numberOfTicketsLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         costLabel = new JLabel("Cost");
-        costLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         seatsRemainingLabel = new JLabel("Seats Remaining");
-        seatsRemainingLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         numberOfTicketsComboBox = new JComboBox();
