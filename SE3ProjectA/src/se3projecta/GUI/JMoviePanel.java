@@ -52,14 +52,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
         //create items
-        movieDropdown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO shrink to fit
-                promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
-
-            }
-        });
         //add movies to combobox
         for (Movie movie : repository.getMovies()) {
             movieDropdown.addItem(movie);
@@ -98,6 +90,9 @@ public class JMoviePanel extends javax.swing.JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == movieDropdown) {
+                promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
+            }
             updateTheatreSessions();
         }
     }
@@ -120,7 +115,7 @@ public class JMoviePanel extends javax.swing.JPanel {
             promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            lpromoImage.setImage(ImageIO.read(promoImageFile));
+            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(100, 150, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow
         } catch (IOException e) {
             System.out.println("Unable to load image.");
         } finally {
