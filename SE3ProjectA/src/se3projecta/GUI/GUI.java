@@ -57,7 +57,7 @@ public class GUI extends javax.swing.JFrame {
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
                 break;
             case SelectSeating:
-                contentPane.add(transactionPanel, BorderLayout.LINE_END);;
+                contentPane.add(transactionPanel, BorderLayout.LINE_END);
                 remove(moviePanel);
                 break;
             case PlaceSeats:

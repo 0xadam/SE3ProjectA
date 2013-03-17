@@ -27,6 +27,7 @@ public class JAllocationPanelNavigation extends JPanel {
         navigateForward = new JButton("Forward");
         
         navigateBack.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 gui.setState(GUI.GUIState.SelectTheaterSession);
             }
