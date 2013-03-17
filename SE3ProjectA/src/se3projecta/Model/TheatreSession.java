@@ -190,7 +190,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
             for (int spanOffset = 0; spanOffset < width; spanOffset++) {
                 int index = spanStart + spanOffset;
-                if (!row[index].available()) {
+                if (!(row[index].available() && row[index].getType() == type)) {
                     spanStart = spanStart + spanOffset + 1; // Advance to one beyond what we were just looking at
                     found = false;
                     break;
