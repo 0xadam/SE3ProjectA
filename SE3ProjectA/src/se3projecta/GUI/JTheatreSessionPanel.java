@@ -18,28 +18,32 @@ import java.awt.*;
 public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreSessionSubscriber {
 
     private TheatreSession tSession = null;
-    //  private SeatButton[][] seatButtons;
+    private Seat[][] seats;
+    private SeatButton[][] seatButtons;
+    int rows,columns;
 
     public void setTheatreSession(TheatreSession tSession_) {
         tSession = tSession_;
-        this.setLayout(new GridLayout(tSession.getSeatRows().length, tSession.getSeatRows()[0].length));
+        seats = tSession.getSeatRows();
+        rows=seats.length;
+        columns=seats[0].length;
+        this.setLayout(new GridLayout(rows, columns));
         renderTheatreSession();
     }
 
     public void renderTheatreSession() {
-        Seat[][] rows = tSession.getSeatRows();
+        seatButtons = new SeatButton[seats.length][seats[0].length];
         removeAll(); //remove all previous seats
-        for (int i = 0; i < rows.length; i++) {
-            for (int j = 0; j < rows[0].length; j++) { //length is the same for all rows of seats
-                add(new SeatButton(rows[i][j]));
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[0].length; j++) { //length is the same for all rows of seats
+                seatButtons[i][j] = new SeatButton(seats[i][j]);
+                add(seatButtons[i][j]);
             }
         }
     }
 
     @Override
     public void updateTheatreSession(TheatreSession ts) {
-        tSession = ts;
-        this.setLayout(new GridLayout(tSession.getSeatRows().length, tSession.getSeatRows()[0].length));
-        renderTheatreSession();
+        setTheatreSession(ts);
     }
 }
