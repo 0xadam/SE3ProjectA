@@ -7,8 +7,6 @@ package se3projecta.GUI;
 import java.awt.Dimension;
 import javax.swing.*;
 import se3projecta.Repository;
-import se3projecta.Model.SeatType;
-import se3projecta.Model.CustomerType;
 
 /**
  *
