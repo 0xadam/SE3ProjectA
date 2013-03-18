@@ -39,16 +39,7 @@ public class JAllocationPanelNavigation extends JPanel {
         navigateForward.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                                //TODO validate ticket selection and set up seat selection info.
-                TheatreSession ts = transaction.getTheatreSession();
-                
-                boolean valid = true;
-                for (SeatType st : repository.getSeatTypes()) {
-                    if (!ts.hasAvailable(st, jtp.getSeatCount(st))) {
-                        valid = false;
-                    }
-                }
-                if (!valid) {
+                if (!transaction.isValidRequest()) {
                     //todo show error message.
                 } else {
                     gui.setState(GUI.GUIState.PlaceSeats);
