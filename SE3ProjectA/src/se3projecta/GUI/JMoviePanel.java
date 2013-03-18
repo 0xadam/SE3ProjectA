@@ -31,6 +31,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox movieDropdown = new JComboBox();
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
+    private boolean updating = false;
     ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
 
     public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
@@ -62,7 +63,14 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         movieDropdown.addActionListener(new JMoviePanelAL());
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
-        theatreDropdown.addActionListener(new JMoviePanelAL());
+        //theatreDropdown.addActionListener(new JMoviePanelAL());
+        theatreDropdown.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!updating && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
+                    notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
+                }
+            }
+        });
         movieDropdown.setSelectedIndex(0);
         promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
         promoImage.setMaximumSize(new Dimension(100, 150));
@@ -96,14 +104,17 @@ public class JMoviePanel extends javax.swing.JPanel {
     }
 
     public void updateTheatreSessions() {
-        theatreDropdown.removeActionListener(theatreDropdown.getActionListeners()[0]); //only ever one actionlistener. Removed to stop ActionListener being called on adding of theatres
+        updating = true;
+        //theatreDropdown.removeActionListener(theatreDropdown.getActionListeners()[0]); //only ever one actionlistener. Removed to stop ActionListener being called on adding of theatres
         theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
             theatreDropdown.addItem(theatreSession);
         }
-        notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
-        theatreDropdown.addActionListener(new JMoviePanelAL()); //Add the ActionListener back
+        updating = false;
+        theatreDropdown.setSelectedIndex(0);
+        //notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
+        //theatreDropdown.addActionListener(new JMoviePanelAL()); //Add the ActionListener back
     }
 
     private ImageIcon loadPromoImage(String promoImageURI) {
