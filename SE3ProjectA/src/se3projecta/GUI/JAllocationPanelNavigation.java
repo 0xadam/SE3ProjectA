@@ -37,14 +37,7 @@ public class JAllocationPanelNavigation extends JPanel {
         navigateForward.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gui.setState(GUI.GUIState.PlaceSeats);
-            }
-        });
-        
-        navigateBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //TODO validate ticket selection and set up seat selection info.
+                                //TODO validate ticket selection and set up seat selection info.
                 TheatreSession ts = new TheatreSession(); //placeholder
                 
                 boolean valid = true;
@@ -56,6 +49,13 @@ public class JAllocationPanelNavigation extends JPanel {
                 if (!valid) {
                     //todo show error message.
                 }
+                gui.setState(GUI.GUIState.PlaceSeats);
+            }
+        });
+        
+        navigateBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 gui.setState(GUI.GUIState.SelectTheaterSession);
             }
         });
