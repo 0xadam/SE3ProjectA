@@ -18,13 +18,13 @@ import se3projecta.Model.CustomerType;
  * @author Adam
  */
 public class JAllocationPanel extends JPanel {
+
     private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel;
     private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
     private JTextField costTextField;
     private JButton addAllocationButton;
     private JTransactionPanel jtp;
     private int id;
-    
     private Allocation allocation;
 
     @Override
@@ -56,29 +56,29 @@ public class JAllocationPanel extends JPanel {
     public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
-        
+
         jtp = jtp_;
         allocation = allocation_;
-        
+
         this.id = id;
-        
+
         ticketTypeLabel = new JLabel("Ticket Type");
-        
+
         seatTypeLabel = new JLabel("Seat Type");
-        
+
         numberOfTicketsLabel = new JLabel("Number of Tickets");
-        
+
         costLabel = new JLabel("Cost");
-        
+
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         ticketTypeComboBox.addActionListener(new ComboBoxAL());
-        
+
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         seatTypeComboBox.addActionListener(new ComboBoxAL());
-        
+
         numberOfTicketsComboBox = new JComboBox();
         numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
-        
+
         for (int i = 0; i <= 10; i++) {
             numberOfTicketsComboBox.addItem(i);
         }
@@ -166,11 +166,11 @@ public class JAllocationPanel extends JPanel {
             costTextField.setText(allocation.getCost().toString());
         }
     }
-    
+
     private int getNumberofSeats() {
         return ((Integer) numberOfTicketsComboBox.getSelectedItem());
     }
-    
+
     private SeatType getSeatType() {
         return (SeatType) seatTypeComboBox.getSelectedItem();
     }
@@ -178,7 +178,7 @@ public class JAllocationPanel extends JPanel {
     public Allocation getAllocation() {
         return allocation;
     }
-    
+
     public class ComboBoxAL implements ActionListener {
 
         @Override
