@@ -12,9 +12,9 @@ import javax.swing.JPanel;
  */
 public class JSeatSelectionInformationPanel extends JPanel {
 
-    JTransactionPanel transactionPanel;
+    Transaction transaction;
 
-    public JSeatSelectionInformationPanel(JTransactionPanel transactionPanel_) { //can probably pass the specifically needed data here
-        transactionPanel = transactionPanel_;
+    public JSeatSelectionInformationPanel(Transaction transaction_) { //can probably pass the specifically needed data here
+        transaction = transaction_;
     }
 }

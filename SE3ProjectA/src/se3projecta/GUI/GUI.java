@@ -96,7 +96,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
         
-        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(transactionPanel);
+        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(transaction);
         
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
         
