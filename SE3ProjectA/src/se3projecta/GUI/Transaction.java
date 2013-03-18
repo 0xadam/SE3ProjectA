@@ -25,8 +25,17 @@ public class Transaction {
         }
     }
     
-    public ArrayList<Allocation> getAllocations() {
-        return allocations;
+    public Allocation[] getAllocations() {
+        Allocation[] a = new Allocation[allocations.size()];
+        allocations.toArray(a);
+        return a;
+    }
+    
+    public void addAllocation(Allocation allocation) {
+        allocations.add(allocation);
+    }
+    public void removeAllocation(Allocation allocation) {
+        allocations.remove(allocation);
     }
     
     public void addTransactionListener(TransactionListener l) {

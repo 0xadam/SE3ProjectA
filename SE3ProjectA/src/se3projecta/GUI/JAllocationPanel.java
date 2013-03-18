@@ -22,7 +22,6 @@ public class JAllocationPanel extends JPanel {
     private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
     private JTextField costTextField;
     private JButton addAllocationButton;
-    private Money cost;
     private JTransactionPanel jtp;
     private int id;
     private PriceAggregator priceAggregator;
@@ -55,11 +54,12 @@ public class JAllocationPanel extends JPanel {
 
     }
 
-    public JAllocationPanel(int id, PriceAggregator pa, Repository repository, JTransactionPanel _jtp) {
+    public JAllocationPanel(int id, PriceAggregator pa, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
         
-        jtp = _jtp;
+        jtp = jtp_;
+        allocation = allocation_;
         
         this.id = id;
         this.priceAggregator = pa;
@@ -158,35 +158,33 @@ public class JAllocationPanel extends JPanel {
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
     }
 
-    private void updateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
-        int numberOfTickets = getNumberofSeats();
-        double ticketCost = getSeatType().getPrice();
-        double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
-        cost = new Money(ticketCost * multiplier * numberOfTickets);
-        priceAggregator.updatePrice();
+    private void update() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+        allocation.setNumberOfTickets(getNumberofSeats());
+        allocation.setSeatType(getSeatType());
+        allocation.setCustomerType((CustomerType) ticketTypeComboBox.getSelectedItem());
 
         if (costTextField != null) {
-            costTextField.setText(cost.toString());
+            costTextField.setText(allocation.getCost().toString());
         }
     }
     
-    public int getNumberofSeats() {
+    private int getNumberofSeats() {
         return ((Integer) numberOfTicketsComboBox.getSelectedItem());
     }
     
-    public SeatType getSeatType() {
+    private SeatType getSeatType() {
         return (SeatType) seatTypeComboBox.getSelectedItem();
     }
-    
-    public Money getCost() {
-        return cost;
-    }
 
+    public Allocation getAllocation() {
+        return allocation;
+    }
+    
     public class ComboBoxAL implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            updateCost();
+            update();
         }
     }
 }
