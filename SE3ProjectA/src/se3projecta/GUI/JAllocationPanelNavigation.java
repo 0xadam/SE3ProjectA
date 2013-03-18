@@ -36,6 +36,7 @@ public class JAllocationPanelNavigation extends JPanel {
         navigateBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //TODO validate ticket selection and set up seat selection info.
                 gui.setState(GUI.GUIState.SelectTheaterSession);
             }
         });

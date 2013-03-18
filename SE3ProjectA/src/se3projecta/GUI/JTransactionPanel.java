@@ -55,8 +55,10 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
     
     public void clearAllocations() {
         for (JAllocationPanel jap : allocationPanels) {
-           removeAllocationPanel(jap);
+           remove(jap);
         }
+        allocationPanels.clear();
+        addAllocationPanel();
     }
     
     public Money getPrice() {

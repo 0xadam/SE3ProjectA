@@ -20,7 +20,7 @@ public class GUI extends javax.swing.JFrame {
 
         SelectTheaterSession, SelectSeating, PlaceSeats
     }
-    private GUIState state;
+    private GUIState state = GUIState.SelectTheaterSession;
     private Repository repository;
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
@@ -55,6 +55,7 @@ public class GUI extends javax.swing.JFrame {
         state = s;
         switch (state) {
             case SelectTheaterSession:
+                remove(seatSelectionInformationPanel);
                 remove(transactionPanel);
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
                 //remove all allocations.
@@ -63,10 +64,12 @@ public class GUI extends javax.swing.JFrame {
             case SelectSeating:
                 contentPane.add(transactionPanel, BorderLayout.LINE_END);
                 remove(moviePanel);
+                remove(seatSelectionInformationPanel);
                 break;
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 remove(transactionPanel);
+                remove(moviePanel);
                 break;
         }
         fixWindowSize();
