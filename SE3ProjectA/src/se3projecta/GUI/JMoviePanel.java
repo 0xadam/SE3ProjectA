@@ -47,7 +47,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         for (Movie movie : repository.getMovies()) {
             movieDropdown.addItem(movie);
         }
-        movieDropdown.setSelectedIndex(0);
+        
         dropdownPanel.add(movieDropdown);
         
         
@@ -82,6 +82,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         
         
         movieDropdown.addActionListener(new JMoviePanelAL());
+        movieDropdown.setSelectedIndex(0);
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
         theatreDropdown.addActionListener(new ActionListener() {
             @Override
@@ -91,6 +92,7 @@ public class JMoviePanel extends javax.swing.JPanel {
                 }
             }
         });
+        
     }
     
     public class JMoviePanelAL implements ActionListener {
