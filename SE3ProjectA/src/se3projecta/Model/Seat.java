@@ -83,7 +83,9 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     public boolean available() {
         return state == SeatState.Empty;
     }
-    
+      public boolean held() {
+        return state == SeatState.Held;
+    }
     /**
      * get seat ID
      * @return seat ID

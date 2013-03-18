@@ -179,7 +179,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         return rows;
     }
-    
+
     public void clearHeld() {
         for (Seat s : seats) {
             if (s.getState() == SeatState.Held) {
@@ -194,14 +194,14 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         }
 
         Seat[] allocation = null;
-        
+
         // Make a shuffled list of indicies
         ArrayList<Integer> startIndicies = new ArrayList<Integer>(row.length - spanLength + 1);
         for (int spanStart = 0; spanStart <= row.length - spanLength; spanStart++) {
             startIndicies.add(spanStart);
         }
         Collections.shuffle(startIndicies);
-        
+
         for (int spanStart : startIndicies) {
             boolean found = true;
 
@@ -215,11 +215,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
             if (found == true) {
                 allocation = Arrays.copyOfRange(row, spanStart, spanStart + spanLength);
-                
+
                 for (Seat seat : allocation) {
                     seat.setState(SeatState.Held);
                 }
-                
+
                 break;
             }
         }
@@ -248,11 +248,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * attempts to find a random fit of a specified number of seats of a specified
-     * type.
-     * 
-     * If the specified number of seats is not available contiguous, break up the
-     * allocation into smaller allocations
+     * attempts to find a random fit of a specified number of seats of a
+     * specified type.
+     *
+     * If the specified number of seats is not available contiguous, break up
+     * the allocation into smaller allocations
      *
      * @param type type of seats to fit
      * @param seats number of seats to fit
@@ -265,7 +265,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         }
 
         Seat[][] rows = getSeatRows();
-        
+
         rows = Arrays.copyOf(rows, rows.length);
         Collections.shuffle(Arrays.asList(rows));
 
@@ -282,7 +282,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
                 if (allocation == null) {
                     break;
                 }
-                
+
                 allocations.addAll(Arrays.asList(allocation));
                 remainingSeats = seats - allocations.size();
             }
@@ -359,6 +359,18 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      */
     public Theatre getTheatre() {
         return theatre;
+    }
+
+    public int getHeldCount(SeatType type) {
+        //could be optimised like NumAvailable to have a counter stored on TheatreSession
+        int count = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == type && seat.held()) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     @Override
