@@ -19,21 +19,38 @@ public class CustomerType implements XmlUnserializable<Integer> {
     private int id;
     private String name;
     private double priceMultiplier;
-
+    
+    /**
+     * loads customer type data from XML
+     * @param n an XML node which contains customer data
+     */
     @Override
     public void load(Element n) {
         this.id = Integer.parseInt(n.getAttribute("id"));
         this.name = n.getAttribute("Name");
         this.priceMultiplier = Double.parseDouble(n.getAttribute("pricemultiplier"));
     }
-
+    
+    /**
+     * returns a string representation of the customer type
+     * @return a string representation of the customer type
+     */
     @Override
     public String toString() {
-        return "CustomerType: ID:" + id + "\tName: " + name + "\tpriceMultiplier: " + priceMultiplier;
+        return name;
     }
-
+    
+    /**
+     * gets the customer type ID
+     * @return the customer type ID
+     */
     @Override
     public Integer getId() {
         return id;
+    }
+    
+    public double getPriceMultiplier()
+    {
+        return this.priceMultiplier;
     }
 }

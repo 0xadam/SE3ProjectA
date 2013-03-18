@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Theatres>
-    <Theatre id="0" name="test1" width="3" height="2" movie="0">G0GSSB</Theatre>
+    <Theatre id="0" name="test1" width="23" height="12" movie="0">
+        BBBB000000000000000BBBB
+        BBBB000000000000000BBBB
+        BBBB000000000000000BBBB
+        BBBBBBBBB00000BBBBBBBBB
+        BBBBBBBBB00000BBBBBBBBB
+        BBBBSSSSS00000SSSSSBBBB
+        BBBBSSSSSGGGGGSSSSSBBBB
+        BBBBSSSSSGGGGGSSSSSBBBB
+        SSSSSSSSSGGGGGSSSSSSSSS
+        SSSSSSSGGGGGGGGGSSSSSSS
+        SSSSSSSGGGGGGGGGSSSSSSS
+        SSSSSSSGGGGGGGGGSSSSSSS
+    </Theatre>
+    <Theatre id="1" name="test2" width="3" height="2" movie="1">G0GSSB</Theatre>
+    <Theatre id="2" name="test3" width="3" height="2" movie="2">G0GSSB</Theatre>
+    <Theatre id="3" name="test4" width="3" height="2" movie="3">G0GSSB</Theatre>
+    <Theatre id="4" name="test5" width="3" height="2" movie="4">G0GSSB</Theatre>
+    <Theatre id="5" name="test6" width="3" height="2" movie="3">BB0GSS</Theatre>
+    <Theatre id="6" name="test7" width="3" height="2" movie="1">G0GSSB</Theatre>
 </Theatres>

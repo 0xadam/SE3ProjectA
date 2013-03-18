@@ -22,8 +22,11 @@ import org.xml.sax.SAXException;
  */
 public class XmlFileLoader {
 
-    private static Document readXml(String path) throws ParserConfigurationException, SAXException, IOException {
+    private static Document readXml(String path) throws ParserConfigurationException, SAXException, IOException, java.io.FileNotFoundException {
         File fXmlFile = new File(path);
+        if (!fXmlFile.exists()) {
+            throw new java.io.FileNotFoundException("File: " + path + " could not be found");
+        }
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -31,22 +34,14 @@ public class XmlFileLoader {
         return dBuilder.parse(fXmlFile);
     }
 
-    public static NodeList parseXmlFile(String Path, String NodeNames) {
-        try {
+    public static NodeList parseXmlFile(String Path, String NodeNames) throws ParserConfigurationException, SAXException, IOException, java.io.FileNotFoundException {
             Document doc = readXml(Path);
             return doc.getElementsByTagName(NodeNames);
-        } catch (IOException ioe) {
-            System.err.println("File not found");
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)
-            throws InstantiationException, java.lang.IllegalAccessException {
-
+            throws InstantiationException, java.lang.IllegalAccessException, se3projecta.Model.ExistingKeyException {
+        
         TreeMap<K, V> list = new TreeMap<K, V>();
         for (int temp = 0; temp < nodes.getLength(); temp++) {
 
@@ -56,6 +51,9 @@ public class XmlFileLoader {
                 Element eElement = (Element) nNode;
                 V entity = entityClass.newInstance();
                 entity.load(eElement);
+                if (list.containsKey(entity.getId())) {
+                    throw new se3projecta.Model.ExistingKeyException("the key: " + entity.getId() + " alread exists in the collection.");
+                }
                 list.put(entity.getId(), entity);
             }
         }
