@@ -32,7 +32,7 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         addAllocationPanel();
         
         add(allocationPanels.get(0));
-        navigationPanel = new JAllocationPanelNavigation(gui);
+        navigationPanel = new JAllocationPanelNavigation(gui, repository, this);
         add(navigationPanel);
     }
 
@@ -69,5 +69,15 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         }
         
         return total;
+    }
+    
+    public int getSeatCount(SeatType st) {
+        int seatCount = 0;
+        for (JAllocationPanel jap : allocationPanels) {
+            if (jap.getSeatType() == st) {
+                seatCount += jap.getNumberofSeats();
+            }
+        }
+        return seatCount;
     }
 }

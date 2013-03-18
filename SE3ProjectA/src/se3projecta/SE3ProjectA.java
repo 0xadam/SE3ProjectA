@@ -47,15 +47,17 @@ public class SE3ProjectA {
             @Override
             public void run() {
                 Repository repository = null;
+                ImportException ie = null;
                 try {
                     repository = new Repository();
-                } catch (ImportException ie) {
+                } catch (ImportException e) {
                     //TODO deal with errors.
+                    ie = e;
                 }
                 if (repository != null) {
                     repository.testDump();
                 }
-                new se3projecta.GUI.GUI(repository).setVisible(true);
+                new se3projecta.GUI.GUI(repository, ie).setVisible(true);
             }
         });
     }

@@ -157,8 +157,8 @@ public class JAllocationPanel extends JPanel {
     }
 
     private void updateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
-        int numberOfTickets = ((Integer) numberOfTicketsComboBox.getSelectedItem());
-        double ticketCost = ((SeatType) seatTypeComboBox.getSelectedItem()).getPrice();
+        int numberOfTickets = getNumberofSeats();
+        double ticketCost = getSeatType().getPrice();
         double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
         cost = new Money(ticketCost * multiplier * numberOfTickets);
         priceAggregator.updatePrice();
@@ -166,6 +166,14 @@ public class JAllocationPanel extends JPanel {
         if (costTextField != null) {
             costTextField.setText(cost.toString());
         }
+    }
+    
+    public int getNumberofSeats() {
+        return ((Integer) numberOfTicketsComboBox.getSelectedItem());
+    }
+    
+    public SeatType getSeatType() {
+        return (SeatType) seatTypeComboBox.getSelectedItem();
     }
     
     public Money getCost() {

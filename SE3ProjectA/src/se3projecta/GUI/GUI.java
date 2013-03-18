@@ -6,6 +6,7 @@ package se3projecta.GUI;
 
 import java.awt.*;
 import se3projecta.*;
+import se3projecta.Persistance.ImportException;
 
 /**
  *
@@ -31,7 +32,10 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    public GUI(Repository repository_) {
+    public GUI(Repository repository_, ImportException ie) {
+        if (ie != null) {
+            //todo handle import errors.
+        }
         repository = repository_;
         initComponents();
     }
