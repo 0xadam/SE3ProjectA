@@ -28,11 +28,10 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         this.transaction = transaction;
         
         
-        final JTheatreSessionPanel panel = this;
         transaction.addTransactionListener(new TransactionListener() {
             @Override
-            public void transactionSessionChanged(TheatreSession theatreSession) {
-                panel.setTheatreSession(theatreSession);
+            public void theatreSessionChanged(TheatreSession theatreSession) {
+                setTheatreSession(theatreSession);
             }
         });
     }

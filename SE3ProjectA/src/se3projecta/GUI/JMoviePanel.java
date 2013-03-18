@@ -31,13 +31,12 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox movieDropdown = new JComboBox();
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
-    private boolean updating = false;
     private Transaction transaction;
 
-    public JMoviePanel(Repository repository_, GUI gui_, Transaction transaction) {
+    public JMoviePanel(Repository repository_, GUI gui_, Transaction transaction_) {
         gui = gui_;
         repository = repository_;
-        this.transaction = transaction;
+        transaction = transaction_;
 
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -87,17 +86,13 @@ public class JMoviePanel extends javax.swing.JPanel {
         theatreDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!updating && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
-                        getTransaction().setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
+                if (theatreDropdown.getSelectedItem() != null && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
+                        transaction.setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
                 }
             }
         });
     }
     
-    private Transaction getTransaction() {
-        return transaction;
-    }
-
     public class JMoviePanelAL implements ActionListener {
 
         @Override
@@ -110,13 +105,11 @@ public class JMoviePanel extends javax.swing.JPanel {
     }
 
     public void updateTheatreSessions() {
-        updating = true;
         theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
             theatreDropdown.addItem(theatreSession);
         }
-        updating = false;
         theatreDropdown.setSelectedIndex(0);
     }
 
