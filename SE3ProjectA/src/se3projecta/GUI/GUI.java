@@ -6,7 +6,6 @@ package se3projecta.GUI;
 
 import java.awt.*;
 import javax.swing.JScrollPane;
-import javax.swing.JPanel;
 import se3projecta.*;
 import se3projecta.Persistance.ImportException;
 
@@ -18,12 +17,13 @@ import se3projecta.Persistance.ImportException;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class GUI extends javax.swing.JFrame {
+
     public enum GUIState {
+
         SelectTheaterSession,
         SelectSeating,
         PlaceSeats
     }
-    
     private GUIState state = GUIState.SelectTheaterSession;
     private Repository repository;
     private JMoviePanel moviePanel;
@@ -32,7 +32,6 @@ public class GUI extends javax.swing.JFrame {
     private JSeatSelectionInformationPanel seatSelectionInformationPanel;
     private Container contentPane;
     private JScrollPane transactionHolder;
-    
     private Transaction transaction;
 
     /**
@@ -44,7 +43,7 @@ public class GUI extends javax.swing.JFrame {
         }
         repository = repository_;
         transaction = new Transaction();
-        
+
         initComponents();
     }
 
@@ -83,7 +82,10 @@ public class GUI extends javax.swing.JFrame {
                 remove(transactionHolder);
                 break;
         }
+
         fixWindowSize();
+        contentPane.validate();
+        contentPane.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -92,19 +94,19 @@ public class GUI extends javax.swing.JFrame {
         contentPane.setLayout(new BorderLayout());
 
         moviePanel = new JMoviePanel(repository, this, transaction);
-        
+
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
-        
-        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(repository,transaction);
-        
+
+        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(repository, transaction);
+
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
-        
+
         contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
         contentPane.add(moviePanel, BorderLayout.LINE_END);
-        
+
         moviePanel.updateTheatreSessions();
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
         //setMinimumSize(getSize()); //minimum size is packed size
