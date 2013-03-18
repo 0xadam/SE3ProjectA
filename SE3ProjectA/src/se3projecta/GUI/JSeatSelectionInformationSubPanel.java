@@ -15,9 +15,9 @@ import javax.swing.JTextField;
  */
 public class JSeatSelectionInformationSubPanel extends JPanel {
 
-    String seatType;
-    JLabel seatsRemainingLabel;
-    JTextField seatsRemainingTextField;
+    private String seatType;
+    private JLabel seatsRemainingLabel;
+    private JTextField seatsRemainingTextField;
 
     public JSeatSelectionInformationSubPanel(String seatType_) {
         seatType = seatType_;
