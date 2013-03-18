@@ -36,6 +36,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
         columns = seats[0].length;
         this.setLayout(new GridLayout(rows, columns));
         renderTheatreSession();
+        this.validate();
     }
 
     public void renderTheatreSession() {

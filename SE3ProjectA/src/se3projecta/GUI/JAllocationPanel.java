@@ -18,9 +18,9 @@ import se3projecta.Model.CustomerType;
  * @author Adam
  */
 public class JAllocationPanel extends JPanel {
-    private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
+    private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel;
     private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
-    private JTextField costTextField, seatsRemainingTextField;
+    private JTextField costTextField;
     private JButton addAllocationButton;
     private Money cost;
     private int id;
@@ -77,8 +77,6 @@ public class JAllocationPanel extends JPanel {
         
         costLabel = new JLabel("Cost");
         
-        seatsRemainingLabel = new JLabel("Seats Remaining");
-        
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         ticketTypeComboBox.addActionListener(new ComboBoxAL());
         
@@ -95,9 +93,6 @@ public class JAllocationPanel extends JPanel {
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
         costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
-        seatsRemainingTextField = new JTextField("0");
-        seatsRemainingTextField.setEditable(false);
-        seatsRemainingTextField.setFocusable(false);
         addAllocationButton = new JButton("+");
         addAllocationButton.addActionListener(new ActionListener() {
             @Override
@@ -138,10 +133,6 @@ public class JAllocationPanel extends JPanel {
 
         JPanel seatsRemainingPanel = new JPanel();
         seatsRemainingPanel.setLayout(new BoxLayout(seatsRemainingPanel, BoxLayout.Y_AXIS));
-        seatsRemainingLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-        seatsRemainingTextField.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-        seatsRemainingPanel.add(seatsRemainingLabel);
-        seatsRemainingPanel.add(seatsRemainingTextField);
 
         JPanel addAllocationButtonPanel = new JPanel();
         addAllocationButtonPanel.setLayout(new BoxLayout(addAllocationButtonPanel, BoxLayout.Y_AXIS));
