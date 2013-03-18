@@ -2,6 +2,7 @@ package se3projecta.GUI;
 
 import java.util.EventListener;
 import se3projecta.Model.TheatreSession;
+import se3projecta.Money;
 
 /**
  *
@@ -12,7 +13,5 @@ public abstract class TransactionListener implements EventListener {
      *
      */
     void theatreSessionChanged(TheatreSession theatreSession) {};
-    void allocationChanged() {};
-    void allocationAdded() {};
-    void allocationRemoved() {};
+    void costChanged(Money price) {};
 }

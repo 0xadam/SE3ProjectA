@@ -24,7 +24,6 @@ public class JAllocationPanel extends JPanel {
     private JButton addAllocationButton;
     private JTransactionPanel jtp;
     private int id;
-    private PriceAggregator priceAggregator;
     
     private Allocation allocation;
 
@@ -54,7 +53,7 @@ public class JAllocationPanel extends JPanel {
 
     }
 
-    public JAllocationPanel(int id, PriceAggregator pa, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
+    public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
         
@@ -62,7 +61,6 @@ public class JAllocationPanel extends JPanel {
         allocation = allocation_;
         
         this.id = id;
-        this.priceAggregator = pa;
         
         ticketTypeLabel = new JLabel("Ticket Type");
         

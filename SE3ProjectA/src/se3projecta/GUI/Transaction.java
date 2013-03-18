@@ -12,8 +12,23 @@ import se3projecta.Money;
 public class Transaction {
     private TheatreSession theatreSession;
     private ArrayList<Allocation> allocations = new ArrayList<Allocation>();
+    private Money cost;
+    
     
     protected EventListenerList listeners = new EventListenerList();
+    
+    private void UpdateCost() {
+        Money total = new Money(0);
+        
+        for (Allocation allocation : allocations) {
+            total = new Money(total.getValue() + allocation.getCost().getValue());
+        }
+        
+        if (total != cost) {
+            cost = total;
+            fireCostChanged();
+        }
+    }
     
     public TheatreSession getTheatreSession() {
         return theatreSession;
@@ -26,6 +41,10 @@ public class Transaction {
         }
     }
     
+    public Money getCost() {
+        return cost;
+    }
+    
     public Allocation[] getAllocations() {
         Allocation[] a = new Allocation[allocations.size()];
         allocations.toArray(a);
@@ -33,10 +52,18 @@ public class Transaction {
     }
     
     public void addAllocation(Allocation allocation) {
+        allocation.addAllocationListener(new AllocationListener() {
+            void costChanged(Money cost) {
+                UpdateCost();
+            }
+        });
+        
         allocations.add(allocation);
+        UpdateCost();
     }
     public void removeAllocation(Allocation allocation) {
         allocations.remove(allocation);
+        UpdateCost();
     }
     
     public void addTransactionListener(TransactionListener l) {
@@ -57,13 +84,10 @@ public class Transaction {
         }
     }
     
-    public Money getTotal() {
-        Money total = new Money(0);
-        
-        for (Allocation allocation : allocations) {
-            total = new Money(total.getValue() + allocation.getCost().getValue());
+    private void fireCostChanged () {
+        for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
+            tl.costChanged(getCost());
         }
-        
-        return total;
     }
+    
 }

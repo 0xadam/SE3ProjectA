@@ -18,7 +18,7 @@ import se3projecta.Money;
  * @author Adam Rigg <rigg0035@flidners.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JTransactionPanel extends JPanel implements PriceAggregator {
+public class JTransactionPanel extends JPanel {
 
     private Repository repository;
     private ArrayList<JAllocationPanel> allocationPanels;
@@ -49,15 +49,8 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         Allocation allocation = new Allocation();
         transaction.addAllocation(allocation);
         
-        allocationPanels.add(new JAllocationPanel(0, (PriceAggregator)this, repository, this, allocation));
+        allocationPanels.add(new JAllocationPanel(0, repository, this, allocation));
         add(allocationPanels.get(allocationPanels.size() - 1), allocationPanels.size() - 1);
-    }
-
-    @Override
-    public void updatePrice() {
-        if (navigationPanel != null) {
-            navigationPanel.setTotalPrice(transaction.getTotal());
-        }
     }
     
     public void clearAllocations() {

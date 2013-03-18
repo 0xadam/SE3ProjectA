@@ -67,10 +67,16 @@ public class JAllocationPanelNavigation extends JPanel {
         add(navigateBack);
         add(navigateForward);
         add(totalPrice);
+        
+        transaction.addTransactionListener(new TransactionListener() {
+            void costChanged(Money cost) {
+                setTotalCost(cost);
+            }
+        });
     }
     
-    public void setTotalPrice(Money p) {
-        totalPrice.setText(p.toString());
+    private void setTotalCost(Money cost) {
+        totalPrice.setText(cost.toString());
     }
     
 }

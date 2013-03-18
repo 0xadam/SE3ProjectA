@@ -4,10 +4,13 @@
  */
 package se3projecta.GUI;
 
+import java.util.EventListener;
+import se3projecta.Money;
+
 /**
  *
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public interface PriceAggregator {
-    public void updatePrice();
+public abstract class AllocationListener implements EventListener {
+    void costChanged(Money cost) {};
 }
