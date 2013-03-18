@@ -79,7 +79,7 @@ public class JAllocationPanel extends JPanel {
         numberOfTicketsComboBox = new JComboBox();
         numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
 
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             numberOfTicketsComboBox.addItem(i);
         }
         costTextField = new JTextField(new Money(0).toString());
