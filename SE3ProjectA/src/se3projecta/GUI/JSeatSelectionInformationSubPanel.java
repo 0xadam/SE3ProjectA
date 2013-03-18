@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import se3projecta.Model.SeatType;
 
 /**
  *
@@ -15,11 +16,11 @@ import javax.swing.JTextField;
  */
 public class JSeatSelectionInformationSubPanel extends JPanel {
 
-    private String seatType;
+    private SeatType seatType;
     private JLabel seatsRemainingLabel;
     private JTextField seatsRemainingTextField;
 
-    public JSeatSelectionInformationSubPanel(String seatType_) {
+    public JSeatSelectionInformationSubPanel(SeatType seatType_) {
         seatType = seatType_;
         seatsRemainingLabel = new JLabel(seatType + " Seats Left To Allocate");
         seatsRemainingTextField = new JTextField("0");
@@ -27,5 +28,17 @@ public class JSeatSelectionInformationSubPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(seatsRemainingLabel);
         add(seatsRemainingTextField);
+    }
+
+    public int getSeatsRemaining() {
+        return Integer.parseInt(seatsRemainingTextField.getText());
+    }
+
+    public void setSeatsRemaining(int numSeats) {
+        seatsRemainingTextField.setText(Integer.toString(numSeats));
+    }
+
+    public SeatType getSeatType() {
+        return seatType;
     }
 }

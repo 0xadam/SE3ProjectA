@@ -26,7 +26,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
         seatsRemainingSubPanels = new ArrayList<JSeatSelectionInformationSubPanel>();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for (SeatType seatType : repository.getSeatTypes()) {
-            seatsRemainingSubPanels.add(new JSeatSelectionInformationSubPanel(seatType.getName()));
+            seatsRemainingSubPanels.add(new JSeatSelectionInformationSubPanel(seatType));
             add(seatsRemainingSubPanels.get(seatsRemainingSubPanels.size() - 1));
         }
     }
