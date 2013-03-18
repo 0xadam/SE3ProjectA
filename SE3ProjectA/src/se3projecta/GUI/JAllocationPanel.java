@@ -97,6 +97,7 @@ public class JAllocationPanel extends JPanel {
             }
         };
         ActionListener addListener = new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 jtp.addAllocationPanel();
                 allocationPanel.setRemovable(removeListener);
