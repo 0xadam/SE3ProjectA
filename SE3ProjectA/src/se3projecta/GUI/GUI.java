@@ -81,7 +81,6 @@ public class GUI extends javax.swing.JFrame {
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 remove(transactionHolder);
-                remove(moviePanel);
                 break;
         }
         fixWindowSize();
