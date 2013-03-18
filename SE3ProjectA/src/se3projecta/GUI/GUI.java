@@ -31,6 +31,7 @@ public class GUI extends javax.swing.JFrame {
     private JTransactionPanel transactionPanel;
     private JSeatSelectionInformationPanel seatSelectionInformationPanel;
     private Container contentPane;
+    private JScrollPane transactionHolder;
     
     private Transaction transaction;
 
@@ -67,19 +68,19 @@ public class GUI extends javax.swing.JFrame {
         switch (state) {
             case SelectTheaterSession:
                 remove(seatSelectionInformationPanel);
-                remove(transactionPanel);
+                remove(transactionHolder);
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
-                //remove all allocations.
+                //todo remove all allocations.
                 transactionPanel.clearAllocations();
                 break;
             case SelectSeating:
-                contentPane.add(transactionPanel, BorderLayout.LINE_END);
+                contentPane.add(transactionHolder, BorderLayout.LINE_END);
                 remove(moviePanel);
                 remove(seatSelectionInformationPanel);
                 break;
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
-                remove(transactionPanel);
+                remove(transactionHolder);
                 remove(moviePanel);
                 break;
         }
@@ -94,6 +95,7 @@ public class GUI extends javax.swing.JFrame {
         moviePanel = new JMoviePanel(repository, this, transaction);
         
         transactionPanel = new JTransactionPanel(repository, this, transaction);
+        transactionHolder = new JScrollPane(transactionPanel);
         
         seatSelectionInformationPanel = new JSeatSelectionInformationPanel(transactionPanel);
         
