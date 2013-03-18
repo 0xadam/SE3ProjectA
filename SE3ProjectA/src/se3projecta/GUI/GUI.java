@@ -5,6 +5,8 @@
 package se3projecta.GUI;
 
 import java.awt.*;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
 import se3projecta.*;
 import se3projecta.Persistance.ImportException;
 
@@ -53,7 +55,7 @@ public class GUI extends javax.swing.JFrame {
             pack();
             int newPaneWidth = contentPane.getWidth();
             int newPaneHeight = contentPane.getHeight();
-            setMinimumSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
+            //setMinimumSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
             setSize(new Dimension((newPaneWidth > oldPaneWidth ? newPaneWidth : oldPaneWidth) + getInsets().left + getInsets().right, (newPaneHeight > oldPaneHeight ? newPaneHeight : oldPaneHeight) + getInsets().top + getInsets().bottom));
             setVisible(true);
         }
@@ -104,6 +106,6 @@ public class GUI extends javax.swing.JFrame {
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack(); //automatically set the windowsize in relation to components placed
-        setMinimumSize(getSize()); //minimum size is packed size
+        //setMinimumSize(getSize()); //minimum size is packed size
     }
 }
