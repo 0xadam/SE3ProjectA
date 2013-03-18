@@ -56,7 +56,7 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
     @Override
     public void updatePrice() {
         if (navigationPanel != null) {
-            navigationPanel.setTotalPrice(getPrice());
+            navigationPanel.setTotalPrice(transaction.getTotal());
         }
     }
     
@@ -69,16 +69,6 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         allocationPanels.clear();
         
         addAllocationPanel();
-    }
-    
-    public Money getPrice() {
-        Money total = new Money(0);
-        
-        for (JAllocationPanel a : allocationPanels) {
-            total = new Money(total.getValue() + a.getAllocation().getCost().getValue());
-        }
-        
-        return total;
     }
     
     public int getSeatCount(SeatType st) {

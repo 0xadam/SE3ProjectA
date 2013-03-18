@@ -3,6 +3,7 @@ package se3projecta.GUI;
 import java.util.ArrayList;
 import javax.swing.event.EventListenerList;
 import se3projecta.Model.TheatreSession;
+import se3projecta.Money;
 
 /**
  *
@@ -54,5 +55,15 @@ public class Transaction {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
             tl.theatreSessionChanged(this.theatreSession);
         }
+    }
+    
+    public Money getTotal() {
+        Money total = new Money(0);
+        
+        for (Allocation allocation : allocations) {
+            total = new Money(total.getValue() + allocation.getCost().getValue());
+        }
+        
+        return total;
     }
 }
