@@ -372,6 +372,14 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         return count;
     }
 
+    public void commitSeats() {
+        for (Seat seat : seats) {
+            if (seat.getState() == SeatState.Held) {
+                seat.setState(SeatState.Occupied);
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return theatre.toString();
