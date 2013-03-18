@@ -25,6 +25,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
 
         remainingGoldLabel = new JLabel("Gold Seats Left To Allocate");
         remainingGoldTextField = new JTextField("0");
+        remainingGoldTextField.setFocusable(false);
         JPanel remainingGoldPanel = new JPanel();
         remainingGoldPanel.setLayout(new BoxLayout(remainingGoldPanel, BoxLayout.Y_AXIS));
         remainingGoldPanel.add(remainingGoldLabel);
@@ -33,6 +34,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
 
         remainingSilverLabel = new JLabel("Silver Seats Left To Allocate");
         remainingSilverTextField = new JTextField("0");
+        remainingSilverTextField.setFocusable(false);
         JPanel remainingSilverPanel = new JPanel();
         remainingSilverPanel.setLayout(new BoxLayout(remainingSilverPanel, BoxLayout.Y_AXIS));
         remainingSilverPanel.add(remainingSilverLabel);
@@ -41,6 +43,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
 
         remainingBronzeLabel = new JLabel("Bronze Seats Left To Allocate");
         remainingBronzeTextField = new JTextField("0");
+        remainingBronzeTextField.setFocusable(false);
         JPanel remainingBronzePanel = new JPanel();
         remainingBronzePanel.setLayout(new BoxLayout(remainingBronzePanel, BoxLayout.Y_AXIS));
         remainingBronzePanel.add(remainingBronzeLabel);
