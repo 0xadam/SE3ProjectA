@@ -369,7 +369,6 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
                 count++;
             }
         }
-
         return count;
     }
 
