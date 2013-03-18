@@ -42,7 +42,7 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
     }
 
     public void addAllocationPanel() {
-        allocationPanels.add(new JAllocationPanel(0, (PriceAggregator)this, repository));
+        allocationPanels.add(new JAllocationPanel(0, (PriceAggregator)this, repository, this));
         add(allocationPanels.get(allocationPanels.size() - 1), allocationPanels.size() - 1);
     }
 

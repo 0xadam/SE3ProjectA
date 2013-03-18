@@ -23,6 +23,7 @@ public class JAllocationPanel extends JPanel {
     private JTextField costTextField;
     private JButton addAllocationButton;
     private Money cost;
+    private JTransactionPanel jtp;
     private int id;
     private PriceAggregator priceAggregator;
 
@@ -45,26 +46,18 @@ public class JAllocationPanel extends JPanel {
         return id;
     }
 
-    public void setRemovable() {
+    public void setRemovable(ActionListener removeListener) {
         addAllocationButton.setText("-");
         addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
-        addAllocationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JAllocationPanel allocationPanel = (JAllocationPanel) ((JButton) e.getSource()).getParent().getParent();
-                JTransactionPanel transactionPanel = (JTransactionPanel) allocationPanel.getParent();
-                //TODO fix hacks. gets button, then the panel, then the JAllocationPanel
-                transactionPanel.removeAllocationPanel(allocationPanel);
-                transactionPanel.revalidate();
-                transactionPanel.repaint();
-            }
-        });
+        addAllocationButton.addActionListener(removeListener);
 
     }
 
-    public JAllocationPanel(int id, PriceAggregator pa, Repository repository) {
+    public JAllocationPanel(int id, PriceAggregator pa, Repository repository, JTransactionPanel _jtp) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
+        
+        jtp = _jtp;
         
         this.id = id;
         this.priceAggregator = pa;
@@ -94,13 +87,22 @@ public class JAllocationPanel extends JPanel {
         costTextField.setFocusable(false);
         costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
         addAllocationButton = new JButton("+");
-        addAllocationButton.addActionListener(new ActionListener() {
+        final JAllocationPanel allocationPanel = this;
+        final ActionListener removeListener = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { //TODO kinda hacky. Probably a better way to do it
-                ((JTransactionPanel) getParent()).addAllocationPanel();
-                ((JAllocationPanel) (((JButton) e.getSource()).getParent().getParent())).setRemovable();
+            public void actionPerformed(ActionEvent e) {
+                jtp.removeAllocationPanel(allocationPanel);
+                jtp.revalidate();
+                jtp.repaint();
             }
-        });
+        };
+        ActionListener addListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jtp.addAllocationPanel();
+                allocationPanel.setRemovable(removeListener);
+            }
+        };
+        addAllocationButton.addActionListener(addListener);
 
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
