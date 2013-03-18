@@ -26,6 +26,8 @@ public class JAllocationPanel extends JPanel {
     private JTransactionPanel jtp;
     private int id;
     private PriceAggregator priceAggregator;
+    
+    private Allocation allocation;
 
     @Override
     public boolean equals(Object obj) { //enables removal from ArrayList

@@ -32,48 +32,36 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
     private boolean updating = false;
-    ArrayList<TheatreSessionSubscriber> theatreSessionSubscribers;
+    private Transaction transaction;
 
-    public void addTheatreSessionSubscriber(TheatreSessionSubscriber subscriber) {
-        theatreSessionSubscribers.add(subscriber);
-    }
-
-    public void notifyTheatreSessionSubscribers(TheatreSession ts) {
-        for (TheatreSessionSubscriber tss : theatreSessionSubscribers) {
-            tss.updateTheatreSession(ts);
-        }
-    }
-
-    public JMoviePanel(GUI gui_, Repository repository_) {
+    public JMoviePanel(Repository repository_, GUI gui_, Transaction transaction) {
         gui = gui_;
         repository = repository_;
-        theatreSessionSubscribers = new ArrayList<TheatreSessionSubscriber>();
+        this.transaction = transaction;
 
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
+        
         //create items
         //add movies to combobox
         for (Movie movie : repository.getMovies()) {
             movieDropdown.addItem(movie);
         }
+        movieDropdown.setSelectedIndex(0);
+        dropdownPanel.add(movieDropdown);
+        
+        
         //add sessionTimes to combobox
         for (SessionTime session : repository.getSessionTimes()) {
             sessionTimeDropdown.addItem(session);
         }
-        movieDropdown.addActionListener(new JMoviePanelAL());
-        sessionTimeDropdown.addActionListener(new JMoviePanelAL());
-        //theatreDropdown.addActionListener(new JMoviePanelAL());
-        theatreDropdown.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (!updating && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
-                    notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
-                }
-            }
-        });
-        movieDropdown.setSelectedIndex(0);
-        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
-        promoImage.setMaximumSize(new Dimension(100, 150));
+        dropdownPanel.add(sessionTimeDropdown);
+        
+        
+        dropdownPanel.add(theatreDropdown);
+        
+        
         bookTicketsButton.setText("Select Tickets");
         bookTicketsButton.addActionListener(new ActionListener() {
             @Override
@@ -81,15 +69,33 @@ public class JMoviePanel extends javax.swing.JPanel {
                 gui.setState(GUI.GUIState.SelectSeating);
             }
         });
-        dropdownPanel.add(movieDropdown);
-        dropdownPanel.add(sessionTimeDropdown);
-        dropdownPanel.add(theatreDropdown);
         dropdownPanel.add(bookTicketsButton);
+        
+        
         add(dropdownPanel);
-        add(promoImage);
         dropdownPanel.setMaximumSize(new Dimension(184, 110)); //TODO don't hardcode?
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        
+        add(promoImage);
+        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
+        promoImage.setMaximumSize(new Dimension(100, 150));
         promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        
+        
+        movieDropdown.addActionListener(new JMoviePanelAL());
+        sessionTimeDropdown.addActionListener(new JMoviePanelAL());
+        theatreDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!updating && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
+                        getTransaction().setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
+                }
+            }
+        });
+    }
+    
+    private Transaction getTransaction() {
+        return transaction;
     }
 
     public class JMoviePanelAL implements ActionListener {
@@ -105,7 +111,6 @@ public class JMoviePanel extends javax.swing.JPanel {
 
     public void updateTheatreSessions() {
         updating = true;
-        //theatreDropdown.removeActionListener(theatreDropdown.getActionListeners()[0]); //only ever one actionlistener. Removed to stop ActionListener being called on adding of theatres
         theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());
         for (TheatreSession theatreSession : theatreSessions) {
@@ -113,8 +118,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         updating = false;
         theatreDropdown.setSelectedIndex(0);
-        //notifyTheatreSessionSubscribers((TheatreSession) theatreDropdown.getSelectedItem());
-        //theatreDropdown.addActionListener(new JMoviePanelAL()); //Add the ActionListener back
     }
 
     private ImageIcon loadPromoImage(String promoImageURI) {

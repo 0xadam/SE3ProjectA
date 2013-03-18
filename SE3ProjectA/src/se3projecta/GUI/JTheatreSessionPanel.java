@@ -19,18 +19,29 @@ import java.awt.event.ActionListener;
  * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreSessionSubscriber {
+public class JTheatreSessionPanel extends javax.swing.JPanel {
+    private Transaction transaction;
     
-    public JTheatreSessionPanel() {
+    
+    public JTheatreSessionPanel(Transaction transaction) {
         setBackground(Color.white);
+        this.transaction = transaction;
+        
+        
+        final JTheatreSessionPanel panel = this;
+        transaction.addTransactionListener(new TransactionListener() {
+            @Override
+            public void transactionSessionChanged(TheatreSession theatreSession) {
+                panel.setTheatreSession(theatreSession);
+            }
+        });
     }
-    private TheatreSession tSession = null;
+    
     private Seat[][] seats;
     private SeatButton[][] seatButtons;
     int rows, columns;
 
-    public void setTheatreSession(TheatreSession tSession_) {
-        tSession = tSession_;
+    public void setTheatreSession(TheatreSession tSession) {
         seats = tSession.getSeatRows();
         rows = seats.length;
         columns = seats[0].length;
@@ -50,13 +61,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel implements TheatreS
         }
     }
 
-    @Override
-    public void updateTheatreSession(TheatreSession ts) {
-        setTheatreSession(ts);
-    }
-
     public class seatButtonAL implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             SeatButton seatButton = (SeatButton) e.getSource();
