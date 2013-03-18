@@ -91,6 +91,7 @@ public class Transaction {
 
     public void addAllocation(Allocation allocation) {
         allocation.addAllocationListener(new AllocationListener() {
+            @Override
             void costChanged(Money cost) {
                 UpdateCost();
             }
