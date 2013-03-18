@@ -23,11 +23,13 @@ public class JAllocationPanelNavigation extends JPanel {
     private JButton navigateForward;
     private JTransactionPanel jtp;
     private Repository repository;
+    private Transaction transaction;
     
-    public JAllocationPanelNavigation(GUI _gui, Repository _repository, JTransactionPanel _jtp) {
+    public JAllocationPanelNavigation(GUI _gui, Repository _repository, JTransactionPanel _jtp, Transaction t) {
         gui = _gui;
         jtp = _jtp;
         repository = _repository;
+        transaction = t;
         
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         totalPrice = new JLabel("0");
@@ -38,7 +40,7 @@ public class JAllocationPanelNavigation extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                                 //TODO validate ticket selection and set up seat selection info.
-                TheatreSession ts = new TheatreSession(); //placeholder
+                TheatreSession ts = transaction.getTheatreSession();
                 
                 boolean valid = true;
                 for (SeatType st : repository.getSeatTypes()) {
@@ -48,8 +50,10 @@ public class JAllocationPanelNavigation extends JPanel {
                 }
                 if (!valid) {
                     //todo show error message.
+                } else {
+                    gui.setState(GUI.GUIState.PlaceSeats);
                 }
-                gui.setState(GUI.GUIState.PlaceSeats);
+                
             }
         });
         

@@ -93,7 +93,7 @@ public class GUI extends javax.swing.JFrame {
 
         moviePanel = new JMoviePanel(repository, this, transaction);
         
-        transactionPanel = new JTransactionPanel(repository, this);
+        transactionPanel = new JTransactionPanel(repository, this, transaction);
         
         seatSelectionInformationPanel = new JSeatSelectionInformationPanel(transactionPanel);
         

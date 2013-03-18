@@ -24,7 +24,7 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
     private ArrayList<JAllocationPanel> allocationPanels;
     private JAllocationPanelNavigation navigationPanel;
 
-    public JTransactionPanel(Repository repository_, GUI gui) {
+    public JTransactionPanel(Repository repository_, GUI gui, Transaction t) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
         allocationPanels = new ArrayList<JAllocationPanel>();
@@ -32,7 +32,7 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         addAllocationPanel();
         
         add(allocationPanels.get(0));
-        navigationPanel = new JAllocationPanelNavigation(gui, repository, this);
+        navigationPanel = new JAllocationPanelNavigation(gui, repository, this, t);
         add(navigationPanel);
     }
 
