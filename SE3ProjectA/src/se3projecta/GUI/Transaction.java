@@ -21,7 +21,7 @@ public class Transaction {
     public void setTheatreSession(TheatreSession ts) {
         if (ts != theatreSession) {
             theatreSession = ts;
-            this.fireTheatreSessionChanged();
+            fireTheatreSessionChanged();
         }
     }
     
@@ -43,7 +43,7 @@ public class Transaction {
     
     private void fireTheatreSessionChanged () {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
-            tl.transactionSessionChanged(this.theatreSession);
+            tl.theatreSessionChanged(this.theatreSession);
         }
     }
 }

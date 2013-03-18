@@ -11,6 +11,6 @@ public abstract class TransactionListener implements EventListener {
     /**
      *
      */
-    void transactionSessionChanged(TheatreSession theatreSession) {};
+    void theatreSessionChanged(TheatreSession theatreSession) {};
     void allocationsChanged() {};
 }
