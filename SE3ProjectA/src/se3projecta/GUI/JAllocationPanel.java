@@ -155,6 +155,7 @@ public class JAllocationPanel extends JPanel {
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatsRemainingPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        update();
     }
 
     private void update() { //TODO need to add more checks for things not existing due to being called when textboxes populated
