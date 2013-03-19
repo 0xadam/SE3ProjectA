@@ -72,6 +72,8 @@ public class GUI extends javax.swing.JFrame {
                 //todo remove all allocations.
                 transactionPanel.clearAllocations();
                 theatreSessionPanel.disableSelection();
+                theatreSessionPanel.refreshSeatIcons();
+                //reset transaction
                 break;
             case SelectSeating:
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);

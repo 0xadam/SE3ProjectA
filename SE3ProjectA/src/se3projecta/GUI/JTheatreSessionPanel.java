@@ -66,7 +66,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         }
     }
     
-    private void refreshSeatIcons() {
+    public void refreshSeatIcons() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {
                 sb.refreshIcon();

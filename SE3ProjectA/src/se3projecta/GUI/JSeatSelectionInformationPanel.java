@@ -77,6 +77,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
                 } catch (ParserConfigurationException ex) {
                 } catch (TransformerException ex) {
                 }
+                gui.setState(GUI.GUIState.SelectTheaterSession);
             }
         });
         add(randomAllocationButton);
