@@ -210,8 +210,10 @@ public class Repository {
         }
 
         //set up seat plans.
-        for (Theatre t : theatres.values()) {
-            t.loadSeatPlan(seatTypes);
+        if (seatTypes != null) {
+            for (Theatre t : theatres.values()) {
+                t.loadSeatPlan(seatTypes);
+            }
         }
 
         //load Theatre sessions
@@ -254,8 +256,10 @@ public class Repository {
         }
 
         //load movies, theatres and sessiontimes to sessions
-        for (TheatreSession ts : theatreSessions.values()) {
-            ts.loadRelations(theatres, movies, sessionTimes);
+        if (theatres != null && movies != null && sessionTimes != null) {
+            for (TheatreSession ts : theatreSessions.values()) {
+                ts.loadRelations(theatres, movies, sessionTimes);
+            }
         }
 
         //other initialisation code
