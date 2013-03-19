@@ -3,6 +3,9 @@
 <TheatreSession id="0" movieId="0" sessionTimeId="0" theatreId="0">
 <Seats count="276">
 <Seat state="Occupied"/>
+<Seat state="Occupied"/>
+<Seat state="Occupied"/>
+<Seat state="Occupied"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
@@ -152,6 +155,7 @@
 <Seat state="Empty"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
+<Seat state="Occupied"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
@@ -170,11 +174,7 @@
 <Seat state="Empty"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
-<Seat state="Empty"/>
-<Seat state="Empty"/>
-<Seat state="Empty"/>
-<Seat state="Empty"/>
-<Seat state="Empty"/>
+<Seat state="Occupied"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
 <Seat state="Empty"/>
