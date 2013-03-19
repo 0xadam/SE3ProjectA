@@ -25,7 +25,7 @@ public class JAllocationPanel extends JPanel {
     private JComboBox ticketTypeComboBox, seatTypeComboBox;
     private JSpinner numberOfTicketsSpinner;
     private JTextField costTextField;
-    private JButton addAllocationButton;
+    private JButton removeAllocationButton;
     private JTransactionPanel jtp;
     //private int id;
     private Allocation allocation;
@@ -49,11 +49,12 @@ public class JAllocationPanel extends JPanel {
         return id;
     }*/
 
-    public void setRemovable(ActionListener removeListener) {
-        addAllocationButton.setText("-");
-        addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
-        addAllocationButton.addActionListener(removeListener);
-
+    public void setRemovable() {
+        removeAllocationButton.setEnabled(true);
+    }
+    
+    public void setNonRemovable() {
+        removeAllocationButton.setEnabled(false);
     }
 
     public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
@@ -91,7 +92,7 @@ public class JAllocationPanel extends JPanel {
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
         costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
-        addAllocationButton = new JButton("+");
+        removeAllocationButton = new JButton("-");
         final JAllocationPanel allocationPanel = this;
         final ActionListener removeListener = new ActionListener() {
             @Override
@@ -101,14 +102,7 @@ public class JAllocationPanel extends JPanel {
                 jtp.repaint();
             }
         };
-        ActionListener addListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jtp.addAllocationPanel();
-                allocationPanel.setRemovable(removeListener);
-            }
-        };
-        addAllocationButton.addActionListener(addListener);
+        removeAllocationButton.addActionListener(removeListener);
 
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
@@ -142,24 +136,24 @@ public class JAllocationPanel extends JPanel {
         JPanel seatsRemainingPanel = new JPanel();
         seatsRemainingPanel.setLayout(new BoxLayout(seatsRemainingPanel, BoxLayout.Y_AXIS));
 
-        JPanel addAllocationButtonPanel = new JPanel();
-        addAllocationButtonPanel.setLayout(new BoxLayout(addAllocationButtonPanel, BoxLayout.Y_AXIS));
-        addAllocationButtonPanel.add(Box.createRigidArea(new Dimension(1, 15))); //padding for the button to be aligned
-        addAllocationButtonPanel.add(addAllocationButton);
+        JPanel removeAllocationButtonPanel = new JPanel();
+        removeAllocationButtonPanel.setLayout(new BoxLayout(removeAllocationButtonPanel, BoxLayout.Y_AXIS));
+        removeAllocationButtonPanel.add(Box.createRigidArea(new Dimension(1, 15))); //padding for the button to be aligned
+        removeAllocationButtonPanel.add(removeAllocationButton);
 
         add(ticketTypePanel);
         add(seatTypePanel);
         add(numberOfTicketsPanel);
         add(costPanel);
         add(seatsRemainingPanel);
-        add(addAllocationButtonPanel);
+        add(removeAllocationButtonPanel);
 
         ticketTypePanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatTypePanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         numberOfTicketsPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatsRemainingPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
-        addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        removeAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         update();
     }
 
