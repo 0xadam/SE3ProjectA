@@ -27,10 +27,10 @@ public class JAllocationPanel extends JPanel {
     private JTextField costTextField;
     private JButton addAllocationButton;
     private JTransactionPanel jtp;
-    private int id;
+    //private int id;
     private Allocation allocation;
 
-    @Override
+    /*@Override
     public boolean equals(Object obj) { //enables removal from ArrayList
         if (obj == null) {
             return false;
@@ -47,7 +47,7 @@ public class JAllocationPanel extends JPanel {
 
     public int getID() {
         return id;
-    }
+    }*/
 
     public void setRemovable(ActionListener removeListener) {
         addAllocationButton.setText("-");
@@ -63,7 +63,7 @@ public class JAllocationPanel extends JPanel {
         jtp = jtp_;
         allocation = allocation_;
 
-        this.id = id;
+       // this.id = id;
 
         ticketTypeLabel = new JLabel("Ticket Type");
 
