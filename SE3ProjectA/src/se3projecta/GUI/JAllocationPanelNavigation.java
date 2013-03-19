@@ -18,21 +18,18 @@ import se3projecta.Model.TheatreSession;
  */
 public class JAllocationPanelNavigation extends JPanel {
     private GUI gui;
-    private JLabel totalPrice;
+    private JLabel totalPrice, totalPriceLabel;
     private JButton navigateBack;
     private JButton navigateForward;
-    private JTransactionPanel jtp;
-    private Repository repository;
     private Transaction transaction;
     
-    public JAllocationPanelNavigation(GUI _gui, Repository _repository, JTransactionPanel _jtp, Transaction t) {
+    public JAllocationPanelNavigation(GUI _gui, Transaction t) {
         gui = _gui;
-        jtp = _jtp;
-        repository = _repository;
         transaction = t;
         
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        totalPrice = new JLabel("0");
+        totalPrice = new JLabel(new se3projecta.Money(0).toString());
+        totalPriceLabel = new JLabel("Total Cost: ");
         navigateBack = new JButton("Back");
         navigateForward = new JButton("Forward");
         
@@ -57,6 +54,7 @@ public class JAllocationPanelNavigation extends JPanel {
         
         add(navigateBack);
         add(navigateForward);
+        add(totalPriceLabel);
         add(totalPrice);
         
         transaction.addTransactionListener(new TransactionListener() {

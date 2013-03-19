@@ -35,7 +35,7 @@ public class JTransactionPanel extends JPanel {
         addAllocationPanel();
         
         add(allocationPanels.get(0));
-        navigationPanel = new JAllocationPanelNavigation(gui, repository, this, transaction);
+        navigationPanel = new JAllocationPanelNavigation(gui, transaction);
         add(navigationPanel);
     }
 
