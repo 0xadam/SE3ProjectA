@@ -75,9 +75,9 @@ public class Transaction {
 
         Iterator it = countAllocatedSeatTypes().entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pairs = (Map.Entry) it.next();
+            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
 
-            allocated.put((SeatType) pairs.getKey(), (Integer) ((Integer) pairs.getValue() - theatreSession.getHeldCount((SeatType) pairs.getKey())));
+            allocated.put(pairs.getKey(), pairs.getValue() - theatreSession.getHeldCount((SeatType) pairs.getKey()));
 
             it.remove();
         }
@@ -192,4 +192,19 @@ public class Transaction {
             throw new IllegalArgumentException("Seat is not held!");
         }
     }
+    
+    public void randomlyAllocate() {
+        Map<SeatType, Integer> unplaced = countUnplacedSeatTypes();
+        
+        Iterator it = countAllocatedSeatTypes().entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
+
+            theatreSession.findRandomFit(pairs.getKey(), pairs.getValue());
+            
+            it.remove();
+        }
+    }
+    
+    
 }
