@@ -44,31 +44,31 @@ public class Repository {
 
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
         ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
-        
+
         if (movie == null || sessionTime == null) {
             throw new IllegalArgumentException();
         }
-        
+
         for (TheatreSession ts : theatreSessions.values()) {
-            if (ts.getSessionTime().getId() == sessionTime.getId() && ts.getMovie().getId() == movie.getId()) {
+            if (ts.getSessionTime().getId().equals(sessionTime.getId()) && ts.getMovie().getId().equals(movie.getId())) {
                 theatreSessionsList.add(ts);
             }
         }
         return theatreSessionsList;
     }
-    private final String DATA_DIR = "data";
-    private final String SEAT_TYPES_PATH = DATA_DIR + "/SeatTypes.xml";
-    private final String SEAT_TYPE_TAG = "SeatType";
-    private final String CUSTOMER_TYPES_PATH = DATA_DIR + "/CustomerTypes.xml";
-    private final String CUSTOMER_TYPE_TAG = "CustomerType";
-    private final String MOVIES_PATH = DATA_DIR + "/Movies.xml";
-    private final String MOVIE_TAG = "Movie";
-    private final String SESSION_TIMES_PATH = DATA_DIR + "/SessionTimes.xml";
-    private final String SESSION_TIME_TAG = "SessionTime";
-    private final String THEATRES_PATH = DATA_DIR + "/Theatres.xml";
-    private final String THEATRE_TAG = "Theatre";
-    private final String THEATRE_SESSIONS_PATH = DATA_DIR + "/TheatreSessions.xml";
-    private final String THEATRE_SESSION_TAG = "TheatreSession";
+    private static final String DATA_DIR = "data";
+    private static final String SEAT_TYPES_PATH = DATA_DIR + "/SeatTypes.xml";
+    private static final String SEAT_TYPE_TAG = "SeatType";
+    private static final String CUSTOMER_TYPES_PATH = DATA_DIR + "/CustomerTypes.xml";
+    private static final String CUSTOMER_TYPE_TAG = "CustomerType";
+    private static final String MOVIES_PATH = DATA_DIR + "/Movies.xml";
+    private static final String MOVIE_TAG = "Movie";
+    private static final String SESSION_TIMES_PATH = DATA_DIR + "/SessionTimes.xml";
+    private static final String SESSION_TIME_TAG = "SessionTime";
+    private static final String THEATRES_PATH = DATA_DIR + "/Theatres.xml";
+    private static final String THEATRE_TAG = "Theatre";
+    private static final String THEATRE_SESSIONS_PATH = DATA_DIR + "/TheatreSessions.xml";
+    private static final String THEATRE_SESSION_TAG = "TheatreSession";
 
     public Repository() throws ImportException {
         ImportException ie = new ImportException();
@@ -215,8 +215,10 @@ public class Repository {
         }
 
         //set up seat plans.
-        for (Theatre t : theatres.values()) {
-            t.loadSeatPlan(seatTypes);
+        if (seatTypes != null) {
+            for (Theatre t : theatres.values()) {
+                t.loadSeatPlan(seatTypes);
+            }
         }
 
         //load Theatre sessions
@@ -259,8 +261,10 @@ public class Repository {
         }
 
         //load movies, theatres and sessiontimes to sessions
-        for (TheatreSession ts : theatreSessions.values()) {
-            ts.loadRelations(theatres, movies, sessionTimes);
+        if (theatres != null && movies != null && sessionTimes != null) {
+            for (TheatreSession ts : theatreSessions.values()) {
+                ts.loadRelations(theatres, movies, sessionTimes);
+            }
         }
 
         //other initialisation code

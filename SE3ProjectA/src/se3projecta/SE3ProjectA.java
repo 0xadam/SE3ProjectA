@@ -4,11 +4,6 @@
  */
 package se3projecta;
 
-import se3projecta.Model.CustomerType;
-import se3projecta.Model.Movie;
-import se3projecta.Model.SeatType;
-import se3projecta.Model.SessionTime;
-import se3projecta.Model.Theatre;
 import se3projecta.Persistance.ImportException;
 
 /**
