@@ -8,6 +8,8 @@ import se3projecta.Money;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
+import se3projecta.Model.Seat;
+import se3projecta.Model.SeatState;
 
 /**
  *
@@ -52,7 +54,7 @@ public class Transaction {
         return false;
     }
 
-    public HashMap<SeatType, Integer> countAllocatedSeatTypes() {
+    public Map<SeatType, Integer> countAllocatedSeatTypes() {
         HashMap<SeatType, Integer> counts = new HashMap<SeatType, Integer>();
 
         for (Allocation a : allocations) {
@@ -66,6 +68,27 @@ public class Transaction {
         }
 
         return counts;
+    }
+    
+    public Map<SeatType, Integer> countUnplacedSeatTypes() {
+        Map<SeatType, Integer> allocated = countAllocatedSeatTypes();
+        
+        Iterator it = countAllocatedSeatTypes().entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pairs = (Map.Entry)it.next();
+
+            allocated.put((SeatType)pairs.getKey(), (Integer)((Integer)pairs.getValue() - theatreSession.getHeldCount((SeatType)pairs.getKey())));
+            
+            it.remove();
+        }
+
+        
+        return allocated;
+    }
+    
+    public int countUnplacedSeats(SeatType type) {
+        // TODO this could be made more efficient but lazy
+        return this.countUnplacedSeatTypes().get(type);
     }
 
     public TheatreSession getTheatreSession() {
@@ -127,6 +150,34 @@ public class Transaction {
     private void fireCostChanged() {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
             tl.costChanged(getCost());
+        }
+    }
+    
+    public void holdSeat(Seat seat) {
+        if (!theatreSession.ownsSeat(seat)) {
+            throw new IllegalArgumentException("Specified seat does not belong to active theatre session!");
+        }
+        
+        if (seat.getState() == SeatState.Empty) {
+            if (countUnplacedSeats(seat.getType()) > 0) {
+                seat.setState(SeatState.Held);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Seat is already held!");
+        }
+    }
+    
+    public void releaseSeat(Seat seat) {
+        if (!theatreSession.ownsSeat(seat)) {
+            throw new IllegalArgumentException("Specified seat does not belong to active theatre session!");
+        }
+        
+        if (seat.getState() == SeatState.Held) {
+            seat.setState(SeatState.Empty);
+        }
+        else {
+            throw new IllegalArgumentException("Seat is not held!");
         }
     }
 }

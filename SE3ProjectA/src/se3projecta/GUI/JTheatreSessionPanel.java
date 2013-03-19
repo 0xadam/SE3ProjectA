@@ -11,6 +11,7 @@ import se3projecta.Model.SeatType;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import se3projecta.Model.SeatState;
 
 /**
  *
@@ -36,35 +37,59 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         });
     }
     
-    private Seat[][] seats;
+    private Seat[][] seatRows;
     private SeatButton[][] seatButtons;
     int rows, columns;
 
-    public void setTheatreSession(TheatreSession tSession) {
-        seats = tSession.getSeatRows();
-        rows = seats.length;
-        columns = seats[0].length;
+    private void setTheatreSession(TheatreSession tSession) {
+        seatRows = tSession.getSeatRows();
+        rows = seatRows.length;
+        columns = seatRows[0].length;
         this.setLayout(new GridLayout(rows, columns));
         renderTheatreSession();
         this.validate();
     }
 
-    public void renderTheatreSession() {
-        seatButtons = new SeatButton[seats.length][seats[0].length];
+    private void renderTheatreSession() {
+        seatButtons = new SeatButton[seatRows.length][seatRows[0].length];
         removeAll(); //remove all previous seats
-        for (int i = 0; i < seats.length; i++) {
-            for (int j = 0; j < seats[0].length; j++) { //length is the same for all rows of seats
-                seatButtons[i][j] = new SeatButton(seats[i][j]);
+        for (int i = 0; i < seatRows.length; i++) {
+            for (int j = 0; j < seatRows[0].length; j++) { //length is the same for all rows of seats
+                seatButtons[i][j] = new SeatButton(seatRows[i][j]);
                 add(seatButtons[i][j]);
             }
         }
     }
 
-    public class seatButtonAL implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            SeatButton seatButton = (SeatButton) e.getSource();
-            SeatType seatType = seatButton.getSeatType();
+    public void enableSelection() {
+        for (SeatButton[] row : seatButtons) {
+            for (SeatButton sb : row) {
+                final SeatButton seatButton = sb;
+                
+                seatButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Seat seat = seatButton.getSeat();
+                        if (seat.getState() == SeatState.Held) {
+                            transaction.releaseSeat(seat);
+                        } else if (seat.getState() == SeatState.Empty) {
+                            transaction.holdSeat(seat);
+                        }
+                        
+                        seatButton.refreshIcon();
+                    }
+                });
+            }
+        }
+    }
+    
+    public void disableSelection() {
+        for (SeatButton[] row : seatButtons) {
+            for (SeatButton sb : row) {
+                for (ActionListener al : sb.getActionListeners()) {
+                    sb.removeActionListener(al);
+                }
+            }
         }
     }
 }

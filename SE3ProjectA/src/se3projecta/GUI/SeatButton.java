@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -22,23 +22,12 @@ public class SeatButton extends JButton {
 
     public SeatButton(Seat seat_) {
         seat = seat_;
-        setIcon();
+        refreshIcon();
         setBorder(null); //remove the button look
         setContentAreaFilled(false); //make opaque so as to just show icon
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (seat.getState() == SeatState.Held) {
-                    seat.setState(SeatState.Empty);
-                } else if (seat.getState() == SeatState.Empty) {
-                    seat.setState(SeatState.Held);
-                }
-                setIcon();
-            }
-        });
     }
 
-    private void setIcon() {
+    public void refreshIcon() {
         String path;
         if ((path = seat.getIcon()) != null) {
             setIcon(new ImageIcon(path));
@@ -50,5 +39,8 @@ public class SeatButton extends JButton {
 
     public SeatType getSeatType() {
         return seat.getType();
+    }
+    public Seat getSeat() {
+        return seat;
     }
 }

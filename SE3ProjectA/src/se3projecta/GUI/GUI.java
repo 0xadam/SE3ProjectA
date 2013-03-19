@@ -71,15 +71,18 @@ public class GUI extends javax.swing.JFrame {
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
                 //todo remove all allocations.
                 transactionPanel.clearAllocations();
+                theatreSessionPanel.disableSelection();
                 break;
             case SelectSeating:
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);
                 remove(moviePanel);
                 remove(seatSelectionInformationPanel);
+                theatreSessionPanel.disableSelection();
                 break;
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 remove(transactionHolder);
+                theatreSessionPanel.enableSelection();
                 break;
         }
 
