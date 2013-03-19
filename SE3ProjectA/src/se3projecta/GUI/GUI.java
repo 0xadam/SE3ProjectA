@@ -47,15 +47,16 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void fixWindowSize() { //TODO Fix this ugly hack
+    public void fixWindowSize() { //TODO Fix this ugly hack
         if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) { //if window is not maximized
             int oldPaneWidth = contentPane.getWidth();
             int oldPaneHeight = contentPane.getHeight();
             setVisible(false);
+            setMinimumSize(new Dimension(0,0)); //allow minimum so pack works for smaller theatres
             pack();
             int newPaneWidth = contentPane.getWidth();
             int newPaneHeight = contentPane.getHeight();
-            //setMinimumSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
+            setMinimumSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
             setSize(new Dimension((newPaneWidth > oldPaneWidth ? newPaneWidth : oldPaneWidth) + getInsets().left + getInsets().right, (newPaneHeight > oldPaneHeight ? newPaneHeight : oldPaneHeight) + getInsets().top + getInsets().bottom));
             setVisible(true);
         }

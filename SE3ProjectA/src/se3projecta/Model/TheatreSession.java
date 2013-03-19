@@ -331,7 +331,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * available seats of the specified seat type
      */
     public boolean hasAvailable(SeatType type, int seats) {
-        return numAvailable(type) > seats;
+        return numAvailable(type) >= seats;
     }
 
     /**
