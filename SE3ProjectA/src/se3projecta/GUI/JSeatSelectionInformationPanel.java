@@ -26,11 +26,13 @@ public class JSeatSelectionInformationPanel extends JPanel {
     Transaction transaction;
     Repository repository;
     Map<SeatType, JSeatSelectionInformationSubPanel> seatsRemainingSubPanels;
-    JButton bookButton, randomAllocationButton;
+    JButton bookButton, randomAllocationButton, backButton;
+    GUI gui;
 
-    public JSeatSelectionInformationPanel(Repository repository_, Transaction transaction_) { //can probably pass the specifically needed data here
+    public JSeatSelectionInformationPanel(Repository repository_, Transaction transaction_, GUI _gui) { //can probably pass the specifically needed data here
         repository = repository_;
         transaction = transaction_;
+        gui = _gui;
         seatsRemainingSubPanels = new HashMap<SeatType, JSeatSelectionInformationSubPanel>();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for (SeatType seatType : repository.getSeatTypes()) {
@@ -69,8 +71,21 @@ public class JSeatSelectionInformationPanel extends JPanel {
                 }
             }
         });
+        
+        backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gui.setState(GUI.GUIState.SelectSeating);
+            }
+        });
         add(randomAllocationButton);
-        add(bookButton);
+        
+        JPanel navButtons = new JPanel();
+        navButtons.setLayout(new BoxLayout(navButtons, BoxLayout.X_AXIS));
+        navButtons.add(bookButton);
+        navButtons.add(backButton);
+        
+        add(navButtons);
     }
 
     public void updateSeatsRemaining() {
