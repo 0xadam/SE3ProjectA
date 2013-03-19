@@ -82,7 +82,7 @@ public class GUI extends javax.swing.JFrame {
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 remove(transactionHolder);
-                seatSelectionInformationPanel.updateSeatsRemaining();
+                seatSelectionInformationPanel.updateAllSeatsRemaining();
                 theatreSessionPanel.enableSelection();
                 break;
         }
@@ -102,7 +102,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
 
-        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(repository, transaction, this);
+        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(repository, transaction);
 
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
 

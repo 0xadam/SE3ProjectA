@@ -34,6 +34,11 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
             public void theatreSessionChanged(TheatreSession theatreSession) {
                 setTheatreSession(theatreSession);
             }
+            
+            @Override
+            public void seatingChanged(Seat[] seats) {
+                refreshSeatIcons();
+            }
         });
     }
     
@@ -57,6 +62,14 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
             for (int j = 0; j < seatRows[0].length; j++) { //length is the same for all rows of seats
                 seatButtons[i][j] = new SeatButton(seatRows[i][j]);
                 add(seatButtons[i][j]);
+            }
+        }
+    }
+    
+    private void refreshSeatIcons() {
+        for (SeatButton[] row : seatButtons) {
+            for (SeatButton sb : row) {
+                sb.refreshIcon();
             }
         }
     }

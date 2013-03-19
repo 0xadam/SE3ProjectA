@@ -159,9 +159,14 @@ public class Transaction {
         }
     }
 
-    private void fireSeatingChanged(SeatType seatType) {
+    private void fireSeatingChanged(Seat seat) {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
-            tl.seatingChanged(seatType);
+            tl.seatingChanged(seat);
+        }
+    }
+    private void fireSeatingChanged(Seat[] seats) {
+        for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
+            tl.seatingChanged(seats);
         }
     }
 
@@ -173,7 +178,7 @@ public class Transaction {
         if (seat.getState() == SeatState.Empty) {
             if (countUnplacedSeats(seat.getType()) > 0) {
                 seat.setState(SeatState.Held);
-                fireSeatingChanged(seat.getType());
+                fireSeatingChanged(seat);
             }
         } else {
             throw new IllegalArgumentException("Seat is already held!");
@@ -187,7 +192,7 @@ public class Transaction {
 
         if (seat.getState() == SeatState.Held) {
             seat.setState(SeatState.Empty);
-            fireSeatingChanged(seat.getType());
+            fireSeatingChanged(seat);
         } else {
             throw new IllegalArgumentException("Seat is not held!");
         }
@@ -201,10 +206,12 @@ public class Transaction {
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
 
-            theatreSession.findRandomFit(pairs.getKey(), pairs.getValue());
-            
+            Seat[] allocation = theatreSession.findRandomFit(pairs.getKey(), pairs.getValue());
+            fireSeatingChanged(allocation);
+
             it.remove();
         }
+        
     }
     
     
