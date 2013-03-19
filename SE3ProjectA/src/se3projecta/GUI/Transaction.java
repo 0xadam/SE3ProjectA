@@ -171,9 +171,9 @@ public class Transaction {
         }
 
         if (seat.getState() == SeatState.Empty) {
-            fireSeatingChanged(seat.getType());
             if (countUnplacedSeats(seat.getType()) > 0) {
                 seat.setState(SeatState.Held);
+                fireSeatingChanged(seat.getType());
             }
         } else {
             throw new IllegalArgumentException("Seat is already held!");
@@ -186,8 +186,8 @@ public class Transaction {
         }
 
         if (seat.getState() == SeatState.Held) {
-            fireSeatingChanged(seat.getType());
             seat.setState(SeatState.Empty);
+            fireSeatingChanged(seat.getType());
         } else {
             throw new IllegalArgumentException("Seat is not held!");
         }
