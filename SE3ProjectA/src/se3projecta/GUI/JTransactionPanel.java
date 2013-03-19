@@ -18,13 +18,16 @@ import se3projecta.Money;
  * @author Adam Rigg <rigg0035@flidners.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
-public class JTransactionPanel extends JPanel implements PriceAggregator {
+public class JTransactionPanel extends JPanel {
 
     private Repository repository;
     private ArrayList<JAllocationPanel> allocationPanels;
     private JAllocationPanelNavigation navigationPanel;
+    private Transaction transaction;
 
-    public JTransactionPanel(Repository repository_, GUI gui) {
+    public JTransactionPanel(Repository repository_, GUI gui, Transaction transaction_) {
+        transaction = transaction_;
+        
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         repository = repository_;
         allocationPanels = new ArrayList<JAllocationPanel>();
@@ -32,40 +35,42 @@ public class JTransactionPanel extends JPanel implements PriceAggregator {
         addAllocationPanel();
         
         add(allocationPanels.get(0));
-        navigationPanel = new JAllocationPanelNavigation(gui);
+        navigationPanel = new JAllocationPanelNavigation(gui, repository, this, transaction);
         add(navigationPanel);
     }
 
     public void removeAllocationPanel(JAllocationPanel allocationPanel) {
+        transaction.removeAllocation(allocationPanel.getAllocation());
         remove(allocationPanel);
         allocationPanels.remove(allocationPanel);
     }
 
     public void addAllocationPanel() {
-        allocationPanels.add(new JAllocationPanel(0, (PriceAggregator)this, repository));
+        Allocation allocation = new Allocation();
+        transaction.addAllocation(allocation);
+        
+        allocationPanels.add(new JAllocationPanel(0, repository, this, allocation));
         add(allocationPanels.get(allocationPanels.size() - 1), allocationPanels.size() - 1);
-    }
-
-    @Override
-    public void updatePrice() {
-        if (navigationPanel != null) {
-            navigationPanel.setTotalPrice(getPrice());
-        }
     }
     
     public void clearAllocations() {
         for (JAllocationPanel jap : allocationPanels) {
-           removeAllocationPanel(jap);
+            transaction.removeAllocation(jap.getAllocation());
+            remove(jap);
         }
+        
+        allocationPanels.clear();
+        
+        addAllocationPanel();
     }
     
-    public Money getPrice() {
-        Money total = new Money(0);
-        
-        for (JAllocationPanel a : allocationPanels) {
-            total = new Money(total.getValue() + a.getCost().getValue());
+    public int getSeatCount(SeatType st) {
+        int seatCount = 0;
+        for (JAllocationPanel jap : allocationPanels) {
+            if (jap.getAllocation().getSeatType() == st) {
+                seatCount += jap.getAllocation().getNumberOfTickets();
+            }
         }
-        
-        return total;
+        return seatCount;
     }
 }

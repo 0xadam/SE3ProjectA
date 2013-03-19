@@ -4,6 +4,8 @@
  */
 package se3projecta.GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import se3projecta.Model.*;
 
@@ -23,6 +25,17 @@ public class SeatButton extends JButton {
         setIcon();
         setBorder(null); //remove the button look
         setContentAreaFilled(false); //make opaque so as to just show icon
+        this.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (seat.getState() == SeatState.Held) {
+                    seat.setState(SeatState.Empty);
+                } else if (seat.getState() == SeatState.Empty) {
+                    seat.setState(SeatState.Held);
+                }
+                setIcon();
+            }
+        });
     }
 
     private void setIcon() {

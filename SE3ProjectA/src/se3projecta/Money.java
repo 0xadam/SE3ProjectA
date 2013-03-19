@@ -4,6 +4,10 @@
  */
 package se3projecta;
 
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
+
 /**
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
@@ -12,9 +16,7 @@ package se3projecta;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Money {
-    private static final int decimalPlaces = 2;
-    private static final String textPrefix = "$";
-    private static final String textSuffix = "";
+    private static final NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
     
     private int value;
     
@@ -28,20 +30,16 @@ public class Money {
         setValue(v);
     }
 
-    public void setValue(double v) {
-        value = (int)(v * Math.pow(10, decimalPlaces));
-    }
-    
-    public void setValue(int v) {
-        value = v;
+    private void setValue(double v) {
+        value = (int)(v * Math.pow(10, currencyFormatter.getMaximumFractionDigits()));
     }
     
     public double getValue() {
-        return value/Math.pow(10, decimalPlaces);
+        return value/Math.pow(10, currencyFormatter.getMaximumFractionDigits());
     }
     
     
     public @Override String toString() {
-        return textPrefix + getValue() + textSuffix;
+        return currencyFormatter.format(getValue());
     }
 }

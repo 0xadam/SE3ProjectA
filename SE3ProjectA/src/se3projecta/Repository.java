@@ -44,6 +44,11 @@ public class Repository {
 
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
         ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
+        
+        if (movie == null || sessionTime == null) {
+            throw new IllegalArgumentException();
+        }
+        
         for (TheatreSession ts : theatreSessions.values()) {
             if (ts.getSessionTime().getId() == sessionTime.getId() && ts.getMovie().getId() == movie.getId()) {
                 theatreSessionsList.add(ts);

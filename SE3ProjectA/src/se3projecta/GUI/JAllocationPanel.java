@@ -18,13 +18,14 @@ import se3projecta.Model.CustomerType;
  * @author Adam
  */
 public class JAllocationPanel extends JPanel {
-    private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel, seatsRemainingLabel;
+
+    private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel;
     private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
-    private JTextField costTextField, seatsRemainingTextField;
+    private JTextField costTextField;
     private JButton addAllocationButton;
-    private Money cost;
+    private JTransactionPanel jtp;
     private int id;
-    private PriceAggregator priceAggregator;
+    private Allocation allocation;
 
     @Override
     public boolean equals(Object obj) { //enables removal from ArrayList
@@ -45,67 +46,64 @@ public class JAllocationPanel extends JPanel {
         return id;
     }
 
-    public void setRemovable() {
+    public void setRemovable(ActionListener removeListener) {
         addAllocationButton.setText("-");
         addAllocationButton.removeActionListener(addAllocationButton.getActionListeners()[0]); //there will only ever be one action listener
-        addAllocationButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JAllocationPanel allocationPanel = (JAllocationPanel) ((JButton) e.getSource()).getParent().getParent();
-                JTransactionPanel transactionPanel = (JTransactionPanel) allocationPanel.getParent();
-                //TODO fix hacks. gets button, then the panel, then the JAllocationPanel
-                transactionPanel.removeAllocationPanel(allocationPanel);
-                transactionPanel.revalidate();
-                transactionPanel.repaint();
-            }
-        });
+        addAllocationButton.addActionListener(removeListener);
 
     }
 
-    public JAllocationPanel(int id, PriceAggregator pa, Repository repository) {
+    public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
-        
+
+        jtp = jtp_;
+        allocation = allocation_;
+
         this.id = id;
-        this.priceAggregator = pa;
-        
+
         ticketTypeLabel = new JLabel("Ticket Type");
-        
+
         seatTypeLabel = new JLabel("Seat Type");
-        
+
         numberOfTicketsLabel = new JLabel("Number of Tickets");
-        
+
         costLabel = new JLabel("Cost");
-        
-        seatsRemainingLabel = new JLabel("Seats Remaining");
-        
+
         ticketTypeComboBox = new JComboBox(repository.getCustomerTypes().toArray());
         ticketTypeComboBox.addActionListener(new ComboBoxAL());
-        
+
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         seatTypeComboBox.addActionListener(new ComboBoxAL());
-        
+
         numberOfTicketsComboBox = new JComboBox();
         numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
-        
-        for (int i = 0; i <= 10; i++) {
+
+        for (int i = 1; i <= 10; i++) {
             numberOfTicketsComboBox.addItem(i);
         }
         costTextField = new JTextField(new Money(0).toString());
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
         costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
-        seatsRemainingTextField = new JTextField("0");
-        seatsRemainingTextField.setEditable(false);
-        seatsRemainingTextField.setFocusable(false);
         addAllocationButton = new JButton("+");
-        addAllocationButton.addActionListener(new ActionListener() {
+        final JAllocationPanel allocationPanel = this;
+        final ActionListener removeListener = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { //TODO kinda hacky. Probably a better way to do it
-                ((JTransactionPanel) getParent()).addAllocationPanel();
-                ((JAllocationPanel) (((JButton) e.getSource()).getParent().getParent())).setRemovable();
+            public void actionPerformed(ActionEvent e) {
+                jtp.removeAllocationPanel(allocationPanel);
+                jtp.revalidate();
+                jtp.repaint();
             }
-        });
+        };
+        ActionListener addListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtp.addAllocationPanel();
+                allocationPanel.setRemovable(removeListener);
+            }
+        };
+        addAllocationButton.addActionListener(addListener);
 
         //creating panels for layout
         JPanel ticketTypePanel = new JPanel();
@@ -138,10 +136,6 @@ public class JAllocationPanel extends JPanel {
 
         JPanel seatsRemainingPanel = new JPanel();
         seatsRemainingPanel.setLayout(new BoxLayout(seatsRemainingPanel, BoxLayout.Y_AXIS));
-        seatsRemainingLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-        seatsRemainingTextField.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-        seatsRemainingPanel.add(seatsRemainingLabel);
-        seatsRemainingPanel.add(seatsRemainingTextField);
 
         JPanel addAllocationButtonPanel = new JPanel();
         addAllocationButtonPanel.setLayout(new BoxLayout(addAllocationButtonPanel, BoxLayout.Y_AXIS));
@@ -161,29 +155,36 @@ public class JAllocationPanel extends JPanel {
         costPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         seatsRemainingPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
         addAllocationButtonPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
+        update();
     }
 
-    private void updateCost() { //TODO need to add more checks for things not existing due to being called when textboxes populated
-        int numberOfTickets = ((Integer) numberOfTicketsComboBox.getSelectedItem());
-        double ticketCost = ((SeatType) seatTypeComboBox.getSelectedItem()).getPrice();
-        double multiplier = ((CustomerType) ticketTypeComboBox.getSelectedItem()).getPriceMultiplier();
-        cost = new Money(ticketCost * multiplier * numberOfTickets);
-        priceAggregator.updatePrice();
+    private void update() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+        allocation.setNumberOfTickets(getNumberofSeats());
+        allocation.setSeatType(getSeatType());
+        allocation.setCustomerType((CustomerType) ticketTypeComboBox.getSelectedItem());
 
         if (costTextField != null) {
-            costTextField.setText(cost.toString());
+            costTextField.setText(allocation.getCost().toString());
         }
     }
-    
-    public Money getCost() {
-        return cost;
+
+    private int getNumberofSeats() {
+        return ((Integer) numberOfTicketsComboBox.getSelectedItem());
+    }
+
+    private SeatType getSeatType() {
+        return (SeatType) seatTypeComboBox.getSelectedItem();
+    }
+
+    public Allocation getAllocation() {
+        return allocation;
     }
 
     public class ComboBoxAL implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            updateCost();
+            update();
         }
     }
 }
