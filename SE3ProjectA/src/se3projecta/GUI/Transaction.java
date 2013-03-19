@@ -39,15 +39,15 @@ public class Transaction {
         Iterator it = countAllocatedSeatTypes().entrySet().iterator();
         int totaltickets = 0;
         while (it.hasNext()) {
-            Map.Entry pairs = (Map.Entry)it.next();
-            
-            if (!theatreSession.hasAvailable((SeatType)pairs.getKey(), (Integer)pairs.getValue())) {
+            Map.Entry pairs = (Map.Entry) it.next();
+
+            if (!theatreSession.hasAvailable((SeatType) pairs.getKey(), (Integer) pairs.getValue())) {
                 return false;
             }
-            totaltickets += (Integer)pairs.getValue();
+            totaltickets += (Integer) pairs.getValue();
             it.remove();
         }
-        
+
         if (totaltickets > 0) {
             return true;
         }
@@ -69,23 +69,23 @@ public class Transaction {
 
         return counts;
     }
-    
+
     public Map<SeatType, Integer> countUnplacedSeatTypes() {
         Map<SeatType, Integer> allocated = countAllocatedSeatTypes();
-        
+
         Iterator it = countAllocatedSeatTypes().entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pairs = (Map.Entry)it.next();
+            Map.Entry pairs = (Map.Entry) it.next();
 
-            allocated.put((SeatType)pairs.getKey(), (Integer)((Integer)pairs.getValue() - theatreSession.getHeldCount((SeatType)pairs.getKey())));
-            
+            allocated.put((SeatType) pairs.getKey(), (Integer) ((Integer) pairs.getValue() - theatreSession.getHeldCount((SeatType) pairs.getKey())));
+
             it.remove();
         }
 
-        
+
         return allocated;
     }
-    
+
     public int countUnplacedSeats(SeatType type) {
         // TODO this could be made more efficient but lazy
         return this.countUnplacedSeatTypes().get(type);
@@ -152,31 +152,37 @@ public class Transaction {
             tl.costChanged(getCost());
         }
     }
-    
+
+    private void fireSeatingChanged(SeatType seatType) {
+        for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
+            tl.seatingChanged(seatType);
+        }
+    }
+
     public void holdSeat(Seat seat) {
         if (!theatreSession.ownsSeat(seat)) {
             throw new IllegalArgumentException("Specified seat does not belong to active theatre session!");
         }
-        
+
         if (seat.getState() == SeatState.Empty) {
+            fireSeatingChanged(seat.getType());
             if (countUnplacedSeats(seat.getType()) > 0) {
                 seat.setState(SeatState.Held);
             }
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Seat is already held!");
         }
     }
-    
+
     public void releaseSeat(Seat seat) {
         if (!theatreSession.ownsSeat(seat)) {
             throw new IllegalArgumentException("Specified seat does not belong to active theatre session!");
         }
-        
+
         if (seat.getState() == SeatState.Held) {
+            fireSeatingChanged(seat.getType());
             seat.setState(SeatState.Empty);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Seat is not held!");
         }
     }
