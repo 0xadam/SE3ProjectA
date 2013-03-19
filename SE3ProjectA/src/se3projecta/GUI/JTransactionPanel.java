@@ -64,7 +64,6 @@ public class JTransactionPanel extends JPanel {
         Allocation allocation = new Allocation();
         transaction.addAllocation(allocation);
         allocationPanels.add(new JAllocationPanel(0, repository, this, allocation));
-        System.out.println(allocationPanels.size() - 1);
         add(allocationPanels.get(allocationPanels.size() - 1), (allocationPanels.size()));
         checkAllocationRemoval();
     }
