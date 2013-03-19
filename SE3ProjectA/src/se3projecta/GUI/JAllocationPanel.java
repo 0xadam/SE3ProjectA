@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Observable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import se3projecta.Repository;
 import se3projecta.Model.SeatType;
 import se3projecta.Money;
@@ -20,7 +22,8 @@ import se3projecta.Model.CustomerType;
 public class JAllocationPanel extends JPanel {
 
     private JLabel ticketTypeLabel, seatTypeLabel, numberOfTicketsLabel, costLabel;
-    private JComboBox ticketTypeComboBox, seatTypeComboBox, numberOfTicketsComboBox;
+    private JComboBox ticketTypeComboBox, seatTypeComboBox;
+    private JSpinner numberOfTicketsSpinner;
     private JTextField costTextField;
     private JButton addAllocationButton;
     private JTransactionPanel jtp;
@@ -76,12 +79,14 @@ public class JAllocationPanel extends JPanel {
         seatTypeComboBox = new JComboBox(repository.getSeatTypes().toArray());
         seatTypeComboBox.addActionListener(new ComboBoxAL());
 
-        numberOfTicketsComboBox = new JComboBox();
-        numberOfTicketsComboBox.addActionListener(new ComboBoxAL());
-
-        for (int i = 1; i <= 10; i++) {
-            numberOfTicketsComboBox.addItem(i);
-        }
+        numberOfTicketsSpinner = new JSpinner();
+        numberOfTicketsSpinner.addChangeListener(new ChangeListener(){
+            public void stateChanged(ChangeEvent e) {
+                update();
+            }
+        });
+        numberOfTicketsSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 99, 1));
+        
         costTextField = new JTextField(new Money(0).toString());
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
@@ -123,9 +128,9 @@ public class JAllocationPanel extends JPanel {
         JPanel numberOfTicketsPanel = new JPanel();
         numberOfTicketsPanel.setLayout(new BoxLayout(numberOfTicketsPanel, BoxLayout.Y_AXIS));
         numberOfTicketsLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-        numberOfTicketsComboBox.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        numberOfTicketsSpinner.setAlignmentX(JLabel.LEFT_ALIGNMENT);
         numberOfTicketsPanel.add(numberOfTicketsLabel);
-        numberOfTicketsPanel.add(numberOfTicketsComboBox);
+        numberOfTicketsPanel.add(numberOfTicketsSpinner);
 
         JPanel costPanel = new JPanel();
         costPanel.setLayout(new BoxLayout(costPanel, BoxLayout.Y_AXIS));
@@ -169,7 +174,7 @@ public class JAllocationPanel extends JPanel {
     }
 
     private int getNumberofSeats() {
-        return ((Integer) numberOfTicketsComboBox.getSelectedItem());
+        return ((SpinnerNumberModel) numberOfTicketsSpinner.getModel()).getNumber().intValue();
     }
 
     private SeatType getSeatType() {
