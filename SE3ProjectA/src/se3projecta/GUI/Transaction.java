@@ -88,7 +88,13 @@ public class Transaction {
 
     public int countUnplacedSeats(SeatType type) {
         // TODO this could be made more efficient but lazy
-        return this.countUnplacedSeatTypes().get(type);
+        Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedSeatTypes();
+        
+        if (unplacedSeatTypes.get(type) != null) {
+            return unplacedSeatTypes.get(type);
+        } 
+        
+        return 0;
     }
 
     public TheatreSession getTheatreSession() {
