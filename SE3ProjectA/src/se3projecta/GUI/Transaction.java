@@ -194,9 +194,10 @@ public class Transaction {
     }
     
     public void randomlyAllocate() {
+        System.out.println("random");
         Map<SeatType, Integer> unplaced = countUnplacedSeatTypes();
         
-        Iterator it = countAllocatedSeatTypes().entrySet().iterator();
+        Iterator it = unplaced.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
 

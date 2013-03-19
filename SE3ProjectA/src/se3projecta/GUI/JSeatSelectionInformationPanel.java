@@ -26,7 +26,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
     Transaction transaction;
     Repository repository;
     Map<SeatType, JSeatSelectionInformationSubPanel> seatsRemainingSubPanels;
-    JButton bookButton;
+    JButton bookButton, randomAllocationButton;
 
     public JSeatSelectionInformationPanel(Repository repository_, Transaction transaction_) { //can probably pass the specifically needed data here
         repository = repository_;
@@ -46,6 +46,16 @@ public class JSeatSelectionInformationPanel extends JPanel {
                 seatsRemainingSubPanels.get(seatType).setSeatsRemaining(transaction.countUnplacedSeats(seatType));
             }
         });
+
+        randomAllocationButton = new JButton("Randomly Allocate Remaining Seats");
+        randomAllocationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                transaction.randomlyAllocate();
+                updateSeatsRemaining();
+            }
+        });
+
         bookButton = new JButton("Book Seats");
         bookButton.addActionListener(new ActionListener() {
             @Override
@@ -59,6 +69,7 @@ public class JSeatSelectionInformationPanel extends JPanel {
                 }
             }
         });
+        add(randomAllocationButton);
         add(bookButton);
     }
 
