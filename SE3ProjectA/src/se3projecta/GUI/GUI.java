@@ -90,8 +90,8 @@ public class GUI extends javax.swing.JFrame {
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);
                 break;
             case PlaceSeats:
-                contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 seatSelectionInformationPanel.updateAllSeatsRemaining();
+                contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
                 theatreSessionPanel.enableSelection();
                 break;
         }
