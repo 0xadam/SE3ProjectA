@@ -25,33 +25,37 @@ public class Theatre implements XmlUnserializable<Integer> {
     private int movieId;
     private String rawSeatPlan;
     private SeatType[] seatTypes;
-    
+
     /**
      * get theatre width
+     *
      * @return theatre width
      */
     public int getWidth() {
         return width;
     }
-    
+
     /**
      * get theatre height
+     *
      * @return theatre height
      */
     public int getHeight() {
         return height;
     }
-    
+
     /**
      * get the ID of the movie that theatre is showing
+     *
      * @return the ID of the movie that theatre is showing
      */
     public int getMovieId() {
         return movieId;
     }
-    
+
     /**
      * loads theatre data from XML
+     *
      * @param n an XML node which contains theatre data
      */
     @Override
@@ -62,37 +66,41 @@ public class Theatre implements XmlUnserializable<Integer> {
         this.height = Integer.parseInt(n.getAttribute("height"));
         this.width = Integer.parseInt(n.getAttribute("width"));
         this.rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
-        
+
     }
-    
+
     /**
      * get theatre ID
+     *
      * @return theatre ID
      */
     @Override
     public Integer getId() {
         return id;
     }
-    
+
     /**
      * get the seat type of the seat at the specified index in the theatre
+     *
      * @param index specifies which seat to get the seat type of
-     * @return the seat type of the seat at the specified index in the theatre 
+     * @return the seat type of the seat at the specified index in the theatre
      */
     SeatType getSeatTypebyIndex(int index) {
         return seatTypes[index];
     }
-    
+
     /**
      * load a theatre seat plan from a TreeMap of seat types
+     *
      * @param seatTypes a TreeMap of seat types representing a seating plan
      */
     public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes) {
         this.seatTypes = parseSeats(this.rawSeatPlan.toCharArray(), this.width, this.height, seatTypes);
     }
-    
+
     /**
      * returns a string representation of the theatre
+     *
      * @return a string representation of the theatre
      */
     @Override
@@ -100,22 +108,22 @@ public class Theatre implements XmlUnserializable<Integer> {
         return this.name;
     }
 
-    
     /**
-     * returns a detailed string representation of the theatre for debugging 
+     * returns a detailed string representation of the theatre for debugging
      * purposes
-     * @return a detailed string representation of the theatre for debugging 
+     *
+     * @return a detailed string representation of the theatre for debugging
      * purposes
      */
     public String toDebugString() {
         StringBuilder builder = new StringBuilder();
-        
+
         builder.append("Theatre: ID:").append(id).
                 append("\tName: ").append(name).
                 append("\tsize: ").append(width).
                 append("x").append(height).
                 append("\tPlan:\n");
-        
+
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 SeatType temp = seatTypes[i * width + j];
@@ -128,7 +136,7 @@ public class Theatre implements XmlUnserializable<Integer> {
             }
             builder.append('\n');
         }
-        
+
         return builder.toString();
     }
 

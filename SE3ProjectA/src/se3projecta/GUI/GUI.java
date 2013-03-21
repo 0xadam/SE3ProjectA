@@ -5,6 +5,7 @@
 package se3projecta.GUI;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import se3projecta.*;
 import se3projecta.Persistance.ImportException;
@@ -19,11 +20,11 @@ import se3projecta.Persistance.ImportException;
 public class GUI extends javax.swing.JFrame {
 
     public enum GUIState {
+
         SelectTheaterSession,
         SelectSeating,
         PlaceSeats
     }
-
     private GUIState state = GUIState.SelectTheaterSession;
     private Repository repository;
     private JMoviePanel moviePanel;
@@ -39,7 +40,22 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI(Repository repository_, ImportException ie) {
         if (ie != null) {
-            //todo handle import errors.
+            Object[] options = {"Yes",
+                "No"};
+
+            int choice = JOptionPane.showOptionDialog(this,
+                    "Erorrs occured while loading data, "
+                    + "are you sure you wish to continue?",
+                    "An error occured",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[1]);
+
+            if (choice == options[1]) {
+                System.exit(-1);
+            }
         }
         repository = repository_;
         transaction = new Transaction();
@@ -52,7 +68,7 @@ public class GUI extends javax.swing.JFrame {
             int oldPaneWidth = contentPane.getWidth();
             int oldPaneHeight = contentPane.getHeight();
             setVisible(false);
-            setMinimumSize(new Dimension(0,0)); //allow minimum so pack works for smaller theatres
+            setMinimumSize(new Dimension(0, 0)); //allow minimum so pack works for smaller theatres
             pack();
             int newPaneWidth = contentPane.getWidth();
             int newPaneHeight = contentPane.getHeight();
@@ -66,7 +82,7 @@ public class GUI extends javax.swing.JFrame {
     public void setState(GUIState s) {
         GUIState oldState = state;
         GUIState newState = s;
-        
+
         switch (oldState) {
             case SelectTheaterSession:
                 remove(moviePanel);
@@ -80,7 +96,7 @@ public class GUI extends javax.swing.JFrame {
                 theatreSessionPanel.disableSelection();
                 break;
         }
-        
+
         switch (newState) {
             case SelectTheaterSession:
                 contentPane.add(moviePanel, BorderLayout.LINE_END);
@@ -97,7 +113,7 @@ public class GUI extends javax.swing.JFrame {
         }
 
         state = newState;
-        
+
         fixWindowSize();
         contentPane.validate();
         contentPane.repaint();
@@ -123,7 +139,7 @@ public class GUI extends javax.swing.JFrame {
         moviePanel.updateTheatreSessions();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
+
         pack();
         //setMinimumSize(getSize()); //minimum size is packed size
     }

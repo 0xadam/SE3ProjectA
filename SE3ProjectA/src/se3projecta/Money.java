@@ -15,30 +15,28 @@ import java.util.Locale;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Money {
+
     private static final NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
-    
     private int value;
-    
-    public Money(double v)
-    {
+
+    public Money(double v) {
         setValue(v);
     }
-    
-    public Money (int v)
-    {
+
+    public Money(int v) {
         setValue(v);
     }
 
     private void setValue(double v) {
-        value = (int)(v * Math.pow(10, currencyFormatter.getMaximumFractionDigits()));
+        value = (int) (v * Math.pow(10, currencyFormatter.getMaximumFractionDigits()));
     }
-    
+
     public double getValue() {
-        return value/Math.pow(10, currencyFormatter.getMaximumFractionDigits());
+        return value / Math.pow(10, currencyFormatter.getMaximumFractionDigits());
     }
-    
-    
-    public @Override String toString() {
+
+    public @Override
+    String toString() {
         return currencyFormatter.format(getValue());
     }
 }

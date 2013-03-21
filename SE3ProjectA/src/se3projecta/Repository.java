@@ -265,8 +265,7 @@ public class Repository {
             for (TheatreSession ts : theatreSessions.values()) {
                 try {
                     ts.loadRelations(theatres, movies, sessionTimes);
-                }
-                catch (InvalidRelationException e) {
+                } catch (InvalidRelationException e) {
                     ie.addSuppressed(e);
                 }
             }

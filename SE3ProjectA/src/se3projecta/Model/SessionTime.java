@@ -18,18 +18,20 @@ public class SessionTime implements XmlUnserializable<Integer> {
 
     private Integer id;
     private String name;
-    
+
     /**
      * returns a string representation of the session time
+     *
      * @return a string representation of the session time
      */
     @Override
     public String toString() {
         return name;
     }
-    
+
     /**
      * loads session time data from XML
+     *
      * @param n an XML node which contains session time data
      */
     @Override
@@ -37,18 +39,20 @@ public class SessionTime implements XmlUnserializable<Integer> {
         this.id = Integer.parseInt(n.getAttribute("id"));
         this.name = n.getAttribute("Name");
     }
-    
+
     /**
      * get session time ID
+     *
      * @return session time ID
      */
     @Override
     public Integer getId() {
         return id;
     }
-    
+
     /**
      * get session time name
+     *
      * @return session time name
      */
     public String getName() {

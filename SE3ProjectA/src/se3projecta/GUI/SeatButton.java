@@ -40,6 +40,7 @@ public class SeatButton extends JButton {
     public SeatType getSeatType() {
         return seat.getType();
     }
+
     public Seat getSeat() {
         return seat;
     }

@@ -79,30 +79,27 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * @param theatres collection of theatres
      * @param movies collection of movies
      * @param sessionTimes collection of sessionTimes
-     * 
+     *
      * @throws InvalidRelationException Thrown when a reference does not exist
      */
     public void loadRelations(TreeMap<Integer, Theatre> theatres, TreeMap<Integer, Movie> movies, TreeMap<Integer, SessionTime> sessionTimes) throws InvalidRelationException {
         if (theatres.containsKey(theatreId)) {
             theatre = theatres.get(theatreId);
-        }
-        else {
+        } else {
             throw new InvalidRelationException("Theatre relation for movie '" + id + "' does not exist");
         }
-        
+
         if (movies.containsKey(movieId)) {
             movie = movies.get(movieId);
-        }
-        else {
+        } else {
             throw new InvalidRelationException("Movie relation for TheatreSession '" + id + "' does not exist");
         }
         if (sessionTimes.containsKey(sessionTimeId)) {
             sessionTime = sessionTimes.get(sessionTimeId);
-        }
-        else {
+        } else {
             throw new InvalidRelationException("SessionTime relation for TheatreSession '" + id + "' does not exist");
         }
-        
+
         //set up seat details
         if (theatre != null) {
             for (int i = 0; i < seats.length; i++) {
@@ -168,7 +165,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
     /**
      * Get all seats in the TheatreSession
-     * 
+     *
      * Clones the array to prevent movement of seats within array
      *
      * @return array of Seats
@@ -288,7 +285,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         ArrayList<Seat> allocations = new ArrayList<Seat>();
 
         /* allocate seats using a random fit algorithm (choose a random place,
-        see if allocation fits) */
+         see if allocation fits) */
         for (int spanLength = Math.min(theatre.getWidth(), remainingSeats); spanLength > 0; spanLength--) {
             while (remainingSeats >= spanLength) {
                 Seat[] allocation = getContiguousAllocation(rows, type, spanLength);
@@ -309,10 +306,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
     /**
      * Places seats seats of SeatType type pseudo-randomly
-     * 
+     *
      * @param type The type of seat to randomly place
-     * @param seats The number of seats 
-     * @return 
+     * @param seats The number of seats
+     * @return
      */
     public Seat[] placeRandom(SeatType type, int seats) {
         return findRandomFit(type, seats);
@@ -321,10 +318,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     /**
      * Return all seats in this TheatreSession of SeatType type and SeatState
      * state
-     * 
+     *
      * @param type The type of seat we're looking for
      * @param state The state of the seat we're looking for
-     * @return 
+     * @return
      */
     public Seat[] getSeats(SeatType type, SeatState state) {
         ArrayList<Seat> selected = new ArrayList<Seat>();
@@ -337,13 +334,13 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         Seat[] selectedArray = new Seat[selected.size()];
         selected.toArray(selectedArray);
-        
+
         return selectedArray;
     }
-    
+
     /**
      * Counts how many seats in this TheatreSession of SeatType type are empty
-     * 
+     *
      * @param type the SeatType to count
      * @return The number of held seats of type SeatType that are empty
      */
@@ -353,7 +350,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
     /**
      * Counts how many seats in this TheatreSession of SeatType type are held
-     * 
+     *
      * @param type the SeatType to count
      * @return The number of held seats of type SeatType that are available
      */
@@ -373,15 +370,15 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     public boolean hasAvailable(SeatType type, int num) {
         return countEmpty(type) >= num;
     }
-    
+
     /**
      * Checks whether the passed seat belongs to this TheatreSession
-     * 
+     *
      * Could be optimized such that Seat holds a reference to TheatreSession and
      * that reference is checked instead
-     * 
+     *
      * @param seat
-     * @return 
+     * @return
      */
     public boolean ownsSeat(Seat seat) {
         for (Seat s : seats) {

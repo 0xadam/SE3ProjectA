@@ -35,13 +35,13 @@ public class XmlFileLoader {
     }
 
     public static NodeList parseXmlFile(String Path, String NodeNames) throws ParserConfigurationException, SAXException, IOException, java.io.FileNotFoundException {
-            Document doc = readXml(Path);
-            return doc.getElementsByTagName(NodeNames);
+        Document doc = readXml(Path);
+        return doc.getElementsByTagName(NodeNames);
     }
 
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)
             throws InstantiationException, java.lang.IllegalAccessException, se3projecta.Model.ExistingKeyException {
-        
+
         TreeMap<K, V> list = new TreeMap<K, V>();
         for (int temp = 0; temp < nodes.getLength(); temp++) {
 

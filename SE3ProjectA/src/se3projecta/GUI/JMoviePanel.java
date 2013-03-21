@@ -41,26 +41,26 @@ public class JMoviePanel extends javax.swing.JPanel {
         //set layout
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
-        
+
         //create items
         //add movies to combobox
         for (Movie movie : repository.getMovies()) {
             movieDropdown.addItem(movie);
         }
-        
+
         dropdownPanel.add(movieDropdown);
-        
-        
+
+
         //add sessionTimes to combobox
         for (SessionTime session : repository.getSessionTimes()) {
             sessionTimeDropdown.addItem(session);
         }
         dropdownPanel.add(sessionTimeDropdown);
-        
-        
+
+
         dropdownPanel.add(theatreDropdown);
-        
-        
+
+
         bookTicketsButton.setText("Select Tickets");
         bookTicketsButton.addActionListener(new ActionListener() {
             @Override
@@ -69,18 +69,18 @@ public class JMoviePanel extends javax.swing.JPanel {
             }
         });
         dropdownPanel.add(bookTicketsButton);
-        
-        
+
+
         add(dropdownPanel);
         dropdownPanel.setMaximumSize(new Dimension(184, 110)); //TODO don't hardcode?
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
-        
+
         add(promoImage);
         promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
         promoImage.setMaximumSize(new Dimension(100, 150));
         promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
-        
-        
+
+
         movieDropdown.addActionListener(new JMoviePanelAL());
         movieDropdown.setSelectedIndex(0);
         sessionTimeDropdown.addActionListener(new JMoviePanelAL());
@@ -88,14 +88,14 @@ public class JMoviePanel extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (theatreDropdown.getSelectedItem() != null && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
-                        transaction.setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
-                        gui.fixWindowSize();
+                    transaction.setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
+                    gui.fixWindowSize();
                 }
             }
         });
-        
+
     }
-    
+
     public class JMoviePanelAL implements ActionListener {
 
         @Override

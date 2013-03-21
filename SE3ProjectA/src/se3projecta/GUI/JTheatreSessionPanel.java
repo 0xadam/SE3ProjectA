@@ -21,27 +21,26 @@ import se3projecta.Model.SeatState;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JTheatreSessionPanel extends javax.swing.JPanel {
+
     private Transaction transaction;
-    
-    
+
     public JTheatreSessionPanel(Transaction transaction) {
         setBackground(Color.white);
         this.transaction = transaction;
-        
-        
+
+
         transaction.addTransactionListener(new TransactionListener() {
             @Override
             public void theatreSessionChanged(TheatreSession theatreSession) {
                 setTheatreSession(theatreSession);
             }
-            
+
             @Override
             public void seatingChanged(Seat[] seats) {
                 refreshSeatIcons();
             }
         });
     }
-    
     private Seat[][] seatRows;
     private SeatButton[][] seatButtons;
     int rows, columns;
@@ -65,7 +64,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     public void refreshSeatIcons() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {
@@ -78,7 +77,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {
                 final SeatButton seatButton = sb;
-                
+
                 seatButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -88,14 +87,14 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
                         } else if (seat.getState() == SeatState.Empty) {
                             transaction.holdSeat(seat);
                         }
-                        
+
                         seatButton.refreshIcon();
                     }
                 });
             }
         }
     }
-    
+
     public void disableSelection() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {

@@ -12,5 +12,8 @@ import se3projecta.Money;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public abstract class AllocationListener implements EventListener {
-    void costChanged(Money cost) {};
+
+    void costChanged(Money cost) {
+    }
+;
 }

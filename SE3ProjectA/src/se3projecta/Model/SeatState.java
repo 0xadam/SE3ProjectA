@@ -9,7 +9,8 @@ package se3projecta.Model;
  * @author Russell
  */
 public enum SeatState {
-        Empty,
-        Held,
-        Occupied
-    }
+
+    Empty,
+    Held,
+    Occupied
+}

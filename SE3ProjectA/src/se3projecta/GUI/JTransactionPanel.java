@@ -92,7 +92,7 @@ public class JTransactionPanel extends JPanel {
     public int getAllocationCount() {
         return allocationPanels.size();
     }
-    
+
     /**
      * disable allocation removal button if there is only one allocation left,
      * otherwise enable

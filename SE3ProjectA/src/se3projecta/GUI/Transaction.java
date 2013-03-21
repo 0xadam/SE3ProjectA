@@ -66,27 +66,27 @@ public class Transaction {
 
         return allocated;
     }
-    
+
     public int countUnplaced() {
         Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedBySeatTypes();
-        
+
         int sum = 0;
-        
+
         for (int value : unplacedSeatTypes.values()) {
             sum += value;
         }
-        
+
         return sum;
     }
 
     public int countUnplaced(SeatType type) {
         // this could be made more efficient by keeping a cache in TheatreSession
         Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedBySeatTypes();
-        
+
         if (unplacedSeatTypes.get(type) != null) {
             return unplacedSeatTypes.get(type);
-        } 
-        
+        }
+
         return 0;
     }
 
@@ -144,10 +144,10 @@ public class Transaction {
             throw new IllegalArgumentException("Seat is not held!");
         }
     }
-    
+
     public void randomlyAllocate() {
         Map<SeatType, Integer> unplaced = countUnplacedBySeatTypes();
-        
+
         Iterator it = unplaced.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
@@ -157,7 +157,7 @@ public class Transaction {
 
             it.remove();
         }
-        
+
     }
 
     public void removeAllocation(Allocation allocation) {
@@ -189,27 +189,25 @@ public class Transaction {
         }
     }
 
-    /** 
+    /**
      * Fire a seating changed event (single seat) to all event listeners
-     * 
-     * @param seat 
+     *
+     * @param seat
      */
     private void fireSeatingChanged(Seat seat) {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
             tl.seatingChanged(seat);
         }
     }
-    
+
     /**
      * Fire a seating changed event (many seats) to all event listeners
-     * 
-     * @param seats 
+     *
+     * @param seats
      */
     private void fireSeatingChanged(Seat[] seats) {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
             tl.seatingChanged(seats);
         }
     }
-    
-    
 }

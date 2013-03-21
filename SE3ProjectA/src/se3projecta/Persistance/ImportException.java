@@ -6,18 +6,17 @@ import java.util.List;
 /**
  * This class includes a back-ported implementation of Java 1.7's "suppressed"
  * functionality
- * 
+ *
  * The class also implements several non-standard helper methods for when using
  * the suppressed functionality
- * 
+ *
  * @author Russell Peake <peak0042@flinders.edu.au>
  */
 public class ImportException extends Throwable {
-        
+
     public boolean hasSuppressed() {
         return !suppressedExceptions.isEmpty();
     }
-
     /**
      * The list of suppressed exceptions, as returned by {@link
      * #getSuppressed()}. The list is initialized to a zero-element unmodifiable
@@ -44,7 +43,7 @@ public class ImportException extends Throwable {
      * called (automatically and implicitly) by the {@code try}-with-resources
      * statement.
      *
-     * <p>The suppression behavior is enabled <em>unless</em> disabled      {@linkplain #Throwable(String, Throwable, boolean, boolean) via
+     * <p>The suppression behavior is enabled <em>unless</em> disabled null null null     {@linkplain #Throwable(String, Throwable, boolean, boolean) via
      * a constructor}. When suppression is disabled, this method does nothing
      * other than to validate its argument.
      *
@@ -98,7 +97,6 @@ public class ImportException extends Throwable {
 
         suppressedExceptions.add(exception);
     }
-    
     private static final Throwable[] EMPTY_THROWABLE_ARRAY = new Throwable[0];
 
     /**

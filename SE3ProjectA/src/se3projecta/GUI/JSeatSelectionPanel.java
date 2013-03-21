@@ -37,7 +37,7 @@ public class JSeatSelectionPanel extends JPanel {
         repository = repository_;
         transaction = transaction_;
         gui = _gui;
-        
+
         seatsRemainingSubPanels = new HashMap<SeatType, JSeatSelectionSubPanel>();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for (SeatType seatType : repository.getSeatTypes()) {
@@ -52,7 +52,7 @@ public class JSeatSelectionPanel extends JPanel {
             void seatingChanged(Seat seat) {
                 updateSeatsRemaining(seat.getType());
             }
-            
+
             @Override
             void seatingChanged(Seat[] seat) {
                 updateAllSeatsRemaining();
@@ -68,7 +68,7 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
 
-        
+
         bookButton = new JButton("Book Seats");
         bookButton.addActionListener(new ActionListener() {
             @Override
@@ -77,7 +77,7 @@ public class JSeatSelectionPanel extends JPanel {
                     JOptionPane.showMessageDialog(gui, "Please allocate all seats before continuing");
                     return;
                 }
-                
+
                 transaction.getTheatreSession().commitSeats();
                 try {
                     repository.save();
@@ -89,8 +89,8 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
         add(randomAllocationButton);
-        
-                
+
+
         backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -98,17 +98,17 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
         add(randomAllocationButton);
-        
+
         JPanel navButtons = new JPanel();
         navButtons.setLayout(new BoxLayout(navButtons, BoxLayout.X_AXIS));
         navButtons.add(bookButton);
         navButtons.add(backButton);
-        
+
         add(navButtons);
     }
 
     public void updateAllSeatsRemaining() {
-        
+
         Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
@@ -116,7 +116,7 @@ public class JSeatSelectionPanel extends JPanel {
             it.remove();
         }
     }
-    
+
     private void updateSeatsRemaining(SeatType seatType) {
         seatsRemainingSubPanels.get(seatType).setSeatsRemaining(transaction.countUnplaced(seatType));
     }

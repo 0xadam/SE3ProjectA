@@ -31,28 +31,27 @@ public class JAllocationPanel extends JPanel {
     private Allocation allocation;
 
     /*@Override
-    public boolean equals(Object obj) { //enables removal from ArrayList
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof JAllocationPanel)) {
-            return false;
-        }
-        JAllocationPanel o = (JAllocationPanel) obj;
-        return o.getID() == this.getID();
-    }
+     public boolean equals(Object obj) { //enables removal from ArrayList
+     if (obj == null) {
+     return false;
+     }
+     if (obj == this) {
+     return true;
+     }
+     if (!(obj instanceof JAllocationPanel)) {
+     return false;
+     }
+     JAllocationPanel o = (JAllocationPanel) obj;
+     return o.getID() == this.getID();
+     }
 
-    public int getID() {
-        return id;
-    }*/
-
+     public int getID() {
+     return id;
+     }*/
     public void setRemovable() {
         removeAllocationButton.setEnabled(true);
     }
-    
+
     public void setNonRemovable() {
         removeAllocationButton.setEnabled(false);
     }
@@ -64,7 +63,7 @@ public class JAllocationPanel extends JPanel {
         jtp = jtp_;
         allocation = allocation_;
 
-       // this.id = id;
+        // this.id = id;
 
         ticketTypeLabel = new JLabel("Ticket Type");
 
@@ -81,13 +80,13 @@ public class JAllocationPanel extends JPanel {
         seatTypeComboBox.addActionListener(new ComboBoxAL());
 
         numberOfTicketsSpinner = new JSpinner();
-        numberOfTicketsSpinner.addChangeListener(new ChangeListener(){
+        numberOfTicketsSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 update();
             }
         });
         numberOfTicketsSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 99, 1));
-        
+
         costTextField = new JTextField(new Money(0).toString());
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
