@@ -27,6 +27,7 @@ public class JSeatSelectionSubPanel extends JPanel {
      */
     public JSeatSelectionSubPanel(SeatType seatType_) {
         seatType = seatType_;
+        setVisible(false);
         seatsRemainingLabel = new JLabel(seatType + " Seats Left To Allocate");
         seatsRemainingTextField = new JTextField("0");
         seatsRemainingTextField.setFocusable(false);

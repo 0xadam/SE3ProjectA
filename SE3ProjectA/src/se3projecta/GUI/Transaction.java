@@ -37,7 +37,7 @@ public class Transaction {
 
     public Map<SeatType, Integer> countAllocatedBySeatType() {
         HashMap<SeatType, Integer> counts = new HashMap<SeatType, Integer>();
-
+        
         for (Allocation a : allocations) {
             SeatType type = a.getSeatType();
 
@@ -159,7 +159,7 @@ public class Transaction {
         }
 
     }
-    
+
     public void clearHeld() {
         theatreSession.clearHeld();
         fireSeatingChanged(theatreSession.getSeats());

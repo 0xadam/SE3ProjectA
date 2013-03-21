@@ -22,12 +22,13 @@ import javax.xml.transform.TransformerException;
 import se3projecta.Model.Seat;
 
 /**
- * JPanel which allows users to select which seats the want to sit in, place 
- * the seats randomly or use a combination of the two to select seating.
+ * JPanel which allows users to select which seats the want to sit in, place the
+ * seats randomly or use a combination of the two to select seating.
+ *
  * @author Adam
  */
 public class JSeatSelectionPanel extends JPanel {
-
+    
     Transaction transaction;
     Repository repository;
     Map<SeatType, JSeatSelectionSubPanel> seatsRemainingSubPanels;
@@ -35,7 +36,8 @@ public class JSeatSelectionPanel extends JPanel {
     GUI gui;
 
     /**
-     * Create JSeatSelectionPanel. 
+     * Create JSeatSelectionPanel.
+     *
      * @param repository_ where to get widget values from
      * @param transaction_ used to get & set number of unallocated seats
      * @param _gui the GUI object which navigation changes the state of
@@ -44,7 +46,7 @@ public class JSeatSelectionPanel extends JPanel {
         repository = repository_;
         transaction = transaction_;
         gui = _gui;
-
+        
         seatsRemainingSubPanels = new HashMap<SeatType, JSeatSelectionSubPanel>();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for (SeatType seatType : repository.getSeatTypes()) {
@@ -59,7 +61,7 @@ public class JSeatSelectionPanel extends JPanel {
             void seatingChanged(Seat seat) {
                 updateSeatsRemaining(seat.getType());
             }
-
+            
             @Override
             void seatingChanged(Seat[] seat) {
                 updateAllSeatsRemaining();
@@ -70,7 +72,7 @@ public class JSeatSelectionPanel extends JPanel {
                 updateAllSeatsRemaining();
             }
         });
-
+        
         randomAllocationButton = new JButton("Randomly Allocate Remaining Seats");
         randomAllocationButton.addActionListener(new ActionListener() {
             @Override
@@ -79,8 +81,8 @@ public class JSeatSelectionPanel extends JPanel {
                 updateAllSeatsRemaining();
             }
         });
-
-
+        
+        
         bookButton = new JButton("Book Seats");
         bookButton.addActionListener(new ActionListener() {
             @Override
@@ -89,7 +91,7 @@ public class JSeatSelectionPanel extends JPanel {
                     JOptionPane.showMessageDialog(gui, "Please allocate all seats before continuing");
                     return;
                 }
-
+                
                 transaction.getTheatreSession().commitSeats();
                 try {
                     repository.save();
@@ -101,8 +103,8 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
         add(randomAllocationButton);
-
-
+        
+        
         backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -110,12 +112,12 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
         add(randomAllocationButton);
-
+        
         JPanel navButtons = new JPanel();
         navButtons.setLayout(new BoxLayout(navButtons, BoxLayout.X_AXIS));
         navButtons.add(bookButton);
         navButtons.add(backButton);
-
+        
         add(navButtons);
     }
 
@@ -123,15 +125,24 @@ public class JSeatSelectionPanel extends JPanel {
      * Update the number of seats remaining for each SeatType.
      */
     public void updateAllSeatsRemaining() {
-
+        
         Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
-            seatsRemainingSubPanels.get(pairs.getKey()).setSeatsRemaining(pairs.getValue());
+            JSeatSelectionSubPanel seatsRemainingSubPanel = seatsRemainingSubPanels.get(pairs.getKey());
+            seatsRemainingSubPanel.setSeatsRemaining(pairs.getValue());
+            //seatsRemainingSubPanel.setVisible(pairs.getValue() > 0);
+            seatsRemainingSubPanel.setVisible(true);
             it.remove();
         }
     }
-
+    
+    public void setSeatSubPanelsVisible(boolean visible) {
+        for (JSeatSelectionSubPanel seatsRemainingSubPanel : seatsRemainingSubPanels.values()) {
+            seatsRemainingSubPanel.setVisible(false);
+        }
+    }
+    
     private void updateSeatsRemaining(SeatType seatType) {
         seatsRemainingSubPanels.get(seatType).setSeatsRemaining(transaction.countUnplaced(seatType));
     }
