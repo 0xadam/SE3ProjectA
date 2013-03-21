@@ -185,7 +185,7 @@ public class JAllocationPanel extends JPanel {
 
     /**
      * get Allocation for this JAllocationPanel.
-     * @returnAllocation for this JAllocationPanel
+     * @return Allocation for this JAllocationPanel
      */
     public Allocation getAllocation() {
         return allocation;
