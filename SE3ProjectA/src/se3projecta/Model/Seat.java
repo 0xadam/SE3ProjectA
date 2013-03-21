@@ -77,16 +77,6 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
     
     /**
-     * get seat availability
-     * @return seat availability
-     */
-    public boolean available() {
-        return state == SeatState.Empty;
-    }
-      public boolean held() {
-        return state == SeatState.Held;
-    }
-    /**
      * get seat ID
      * @return seat ID
      */

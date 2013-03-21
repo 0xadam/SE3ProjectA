@@ -14,13 +14,13 @@ import se3projecta.Model.SeatType;
  *
  * @author Adam
  */
-public class JSeatSelectionInformationSubPanel extends JPanel {
+public class JSeatSelectionSubPanel extends JPanel {
 
     private SeatType seatType;
     private JLabel seatsRemainingLabel;
     private JTextField seatsRemainingTextField;
 
-    public JSeatSelectionInformationSubPanel(SeatType seatType_) {
+    public JSeatSelectionSubPanel(SeatType seatType_) {
         seatType = seatType_;
         seatsRemainingLabel = new JLabel(seatType + " Seats Left To Allocate");
         seatsRemainingTextField = new JTextField("0");

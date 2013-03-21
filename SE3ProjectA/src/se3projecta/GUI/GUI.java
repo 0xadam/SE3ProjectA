@@ -29,7 +29,7 @@ public class GUI extends javax.swing.JFrame {
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
     private JTransactionPanel transactionPanel;
-    private JSeatSelectionInformationPanel seatSelectionInformationPanel;
+    private JSeatSelectionPanel seatSelectionInformationPanel;
     private Container contentPane;
     private JScrollPane transactionHolder;
     private Transaction transaction;
@@ -105,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
 
-        seatSelectionInformationPanel = new JSeatSelectionInformationPanel(repository, transaction, this);
+        seatSelectionInformationPanel = new JSeatSelectionPanel(repository, transaction, this);
 
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
 

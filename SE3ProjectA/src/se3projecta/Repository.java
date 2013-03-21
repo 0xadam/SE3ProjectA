@@ -263,7 +263,12 @@ public class Repository {
         //load movies, theatres and sessiontimes to sessions
         if (theatres != null && movies != null && sessionTimes != null) {
             for (TheatreSession ts : theatreSessions.values()) {
-                ts.loadRelations(theatres, movies, sessionTimes);
+                try {
+                    ts.loadRelations(theatres, movies, sessionTimes);
+                }
+                catch (InvalidRelationException e) {
+                    ie.addSuppressed(e);
+                }
             }
         }
 
