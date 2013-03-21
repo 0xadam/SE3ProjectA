@@ -92,6 +92,7 @@ public class GUI extends javax.swing.JFrame {
                 break;
             case PlaceSeats:
                 remove(seatSelectionInformationPanel);
+                transaction.clearHeld();
                 theatreSessionPanel.refreshSeatIcons();
                 theatreSessionPanel.disableSelection();
                 break;

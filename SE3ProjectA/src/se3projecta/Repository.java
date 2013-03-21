@@ -259,7 +259,7 @@ public class Repository {
                 }
             }
         }
-
+        
         //load movies, theatres and sessiontimes to sessions
         if (theatres != null && movies != null && sessionTimes != null) {
             for (TheatreSession ts : theatreSessions.values()) {

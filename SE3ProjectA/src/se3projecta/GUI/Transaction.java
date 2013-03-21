@@ -159,6 +159,11 @@ public class Transaction {
         }
 
     }
+    
+    public void clearHeld() {
+        theatreSession.clearHeld();
+        fireSeatingChanged(theatreSession.getSeats());
+    }
 
     public void removeAllocation(Allocation allocation) {
         allocations.remove(allocation);
