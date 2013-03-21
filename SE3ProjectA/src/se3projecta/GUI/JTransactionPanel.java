@@ -98,12 +98,8 @@ public class JTransactionPanel extends JPanel {
      * otherwise enable
      */
     public void checkAllocationRemoval() {
-        if (allocationPanels.size() > 0) {
-            if (allocationPanels.size() <= 1) {
-                allocationPanels.get(0).setNonRemovable();
-            } else {
-                allocationPanels.get(0).setRemovable();
-            }
+        if (allocationPanels.size() > 0) { //remove possiblilty of error
+            allocationPanels.get(0).setRemovable(allocationPanels.size() > 1);
         }
 
 
