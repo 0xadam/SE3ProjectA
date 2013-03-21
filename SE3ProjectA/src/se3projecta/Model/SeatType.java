@@ -10,7 +10,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Allows different types of seats to be booked for different prices. The 
+ * price for the seat is determined by the price of the SeatType and the 
+ * priceMultiplier of the CustomerType.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
