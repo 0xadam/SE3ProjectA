@@ -52,6 +52,11 @@ public class CustomerType implements XmlUnserializable<Integer> {
         return id;
     }
 
+    /**
+     * Get the priceMultiplier (the amount the SeatType price will be 
+     * multiplied to get the price of the Seat) for this CustomerType
+     * @return the priceMultiplier for this CustomerType
+     */
     public double getPriceMultiplier() {
         return this.priceMultiplier;
     }
