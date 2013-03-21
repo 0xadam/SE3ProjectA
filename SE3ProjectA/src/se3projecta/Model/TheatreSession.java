@@ -54,6 +54,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
     }
 
+    /**
+     * Sole constructor. (For invocation by subclass constructors, typically
+     * implicit.)
+     */
     public TheatreSession() {
     }
 
@@ -192,6 +196,9 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         return rows;
     }
 
+    /**
+     * Set all the state of all held seats in this TheatreSession to empty     *
+     */
     public void clearHeld() {
         for (Seat s : seats) {
             if (s.getState() == SeatState.Held) {
@@ -363,7 +370,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * available seats of the specified seat type
      *
      * @param type the seat type to check seat availability for
-     * @param seats the number of seats to check seat availability for
+     * @param num number of seats to check availability for
      * @return whether or not this theatre session has a specified number of
      * available seats of the specified seat type
      */
