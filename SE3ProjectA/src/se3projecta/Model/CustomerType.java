@@ -8,6 +8,9 @@ import se3projecta.Persistance.XmlUnserializable;
 import org.w3c.dom.Element;
 
 /**
+ * Allows different types of customers to book seats for different prices. The 
+ * price for the seat is determined by the price of the SeatType and the 
+ * priceMultiplier of the CustomerType.
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
