@@ -381,7 +381,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     /**
      * Checks whether the passed seat belongs to this TheatreSession.
      *
-     * @param seat
+     * @param seat the seat to check whether it belongs to this TheatreSession
      * @return
      */
     public boolean ownsSeat(Seat seat) {
