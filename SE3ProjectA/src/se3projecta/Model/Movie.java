@@ -8,7 +8,8 @@ import se3projecta.Persistance.XmlUnserializable;
 import org.w3c.dom.Element;
 
 /**
- *
+ * A movie which may be viewable in multiple TheatreSessions.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -30,7 +31,7 @@ public class Movie implements XmlUnserializable<Integer> {
     }
 
     /**
-     * gets the promotional image. This could be a movie poster or cover.
+     * Gets the promotional image. This could be a movie poster or cover.
      *
      * @return the promotional image. This could be a movie poster or cover.
      */
