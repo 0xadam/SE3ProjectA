@@ -63,8 +63,8 @@ public class JAllocationPanelNavigation extends JPanel {
 
         transaction.addTransactionListener(new TransactionListener() {
             @Override
-            void costChanged(Money cost) {
-                setTotalCost(cost);
+            void allocationsChanged() {
+                setTotalCost(transaction.getCost());
             }
         });
     }

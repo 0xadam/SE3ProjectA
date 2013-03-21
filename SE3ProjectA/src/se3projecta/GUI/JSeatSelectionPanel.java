@@ -57,6 +57,11 @@ public class JSeatSelectionPanel extends JPanel {
             void seatingChanged(Seat[] seat) {
                 updateAllSeatsRemaining();
             }
+            
+            @Override
+            void allocationsChanged() {
+                updateAllSeatsRemaining();
+            }
         });
 
         randomAllocationButton = new JButton("Randomly Allocate Remaining Seats");

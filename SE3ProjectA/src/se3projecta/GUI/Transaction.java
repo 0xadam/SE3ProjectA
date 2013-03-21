@@ -31,7 +31,7 @@ public class Transaction {
 
         if (total != cost) {
             cost = total;
-            fireCostChanged();
+            fireAllocationsChanged();
         }
     }
 
@@ -108,7 +108,7 @@ public class Transaction {
     public void addAllocation(Allocation allocation) {
         allocation.addAllocationListener(new AllocationListener() {
             @Override
-            void costChanged(Money cost) {
+            void changed() {
                 UpdateCost();
             }
         });
@@ -188,9 +188,9 @@ public class Transaction {
         }
     }
 
-    private void fireCostChanged() {
+    private void fireAllocationsChanged() {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
-            tl.costChanged(getCost());
+            tl.allocationsChanged();
         }
     }
 

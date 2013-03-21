@@ -17,7 +17,7 @@ public class Allocation {
     private Money cost = new Money(0);
     protected EventListenerList listeners = new EventListenerList();
 
-    private void updateCost() {
+    private void update() {
         if (seatType == null || customerType == null) {
             return;
         }
@@ -25,12 +25,9 @@ public class Allocation {
         double ticketCost = seatType.getPrice();
         double multiplier = customerType.getPriceMultiplier();
 
-        Money newCost = new Money(ticketCost * multiplier * numberOfTickets);
-
-        if (newCost.getValue() != cost.getValue()) {
-            cost = newCost;
-            firePriceChanged();
-        }
+        cost = new Money(ticketCost * multiplier * numberOfTickets);
+        
+        fireChanged();
     }
 
     public Money getCost() {
@@ -39,7 +36,7 @@ public class Allocation {
 
     public void setSeatType(SeatType st) {
         seatType = st;
-        updateCost();
+        update();
     }
 
     public SeatType getSeatType() {
@@ -48,7 +45,7 @@ public class Allocation {
 
     public void setCustomerType(CustomerType ct) {
         customerType = ct;
-        updateCost();
+        update();
     }
 
     public CustomerType getCustomerType() {
@@ -57,7 +54,7 @@ public class Allocation {
 
     public void setNumberOfTickets(int tickets) {
         numberOfTickets = tickets;
-        updateCost();
+        update();
     }
 
     public int getNumberOfTickets() {
@@ -76,9 +73,9 @@ public class Allocation {
         return listeners.getListeners(AllocationListener.class);
     }
 
-    private void firePriceChanged() {
+    private void fireChanged() {
         for (AllocationListener al : listeners.getListeners(AllocationListener.class)) {
-            al.costChanged(this.getCost());
+            al.changed();
         }
     }
 }

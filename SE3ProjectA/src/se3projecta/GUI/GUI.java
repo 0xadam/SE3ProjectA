@@ -30,7 +30,7 @@ public class GUI extends javax.swing.JFrame {
     private JMoviePanel moviePanel;
     private JTheatreSessionPanel theatreSessionPanel;
     private JTransactionPanel transactionPanel;
-    private JSeatSelectionPanel seatSelectionInformationPanel;
+    private JSeatSelectionPanel seatSelectionPanel;
     private Container contentPane;
     private JScrollPane transactionHolder;
     private Transaction transaction;
@@ -91,7 +91,7 @@ public class GUI extends javax.swing.JFrame {
                 remove(transactionHolder);
                 break;
             case PlaceSeats:
-                remove(seatSelectionInformationPanel);
+                remove(seatSelectionPanel);
                 transaction.clearHeld();
                 theatreSessionPanel.refreshSeatIcons();
                 theatreSessionPanel.disableSelection();
@@ -107,8 +107,8 @@ public class GUI extends javax.swing.JFrame {
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);
                 break;
             case PlaceSeats:
-                seatSelectionInformationPanel.updateAllSeatsRemaining();
-                contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
+                seatSelectionPanel.updateAllSeatsRemaining();
+                contentPane.add(seatSelectionPanel, BorderLayout.LINE_END);
                 theatreSessionPanel.enableSelection();
                 break;
         }
@@ -130,7 +130,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
 
-        seatSelectionInformationPanel = new JSeatSelectionPanel(repository, transaction, this);
+        seatSelectionPanel = new JSeatSelectionPanel(repository, transaction, this);
 
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
 

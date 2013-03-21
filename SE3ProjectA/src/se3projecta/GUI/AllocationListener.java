@@ -13,7 +13,7 @@ import se3projecta.Money;
  */
 public abstract class AllocationListener implements EventListener {
 
-    void costChanged(Money cost) {
+    void changed() {
     }
 ;
 }

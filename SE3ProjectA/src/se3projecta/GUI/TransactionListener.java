@@ -15,7 +15,7 @@ public abstract class TransactionListener implements EventListener {
     }
 
     ;
-    void costChanged(Money price) {
+    void allocationsChanged() {
     }
 
     ;
