@@ -5,6 +5,9 @@
 package se3projecta.Model;
 
 /**
+ * Exception class for exception thrown when an element is inserted into a 
+ * collection that already contains the key that is the same as that of the new 
+ * element.
  *
  * @author Russell
  */
