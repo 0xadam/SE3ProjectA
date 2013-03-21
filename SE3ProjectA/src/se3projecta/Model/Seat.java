@@ -39,7 +39,13 @@ public class Seat implements XmlSerializable, XmlUnserializable {
      */
     @Override
     public void load(Element n) {
-        this.state = SeatState.valueOf(n.getAttribute("state"));
+        try {
+            this.state = SeatState.valueOf(n.getAttribute("state"));
+        } catch (java.lang.IllegalArgumentException e) {
+            //error loading seat type
+            this.state = SeatState.Empty;
+        }
+        
     }
     private SeatType seatType;
     private SeatState state = SeatState.Empty;
