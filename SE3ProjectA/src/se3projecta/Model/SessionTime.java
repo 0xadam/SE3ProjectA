@@ -8,7 +8,7 @@ import se3projecta.Persistance.XmlUnserializable;
 import org.w3c.dom.Element;
 
 /**
- * Allows seats to be booked for different sessions for the Theatre.
+ * Allows seats to be booked for different sessions for a Theatre.
  * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>

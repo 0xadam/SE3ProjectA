@@ -10,7 +10,9 @@ import java.util.TreeMap;
 import org.w3c.dom.Element;
 
 /**
- *
+ * Allows description of a Seating Plan for a specific Theatre. One movie is
+ * viewable at each Theatre.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
