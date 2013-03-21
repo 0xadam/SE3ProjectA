@@ -97,6 +97,10 @@ public class Seat implements XmlSerializable, XmlUnserializable {
         return 0;
     }
 
+    /**
+     * Get the path to the Icon image from this Seat's seatType and state
+     * @return the path to the Icon image from this Seat's seatType and state
+     */
     public String getIcon() {
         if (seatType != null) {
             return seatType.getIcon(state);
