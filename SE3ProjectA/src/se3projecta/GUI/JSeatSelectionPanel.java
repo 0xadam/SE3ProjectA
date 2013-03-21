@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -41,7 +43,7 @@ public class JSeatSelectionPanel extends JPanel {
         for (SeatType seatType : repository.getSeatTypes()) {
             seatsRemainingSubPanels.put(seatType, new JSeatSelectionSubPanel(seatType));
             JSeatSelectionSubPanel seatsRemainingSubPanel = seatsRemainingSubPanels.get(seatType);
-            Integer seatsRemaining = transaction.countAllocatedSeatTypes().get(seatType);
+            Integer seatsRemaining = transaction.countAllocatedBySeatType().get(seatType);
             seatsRemainingSubPanel.setSeatsRemaining(seatsRemaining != null ? seatsRemaining : 0);
             add(seatsRemainingSubPanel);
         }
@@ -66,10 +68,16 @@ public class JSeatSelectionPanel extends JPanel {
             }
         });
 
+        
         bookButton = new JButton("Book Seats");
         bookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (transaction.countUnplaced() > 0) {
+                    JOptionPane.showMessageDialog(gui, "Please allocate all seats before continuing");
+                    return;
+                }
+                
                 transaction.getTheatreSession().commitSeats();
                 try {
                     repository.save();
@@ -101,7 +109,7 @@ public class JSeatSelectionPanel extends JPanel {
 
     public void updateAllSeatsRemaining() {
         
-        Iterator it = transaction.countUnplacedSeatTypes().entrySet().iterator();
+        Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
             seatsRemainingSubPanels.get(pairs.getKey()).setSeatsRemaining(pairs.getValue());
@@ -110,6 +118,6 @@ public class JSeatSelectionPanel extends JPanel {
     }
     
     private void updateSeatsRemaining(SeatType seatType) {
-        seatsRemainingSubPanels.get(seatType).setSeatsRemaining(transaction.countUnplacedSeats(seatType));
+        seatsRemainingSubPanels.get(seatType).setSeatsRemaining(transaction.countUnplaced(seatType));
     }
 }

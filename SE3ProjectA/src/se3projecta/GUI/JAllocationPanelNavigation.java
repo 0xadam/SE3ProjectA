@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.*;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import se3projecta.Money;
 import se3projecta.Model.SeatType;
 import se3projecta.Model.TheatreSession;
@@ -36,9 +39,7 @@ public class JAllocationPanelNavigation extends JPanel {
         navigateForward.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!transaction.isValidRequest()) {
-                    //todo show error message.
-                } else {
+                if (validateTransaction()) {
                     gui.setState(GUI.GUIState.PlaceSeats);
                 }
                 
@@ -69,4 +70,24 @@ public class JAllocationPanelNavigation extends JPanel {
         totalPrice.setText(cost.toString());
     }
     
+    private boolean validateTransaction() {
+        Iterator it = transaction.countAllocatedBySeatType().entrySet().iterator();
+        int totaltickets = 0;
+        while (it.hasNext()) {
+            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
+
+            if (!transaction.getTheatreSession().hasAvailable(pairs.getKey(), pairs.getValue())) {
+                JOptionPane.showMessageDialog(gui, "There are not that many " + pairs.getKey().getName() + " seats available. Please select fewer and try again.");
+            }
+            
+            totaltickets += (Integer) pairs.getValue();
+            it.remove();
+        }
+
+        if (totaltickets > 0) {
+            return true;
+        }
+        
+        return false;
+    }
 }

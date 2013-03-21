@@ -46,7 +46,6 @@ public class Allocation {
         return seatType;
     }
     
-    
     public void setCustomerType(CustomerType ct) {
         customerType = ct;
         updateCost();
@@ -64,7 +63,6 @@ public class Allocation {
     public int getNumberOfTickets() {
         return numberOfTickets;
     }
-    
     
     public void addAllocationListener(AllocationListener l) {
         listeners.add(AllocationListener.class, l);
