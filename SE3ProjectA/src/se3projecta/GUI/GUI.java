@@ -19,11 +19,11 @@ import se3projecta.Persistance.ImportException;
 public class GUI extends javax.swing.JFrame {
 
     public enum GUIState {
-
         SelectTheaterSession,
         SelectSeating,
         PlaceSeats
     }
+
     private GUIState state = GUIState.SelectTheaterSession;
     private Repository repository;
     private JMoviePanel moviePanel;
@@ -64,32 +64,40 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void setState(GUIState s) {
-        state = s;
-        switch (state) {
+        GUIState oldState = state;
+        GUIState newState = s;
+        
+        switch (oldState) {
             case SelectTheaterSession:
-                remove(seatSelectionInformationPanel);
+                remove(moviePanel);
+                break;
+            case SelectSeating:
                 remove(transactionHolder);
-                contentPane.add(moviePanel, BorderLayout.LINE_END);
-                //todo remove all allocations.
-                transactionPanel.clearAllocations();
-                theatreSessionPanel.disableSelection();
+                break;
+            case PlaceSeats:
+                remove(seatSelectionInformationPanel);
                 theatreSessionPanel.refreshSeatIcons();
-                //reset transaction
+                theatreSessionPanel.disableSelection();
+                break;
+        }
+        
+        switch (newState) {
+            case SelectTheaterSession:
+                contentPane.add(moviePanel, BorderLayout.LINE_END);
+                transactionPanel.clearAllocations();
                 break;
             case SelectSeating:
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);
-                remove(moviePanel);
-                remove(seatSelectionInformationPanel);
-                theatreSessionPanel.disableSelection();
                 break;
             case PlaceSeats:
                 contentPane.add(seatSelectionInformationPanel, BorderLayout.LINE_END);
-                remove(transactionHolder);
                 seatSelectionInformationPanel.updateAllSeatsRemaining();
                 theatreSessionPanel.enableSelection();
                 break;
         }
 
+        state = newState;
+        
         fixWindowSize();
         contentPane.validate();
         contentPane.repaint();
@@ -115,7 +123,8 @@ public class GUI extends javax.swing.JFrame {
         moviePanel.updateTheatreSessions();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        pack(); //automatically set the windowsize in relation to components placed
+        
+        pack();
         //setMinimumSize(getSize()); //minimum size is packed size
     }
 }
