@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import se3projecta.Model.SeatType;
 
 /**
- *
+ * JPanel which shows how many seats are remaining for a specific SeatType
  * @author Adam
  */
 public class JSeatSelectionSubPanel extends JPanel {
@@ -20,6 +20,11 @@ public class JSeatSelectionSubPanel extends JPanel {
     private JLabel seatsRemainingLabel;
     private JTextField seatsRemainingTextField;
 
+    /**
+     * Create JSeatSelectionSubPanel.
+     * @param seatType_ SeatType which JSeatSelectionSubPanel shows how many 
+     * seats are remaining for 
+     */
     public JSeatSelectionSubPanel(SeatType seatType_) {
         seatType = seatType_;
         seatsRemainingLabel = new JLabel(seatType + " Seats Left To Allocate");
@@ -30,14 +35,26 @@ public class JSeatSelectionSubPanel extends JPanel {
         add(seatsRemainingTextField);
     }
 
+    /**
+     * get number of SeatsRemaining 
+     * @return number of SeatsRemaining
+     */
     public int getSeatsRemaining() {
         return Integer.parseInt(seatsRemainingTextField.getText());
     }
 
+    /**
+     * set number of SeatsRemaining
+     * @param numSeats number of SeatsRemaining to set to
+     */
     public void setSeatsRemaining(int numSeats) {
         seatsRemainingTextField.setText(Integer.toString(numSeats));
     }
 
+    /**
+     * get SeatType linked to this JSeatSelectionSubPanel
+     * @return SeatType linked to this JSeatSelectionSubPanel
+     */
     public SeatType getSeatType() {
         return seatType;
     }

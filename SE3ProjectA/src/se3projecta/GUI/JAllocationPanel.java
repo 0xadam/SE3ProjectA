@@ -16,7 +16,7 @@ import se3projecta.Money;
 import se3projecta.Model.CustomerType;
 
 /**
- *
+ * JPanel which holds allocation widgets.
  * @author Adam
  */
 public class JAllocationPanel extends JPanel {
@@ -48,14 +48,23 @@ public class JAllocationPanel extends JPanel {
      public int getID() {
      return id;
      }*/
-    public void setRemovable() {
-        removeAllocationButton.setEnabled(true);
+    /**
+     * Enables (or disables) the removal of the JAllocationPanel.
+     *
+     * @param b true to enable the removal of the JAllocationPanel, otherwise
+     * false
+     */
+    public void setRemovable(boolean b) {
+        removeAllocationButton.setEnabled(b);
     }
 
-    public void setNonRemovable() {
-        removeAllocationButton.setEnabled(false);
-    }
-
+    /**
+     * Create a JAllocationPanel
+     * @param id
+     * @param repository where to get widget values from
+     * @param jtp_ parent of this JAllocationPanel
+     * @param allocation_ handles backend code for this allocation
+     */
     public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
@@ -174,10 +183,17 @@ public class JAllocationPanel extends JPanel {
         return (SeatType) seatTypeComboBox.getSelectedItem();
     }
 
+    /**
+     * get Allocation for this JAllocationPanel.
+     * @returnAllocation for this JAllocationPanel
+     */
     public Allocation getAllocation() {
         return allocation;
     }
 
+    /**
+     *
+     */
     public class ComboBoxAL implements ActionListener {
 
         @Override

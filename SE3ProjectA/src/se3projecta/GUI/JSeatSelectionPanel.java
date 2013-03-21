@@ -22,7 +22,8 @@ import javax.xml.transform.TransformerException;
 import se3projecta.Model.Seat;
 
 /**
- *
+ * JPanel which allows users to select which seats the want to sit in, place 
+ * the seats randomly or use a combination of the two to select seating.
  * @author Adam
  */
 public class JSeatSelectionPanel extends JPanel {
@@ -33,6 +34,12 @@ public class JSeatSelectionPanel extends JPanel {
     JButton bookButton, randomAllocationButton, backButton;
     GUI gui;
 
+    /**
+     * Create JSeatSelectionPanel. 
+     * @param repository_ where to get widget values from
+     * @param transaction_ used to get & set number of unallocated seats
+     * @param _gui the GUI object which navigation changes the state of
+     */
     public JSeatSelectionPanel(Repository repository_, Transaction transaction_, GUI _gui) { //can probably pass the specifically needed data here
         repository = repository_;
         transaction = transaction_;
@@ -112,6 +119,9 @@ public class JSeatSelectionPanel extends JPanel {
         add(navButtons);
     }
 
+    /**
+     * Update the number of seats remaining for each SeatType.
+     */
     public void updateAllSeatsRemaining() {
 
         Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();

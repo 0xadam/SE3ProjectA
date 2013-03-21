@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import se3projecta.*;
 
 /**
- *
+ * JPanel which holds widgets that allow selection of Movie, Theatre, and 
+ * SessionTime
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -33,6 +34,13 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JButton bookTicketsButton = new JButton();
     private Transaction transaction;
 
+    /**
+     *
+     * @param repository_ where to get widget values from
+     * @param gui_ the GUI object which navigation changes the state of  
+     * @param transaction_ transaction which is modified as booking details are
+     * changed
+     */
     public JMoviePanel(Repository repository_, GUI gui_, Transaction transaction_) {
         gui = gui_;
         repository = repository_;
@@ -107,6 +115,10 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Reload TheaterDropdown from repository using selected movie and 
+     * sessionTime
+     */
     public void updateTheatreSessions() {
         theatreDropdown.removeAllItems(); //clear the panel
         Collection<TheatreSession> theatreSessions = repository.getTheatreSessions((Movie) movieDropdown.getSelectedItem(), (SessionTime) sessionTimeDropdown.getSelectedItem());

@@ -18,7 +18,8 @@ import se3projecta.Model.SeatType;
 import se3projecta.Model.TheatreSession;
 
 /**
- *
+ * JPanel which holds JButtons that allow navigation back to 
+ * SelectTheatreSession state and forward to PlaceSeats State.
  * @author Russell
  */
 public class JAllocationPanelNavigation extends JPanel {
@@ -29,6 +30,11 @@ public class JAllocationPanelNavigation extends JPanel {
     private JButton navigateForward;
     private Transaction transaction;
 
+    /**
+     * Creates JAllocationPanelNavigation.
+     * @param _gui the GUI object which navigation changes the state of 
+     * @param t the Transaction which must be validated on forward navigation
+     */
     public JAllocationPanelNavigation(GUI _gui, Transaction t) {
         gui = _gui;
         transaction = t;

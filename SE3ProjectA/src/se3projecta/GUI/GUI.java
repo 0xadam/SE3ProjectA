@@ -19,10 +19,27 @@ import se3projecta.Persistance.ImportException;
  */
 public class GUI extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public enum GUIState {
 
+        /**
+         * SelectTheatreSession State allows users to select which movie they
+         * want to see, which Theatre they want to see it at, and which session
+         * the want to see it in.
+         */
         SelectTheaterSession,
+        /**
+         * SelectSeating State allows users to choose how many seats they want 
+         * of each SeatType and CustomerType.
+         */
         SelectSeating,
+        /**
+         * PlaceSeats State allows users to select which seats the want to sit
+         * in, place the seats randomly or use a combination of the two to 
+         * select seating.
+         */
         PlaceSeats
     }
     private GUIState state = GUIState.SelectTheaterSession;
@@ -37,6 +54,8 @@ public class GUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI
+     * @param repository_ 
+     * @param ie 
      */
     public GUI(Repository repository_, ImportException ie) {
         if (ie != null) {
@@ -79,6 +98,10 @@ public class GUI extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Set the GUIState of this GUI.
+     * @param s the GUIState to set the GUI to.
+     */
     public void setState(GUIState s) {
         GUIState oldState = state;
         GUIState newState = s;
