@@ -90,6 +90,7 @@ public class JAllocationPanel extends JPanel {
 
         numberOfTicketsSpinner = new JSpinner();
         numberOfTicketsSpinner.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent e) {
                 update();
             }
