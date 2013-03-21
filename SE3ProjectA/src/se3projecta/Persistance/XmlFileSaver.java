@@ -20,11 +20,26 @@ import javax.xml.transform.OutputKeys;
 import org.w3c.dom.Element;
 
 /**
- *
+ * allows Objects which implement the XmlSerializable interface to be saved as
+ * in an XML file in a serialized format.
  * @author Russell
  */
 public class XmlFileSaver {
 
+    /**
+     * Saves a Map of objects which implement the XmlSerializable interface in an 
+     * XML file in a serialized format.
+     * @param <K> the Data type of the key of the supplied map. Data type is 
+     * that of the object ID.
+     * @param <V> the Data type of the value of the supplied map. Data type is 
+     * that of the object itself.
+     * @param file a collection of objects which implement the XmlSerializable 
+     * interface.
+     * @param Path where to save the generated XML file.
+     * @throws ParserConfigurationException
+     * @throws TransformerConfigurationException
+     * @throws TransformerException 
+     */
     public static <K, V extends XmlSerializable> void save(TreeMap<K, V> file, String Path) throws ParserConfigurationException, TransformerConfigurationException, TransformerException {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

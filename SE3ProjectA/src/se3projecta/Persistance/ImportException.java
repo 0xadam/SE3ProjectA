@@ -14,6 +14,10 @@ import java.util.List;
  */
 public class ImportException extends Throwable {
 
+    /**
+     * Whether or not any Exceptions have been suppressed.
+     * @return whether or not any Exceptions have been suppressed
+     */
     public boolean hasSuppressed() {
         return !suppressedExceptions.isEmpty();
     }
