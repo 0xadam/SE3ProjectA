@@ -379,15 +379,14 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Checks whether the passed seat belongs to this TheatreSession
-     *
-     * Could be optimized such that Seat holds a reference to TheatreSession and
-     * that reference is checked instead
+     * Checks whether the passed seat belongs to this TheatreSession.
      *
      * @param seat
      * @return
      */
     public boolean ownsSeat(Seat seat) {
+       //Could be optimized such that Seat holds a reference to TheatreSession 
+       //and that reference is checked instead
         for (Seat s : seats) {
             if (s == seat) {
                 return true;
