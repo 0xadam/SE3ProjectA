@@ -115,6 +115,14 @@ public class SeatType implements XmlUnserializable<Character> {
         return name;
     }
 
+    /**
+     * Get the path to the Icon image for this SeatType for a specified 
+     * SeatState
+     * 
+     * @param ss the SeatState to get the path to the Icon image for
+     * @return the path to the Icon image for this SeatTypefor a specified 
+     * SeatState
+     */
     public String getIcon(SeatState ss) {
         if (icons.containsKey(ss)) {
             return icons.get(ss);
