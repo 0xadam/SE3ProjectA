@@ -29,10 +29,9 @@ public class Transaction {
             total = new Money(total.getValue() + allocation.getCost().getValue());
         }
 
-        if (total != cost) {
-            cost = total;
-            fireAllocationsChanged();
-        }
+        cost = total;
+        
+        fireAllocationsChanged();
     }
 
     public Map<SeatType, Integer> countAllocatedBySeatType() {
@@ -51,36 +50,53 @@ public class Transaction {
         return counts;
     }
 
+    /**
+     * Counts and returns how many more seats for this allocation need to be
+     * placed in a map indexed by SeatType
+     * 
+     * @return 
+     */
     public Map<SeatType, Integer> countUnplacedBySeatTypes() {
-        Map<SeatType, Integer> allocated = countAllocatedBySeatType();
+        // this could be made more efficient by keeping a cache in TheatreSession
+        Map<SeatType, Integer> unplaced = countAllocatedBySeatType();
 
         Iterator it = countAllocatedBySeatType().entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
 
-            allocated.put(pairs.getKey(), pairs.getValue() - theatreSession.countHeld((SeatType) pairs.getKey()));
+            unplaced.put(pairs.getKey(), pairs.getValue() - theatreSession.countHeld((SeatType) pairs.getKey()));
 
             it.remove();
         }
 
-
-        return allocated;
+        return unplaced;
     }
 
-    public int countUnplaced() {
-        Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedBySeatTypes();
-
+    private int sumSeatTypeMap(Map<SeatType, Integer> map) {
         int sum = 0;
 
-        for (int value : unplacedSeatTypes.values()) {
+        for (int value : map.values()) {
             sum += value;
         }
 
         return sum;
     }
+    
+    public boolean placedAll() {
+        return sumSeatTypeMap(countUnplacedBySeatTypes()) == 0;
+    }
+    
+    public boolean placedAny() {
+        for (Seat seat : theatreSession.getSeats()) {
+            if (seat.getState() == SeatState.Held) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 
     public int countUnplaced(SeatType type) {
-        // this could be made more efficient by keeping a cache in TheatreSession
         Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedBySeatTypes();
 
         if (unplacedSeatTypes.get(type) != null) {

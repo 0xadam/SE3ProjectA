@@ -66,11 +66,6 @@ public class JSeatSelectionPanel extends JPanel {
             void seatingChanged(Seat[] seat) {
                 updateAllSeatsRemaining();
             }
-            
-            @Override
-            void allocationsChanged() {
-                updateAllSeatsRemaining();
-            }
         });
         
         randomAllocationButton = new JButton("Randomly Allocate Remaining Seats");
@@ -87,7 +82,7 @@ public class JSeatSelectionPanel extends JPanel {
         bookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (transaction.countUnplaced() > 0) {
+                if (!transaction.placedAll()) {
                     JOptionPane.showMessageDialog(gui, "Please allocate all seats before continuing");
                     return;
                 }
@@ -107,8 +102,25 @@ public class JSeatSelectionPanel extends JPanel {
         
         backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                gui.setState(GUI.GUIState.SelectSeating);
+                
+                Object[] options = {"Yes", "No"};
+            
+                int choice = JOptionPane.showOptionDialog(gui,
+                        "Are you sure you wish to go back? You will lose your "
+                        + "seats placement.",
+                        "Back",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+
+                if (choice == JOptionPane.YES_OPTION) {
+                    gui.setState(GUI.GUIState.SelectSeating);
+                }
+                
             }
         });
         add(randomAllocationButton);

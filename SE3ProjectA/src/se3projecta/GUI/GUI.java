@@ -59,9 +59,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI(Repository repository_, ImportException ie) {
         if (ie != null) {
-            Object[] options = {"Yes",
-                "No"};
-
+            Object[] options = {"Yes", "No"};
             int choice = JOptionPane.showOptionDialog(this,
                     "Erorrs occured while loading data, "
                     + "are you sure you wish to continue?",
@@ -72,8 +70,8 @@ public class GUI extends javax.swing.JFrame {
                     options,
                     options[1]);
 
-            if (choice == options[1]) {
-                System.exit(-1);
+            if (choice == JOptionPane.NO_OPTION) {
+                System.exit(1);
             }
         }
         repository = repository_;
