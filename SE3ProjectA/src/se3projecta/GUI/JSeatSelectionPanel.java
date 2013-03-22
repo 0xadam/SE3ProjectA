@@ -140,7 +140,7 @@ public class JSeatSelectionPanel extends JPanel {
         
         Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
+            Map.Entry<SeatType, Integer> pairs = (Map.Entry<SeatType, Integer>) it.next();
             JSeatSelectionSubPanel seatsRemainingSubPanel = seatsRemainingSubPanels.get(pairs.getKey());
             seatsRemainingSubPanel.setSeatsRemaining(pairs.getValue());
             //seatsRemainingSubPanel.setVisible(pairs.getValue() > 0);
