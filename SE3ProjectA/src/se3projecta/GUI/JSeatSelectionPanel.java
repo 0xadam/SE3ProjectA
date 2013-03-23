@@ -105,9 +105,10 @@ public class JSeatSelectionPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                Object[] options = {"Yes", "No"};
-            
-                int choice = JOptionPane.showOptionDialog(gui,
+                if (transaction.placedAny()) {
+                    Object[] options = {"Yes", "No"};
+
+                    int choice = JOptionPane.showOptionDialog(gui,
                         "Are you sure you wish to go back? You will lose your "
                         + "seats placement.",
                         "Back",
@@ -116,11 +117,13 @@ public class JSeatSelectionPanel extends JPanel {
                         null,
                         options,
                         options[1]);
-
-                if (choice == JOptionPane.YES_OPTION) {
-                    gui.setState(GUI.GUIState.SelectSeating);
+                
+                    if (choice == JOptionPane.NO_OPTION) {
+                        return;
+                    }
                 }
                 
+                gui.setState(GUI.GUIState.SelectSeating);
             }
         });
         add(randomAllocationButton);
