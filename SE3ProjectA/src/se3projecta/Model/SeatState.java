@@ -5,7 +5,8 @@
 package se3projecta.Model;
 
 /**
- *
+ * SeatState defines whether a Seat is Empty (not booked or allocated), Held
+ * (allocated but not booked), or Occupied (Booked).
  * @author Russell
  */
 public enum SeatState {
