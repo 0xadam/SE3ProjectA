@@ -7,7 +7,7 @@ package se3projecta;
 import se3projecta.Persistance.ImportException;
 
 /**
- *
+ * Main class that runs the Application.
  * @author Tobias
  */
 public class SE3ProjectA {

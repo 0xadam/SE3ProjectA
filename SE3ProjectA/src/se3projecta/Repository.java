@@ -14,7 +14,7 @@ import se3projecta.Persistance.XmlFileLoader;
 import se3projecta.Persistance.XmlFileSaver;
 
 /**
- *
+ * Creates an interface with XML storage of persistent data.
  * @author Tobias
  */
 public class Repository {
@@ -26,22 +26,45 @@ public class Repository {
     private TreeMap<Integer, CustomerType> customerTypes;
     private TreeMap<Integer, TheatreSession> theatreSessions;
 
+    /**
+     * Get all stored Movies.
+     * @return all stored Movies
+     */
     public Collection<Movie> getMovies() {
         return movies.values();
     }
 
+    /**
+     * Get all stored SessionTimes.
+     * @return all stored SessionTimes
+     */
     public Collection<SessionTime> getSessionTimes() {
         return sessionTimes.values();
     }
 
+    /**
+     * Get all stored SeatTypes.
+     * @return all stored SeatTypes
+     */
     public Collection<SeatType> getSeatTypes() {
         return seatTypes.values();
     }
 
+    /**
+     * Get all stored CustomerTypes.
+     * @return all stored CustomerTypes
+     */
     public Collection<CustomerType> getCustomerTypes() {
         return customerTypes.values();
     }
 
+    /**
+     * Get all stored TheatreSessions for the specified Movie and SessionTime.
+     * @param movie the Movie to get TheatreSessions for
+     * @param sessionTime the SessionTime to get TheatreSessions for
+     * @return all stored TheatreSessions for the specified Movie and 
+     * SessionTime
+     */
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
         ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
 
@@ -70,6 +93,10 @@ public class Repository {
     private static final String THEATRE_SESSIONS_PATH = DATA_DIR + "/TheatreSessions.xml";
     private static final String THEATRE_SESSION_TAG = "TheatreSession";
 
+    /**
+     * Create the repository by importing persistent data from XML.
+     * @throws ImportException
+     */
     public Repository() throws ImportException {
         ImportException ie = new ImportException();
         NodeList LoadedNodes = null;
@@ -280,6 +307,13 @@ public class Repository {
 
     }
 
+    /**
+     * Save booking to XML by saving TheatreSession changes.
+     * 
+     * @throws javax.xml.transform.TransformerConfigurationException
+     * @throws javax.xml.parsers.ParserConfigurationException
+     * @throws javax.xml.transform.TransformerException
+     */
     public void save() throws javax.xml.transform.TransformerConfigurationException, javax.xml.parsers.ParserConfigurationException, javax.xml.transform.TransformerException {
         XmlFileSaver.save(theatreSessions, "data/TheatreSessions.xml");
     }
