@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import se3projecta.Model.SeatType;
+import java.awt.Dimension;
 
 /**
  * JPanel which shows how many seats are remaining for a specific SeatType
@@ -34,6 +35,7 @@ public class JSeatSelectionSubPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(seatsRemainingLabel);
         add(seatsRemainingTextField);
+        setMaximumSize(new Dimension(170,40)); //maybe don't hardcode?
     }
 
     /**

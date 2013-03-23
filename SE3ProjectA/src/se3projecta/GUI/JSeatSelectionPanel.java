@@ -52,6 +52,7 @@ public class JSeatSelectionPanel extends JPanel {
         for (SeatType seatType : repository.getSeatTypes()) {
             seatsRemainingSubPanels.put(seatType, new JSeatSelectionSubPanel(seatType));
             JSeatSelectionSubPanel seatsRemainingSubPanel = seatsRemainingSubPanels.get(seatType);
+           seatsRemainingSubPanel.setAlignmentX(JPanel.LEFT_ALIGNMENT);
             Integer seatsRemaining = transaction.countAllocatedBySeatType().get(seatType);
             seatsRemainingSubPanel.setSeatsRemaining(seatsRemaining != null ? seatsRemaining : 0);
             add(seatsRemainingSubPanel);
@@ -69,6 +70,7 @@ public class JSeatSelectionPanel extends JPanel {
         });
         
         randomAllocationButton = new JButton("Randomly Allocate Remaining Seats");
+        randomAllocationButton.setAlignmentX(JButton.LEFT_ALIGNMENT);
         randomAllocationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,9 +128,9 @@ public class JSeatSelectionPanel extends JPanel {
                 gui.setState(GUI.GUIState.SelectSeating);
             }
         });
-        add(randomAllocationButton);
         
         JPanel navButtons = new JPanel();
+        navButtons.setAlignmentX(JPanel.LEFT_ALIGNMENT);
         navButtons.setLayout(new BoxLayout(navButtons, BoxLayout.X_AXIS));
         navButtons.add(bookButton);
         navButtons.add(backButton);
