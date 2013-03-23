@@ -11,7 +11,8 @@ import se3projecta.*;
 import se3projecta.Persistance.ImportException;
 
 /**
- *
+ * Main GUI Frame which allows the entire booking process to take place. 
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -20,7 +21,7 @@ import se3projecta.Persistance.ImportException;
 public class GUI extends javax.swing.JFrame {
 
     /**
-     *
+     * The states the GUI can be in.
      */
     public enum GUIState {
 
@@ -53,9 +54,9 @@ public class GUI extends javax.swing.JFrame {
     private Transaction transaction;
 
     /**
-     * Creates new form GUI
-     * @param repository_ 
-     * @param ie 
+     * Creates new GUI form
+     * @param repository_ where to get widget values from
+     * @param ie import exceptions which may possibly have occurred else null
      */
     public GUI(Repository repository_, ImportException ie) {
         if (ie != null) {

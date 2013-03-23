@@ -103,7 +103,11 @@ public class JMoviePanel extends javax.swing.JPanel {
         });
 
     }
-
+    
+    /**
+     * Action Listener listening for changes to the selected move - updates 
+     * promo image and TheatreSessions.
+     */
     public class JMoviePanelAL implements ActionListener {
 
         @Override
