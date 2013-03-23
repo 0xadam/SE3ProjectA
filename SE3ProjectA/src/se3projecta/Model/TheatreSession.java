@@ -15,9 +15,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * Allows Booking of Seats for a particular SessionTime for a particular 
+ * Allows Booking of Seats for a particular SessionTime for a particular
  * Theatre.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -56,15 +56,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
     }
 
-    /**
-     * Sole constructor. (For invocation by subclass constructors, typically
-     * implicit.)
-     */
     public TheatreSession() {
     }
 
     /**
-     * creates a theatre session, which links a Theatre and a session time
+     * Creates a theatre session, which links a Theatre and a session time.
      *
      * @param t the theatre which is part of this theatre session
      * @param st the session time which is part of this theatre session
@@ -199,7 +195,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Set all the state of all held seats in this TheatreSession to empty     *
+     * Set all the state of all held seats in this TheatreSession to empty *
      */
     public void clearHeld() {
         for (Seat s : seats) {
@@ -269,7 +265,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * attempts to find a random fit of a specified number of seats of a
+     * Attempts to find a random fit of a specified number of seats of a
      * specified type.
      *
      * If the specified number of seats is not available contiguous, break up
@@ -387,8 +383,8 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * @return
      */
     public boolean ownsSeat(Seat seat) {
-       //Could be optimized such that Seat holds a reference to TheatreSession 
-       //and that reference is checked instead
+        //Could be optimized such that Seat holds a reference to TheatreSession 
+        //and that reference is checked instead
         for (Seat s : seats) {
             if (s == seat) {
                 return true;
@@ -436,7 +432,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /*
-     * The name for a TheatreSession is its theatre name
+     * The name for a TheatreSession is its theatre name.
      * 
      * This doesn't uniquely identify the TheatreSession
      */
