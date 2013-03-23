@@ -4,7 +4,7 @@
  */
 package se3projecta;
 
-import se3projecta.Persistance.ImportException;
+import se3projecta.Persistence.ImportException;
 
 /**
  * Main class that runs the Application.

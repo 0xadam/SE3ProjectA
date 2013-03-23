@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import se3projecta.*;
-import se3projecta.Persistance.ImportException;
+import se3projecta.Persistence.ImportException;
 
 /**
  * Main GUI Frame which allows the entire booking process to take place. 

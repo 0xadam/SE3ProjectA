@@ -4,14 +4,14 @@
  */
 package se3projecta;
 
-import se3projecta.Persistance.ImportException;
+import se3projecta.Persistence.ImportException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeMap;
 import org.w3c.dom.NodeList;
 import se3projecta.Model.*;
-import se3projecta.Persistance.XmlFileLoader;
-import se3projecta.Persistance.XmlFileSaver;
+import se3projecta.Persistence.XmlFileLoader;
+import se3projecta.Persistence.XmlFileSaver;
 
 /**
  * Creates an interface with XML storage of persistent data.

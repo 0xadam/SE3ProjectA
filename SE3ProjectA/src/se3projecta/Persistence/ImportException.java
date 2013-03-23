@@ -1,4 +1,4 @@
-package se3projecta.Persistance;
+package se3projecta.Persistence;
 
 import java.util.ArrayList;
 import java.util.List;

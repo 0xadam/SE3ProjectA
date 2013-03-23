@@ -5,8 +5,8 @@
 package se3projecta.Model;
 
 import java.util.ArrayList;
-import se3projecta.Persistance.XmlSerializable;
-import se3projecta.Persistance.XmlUnserializable;
+import se3projecta.Persistence.XmlSerializable;
+import se3projecta.Persistence.XmlUnserializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.TreeMap;
