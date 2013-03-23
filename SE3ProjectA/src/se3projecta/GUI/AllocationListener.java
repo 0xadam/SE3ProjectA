@@ -5,7 +5,6 @@
 package se3projecta.GUI;
 
 import java.util.EventListener;
-import se3projecta.Money;
 
 /**
  *

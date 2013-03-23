@@ -9,9 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import se3projecta.Repository;
 import java.util.ArrayList;
-import se3projecta.Model.CustomerType;
 import se3projecta.Model.SeatType;
-import se3projecta.Money;
 
 /**
  * JPanel which holds one or more JAllocationPanels, and allows their addition 

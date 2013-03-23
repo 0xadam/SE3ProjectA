@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.parsers.ParserConfigurationException;

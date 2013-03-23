@@ -4,8 +4,6 @@
  */
 package se3projecta.GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import se3projecta.Model.*;
 

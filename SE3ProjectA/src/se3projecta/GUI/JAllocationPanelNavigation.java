@@ -4,7 +4,6 @@
  */
 package se3projecta.GUI;
 
-import se3projecta.Repository;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JButton;

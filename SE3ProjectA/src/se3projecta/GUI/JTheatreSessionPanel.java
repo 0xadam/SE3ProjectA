@@ -6,7 +6,6 @@ package se3projecta.GUI;
 
 import se3projecta.Model.Seat;
 import se3projecta.Model.TheatreSession;
-import se3projecta.Model.SeatType;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

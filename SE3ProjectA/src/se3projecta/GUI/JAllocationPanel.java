@@ -7,7 +7,6 @@ package se3projecta.GUI;
 import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.Observable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import se3projecta.Repository;

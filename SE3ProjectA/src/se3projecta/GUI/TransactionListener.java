@@ -2,7 +2,6 @@ package se3projecta.GUI;
 
 import java.util.EventListener;
 import se3projecta.Model.TheatreSession;
-import se3projecta.Money;
 import se3projecta.Model.Seat;
 
 /**

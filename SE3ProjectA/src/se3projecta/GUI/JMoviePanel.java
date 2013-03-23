@@ -11,7 +11,6 @@ import java.io.*;
 import se3projecta.Model.*;
 import java.util.Collection;
 import java.awt.event.*;
-import java.util.ArrayList;
 import se3projecta.*;
 
 /**
