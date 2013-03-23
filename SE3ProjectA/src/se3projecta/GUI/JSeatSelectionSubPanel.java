@@ -35,7 +35,7 @@ public class JSeatSelectionSubPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(seatsRemainingLabel);
         add(seatsRemainingTextField);
-        setMaximumSize(new Dimension(170,40)); //maybe don't hardcode?
+        setMaximumSize(new Dimension(170,42)); //maybe don't hardcode?
     }
 
     /**
