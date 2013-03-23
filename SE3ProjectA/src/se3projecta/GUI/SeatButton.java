@@ -10,7 +10,9 @@ import javax.swing.*;
 import se3projecta.Model.*;
 
 /**
- *
+ * JButton which represents Seat can be clicked to book or unbook. Icon depends
+ * SeatState and SeatType.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -20,6 +22,10 @@ public class SeatButton extends JButton {
 
     private Seat seat;
 
+    /**
+     * Create SeatButton.
+     * @param seat_ the Seat which this SeatButton represents.
+     */
     public SeatButton(Seat seat_) {
         seat = seat_;
         refreshIcon();
@@ -27,6 +33,9 @@ public class SeatButton extends JButton {
         setContentAreaFilled(false); //make opaque so as to just show icon
     }
 
+    /**
+     * Refresh seat icon.
+     */
     public void refreshIcon() {
         String path;
         if ((path = seat.getIcon()) != null) {
@@ -37,10 +46,18 @@ public class SeatButton extends JButton {
         }
     }
 
+    /**
+     * Get the SeatType of the Seat this SeatButton represents.
+     * @return the SeatType of the Seat this SeatButton represents
+     */
     public SeatType getSeatType() {
         return seat.getType();
     }
 
+    /**
+     * Get the Seat this SeatButton represents.
+     * @return the Seat this SeatButton represents
+     */
     public Seat getSeat() {
         return seat;
     }

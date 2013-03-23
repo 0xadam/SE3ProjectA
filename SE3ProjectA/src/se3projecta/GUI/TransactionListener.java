@@ -6,7 +6,8 @@ import se3projecta.Money;
 import se3projecta.Model.Seat;
 
 /**
- *
+ * A listener that listens for changes in a Transaction and makes required 
+ * changes.
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public abstract class TransactionListener implements EventListener {

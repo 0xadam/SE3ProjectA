@@ -14,7 +14,9 @@ import java.awt.event.ActionListener;
 import se3projecta.Model.SeatState;
 
 /**
- *
+ * JPanel that illustrates theatre layout and the state of seats in the theatre
+ * for a particular session, and allows seating selection.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -24,6 +26,11 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
 
     private Transaction transaction;
 
+    /**
+     * Creates JTheatreSessionPanel.
+     * @param transaction stores information about the current transaction - 
+     * JTheatreSessionPanel must be updated when transaction is.
+     */
     public JTheatreSessionPanel(Transaction transaction) {
         setBackground(Color.white);
         this.transaction = transaction;
@@ -44,7 +51,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
     private Seat[][] seatRows;
     private SeatButton[][] seatButtons;
     int rows, columns;
-
+    
     private void setTheatreSession(TheatreSession tSession) {
         seatRows = tSession.getSeatRows();
         rows = seatRows.length;
@@ -65,6 +72,9 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Refresh the icons for the seats in this TheatreSession. 
+     */
     public void refreshSeatIcons() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {
@@ -73,6 +83,9 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Enable users to select seats they want to book.
+     */
     public void enableSelection() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {
@@ -95,6 +108,10 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Disable selection of seats - users can only view whether or not seats
+     * are occupied.
+     */
     public void disableSelection() {
         for (SeatButton[] row : seatButtons) {
             for (SeatButton sb : row) {

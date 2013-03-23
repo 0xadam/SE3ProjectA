@@ -149,6 +149,12 @@ public class JSeatSelectionPanel extends JPanel {
         }
     }
     
+    /**
+     * show or hide the panels which show how many seats are remaining for each 
+     * specific SeatType
+     * @param visible true to show the seatsRemainingSubPanels, otherwise false
+     * to hide
+     */
     public void setSeatSubPanelsVisible(boolean visible) {
         for (JSeatSelectionSubPanel seatsRemainingSubPanel : seatsRemainingSubPanels.values()) {
             seatsRemainingSubPanel.setVisible(false);
