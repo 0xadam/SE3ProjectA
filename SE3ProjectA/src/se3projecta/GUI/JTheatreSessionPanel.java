@@ -1,21 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
-import se3projecta.Model.Seat;
-import se3projecta.Model.TheatreSession;
-
+import se3projecta.Model.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import se3projecta.Model.SeatState;
+import java.awt.event.*;
 
 /**
  * JPanel that illustrates theatre layout and the state of seats in the theatre
  * for a particular session, and allows seating selection.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -27,12 +19,13 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
 
     /**
      * Creates JTheatreSessionPanel.
-     * @param transaction stores information about the current transaction - 
+     *
+     * @param transaction stores information about the current transaction -
      * JTheatreSessionPanel must be updated when transaction is.
      */
-    public JTheatreSessionPanel(Transaction transaction) {
+    public JTheatreSessionPanel(Transaction transaction_) {
         setBackground(Color.white);
-        this.transaction = transaction;
+        transaction = transaction_;
 
 
         transaction.addTransactionListener(new TransactionListener() {
@@ -50,14 +43,14 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
     private Seat[][] seatRows;
     private SeatButton[][] seatButtons;
     int rows, columns;
-    
+
     private void setTheatreSession(TheatreSession tSession) {
         seatRows = tSession.getSeatRows();
         rows = seatRows.length;
         columns = seatRows[0].length;
-        this.setLayout(new GridLayout(rows, columns));
+        setLayout(new GridLayout(rows, columns));
         renderTheatreSession();
-        this.validate();
+        validate();
     }
 
     private void renderTheatreSession() {
@@ -72,7 +65,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Refresh the icons for the seats in this TheatreSession. 
+     * Refresh the icons for the seats in this TheatreSession.
      */
     public void refreshSeatIcons() {
         for (SeatButton[] row : seatButtons) {
@@ -99,7 +92,6 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
                         } else if (seat.getState() == SeatState.Empty) {
                             transaction.holdSeat(seat);
                         }
-
                         seatButton.refreshIcon();
                     }
                 });
@@ -108,8 +100,8 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Disable selection of seats - users can only view whether or not seats
-     * are occupied.
+     * Disable selection of seats - users can only view whether or not seats are
+     * occupied.
      */
     public void disableSelection() {
         for (SeatButton[] row : seatButtons) {
