@@ -82,7 +82,7 @@ public class JAllocationPanelNavigation extends JPanel {
             Map.Entry<SeatType, Integer> pairs = it.next();
 
             if (!transaction.getTheatreSession().hasAvailable(pairs.getKey(), pairs.getValue())) {
-                JOptionPane.showMessageDialog(gui, "There are not that many " + pairs.getKey().getName().toLowerCase() + " seats available. Please select fewer and try again.");
+                JOptionPane.showMessageDialog(gui, "There are not that many " + pairs.getKey().getName().toLowerCase() + " seats available. Please select a maximum of " + transaction.getTheatreSession().countEmpty(pairs.getKey()) + " seats and try again.");
                 return false;
             }
 
