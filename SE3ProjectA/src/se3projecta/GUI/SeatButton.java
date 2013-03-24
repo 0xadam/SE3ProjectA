@@ -1,7 +1,3 @@
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
 import javax.swing.*;
@@ -10,7 +6,7 @@ import se3projecta.Model.*;
 /**
  * JButton which represents Seat can be clicked to book or unbook. Icon depends
  * SeatState and SeatType.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -22,6 +18,7 @@ public class SeatButton extends JButton {
 
     /**
      * Create SeatButton.
+     *
      * @param seat_ the Seat which this SeatButton represents.
      */
     public SeatButton(Seat seat_) {
@@ -46,6 +43,7 @@ public class SeatButton extends JButton {
 
     /**
      * Get the SeatType of the Seat this SeatButton represents.
+     *
      * @return the SeatType of the Seat this SeatButton represents
      */
     public SeatType getSeatType() {
@@ -54,6 +52,7 @@ public class SeatButton extends JButton {
 
     /**
      * Get the Seat this SeatButton represents.
+     *
      * @return the Seat this SeatButton represents
      */
     public Seat getSeat() {
