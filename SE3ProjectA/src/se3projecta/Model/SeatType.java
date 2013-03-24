@@ -6,14 +6,13 @@ package se3projecta.Model;
 
 import se3projecta.Persistence.XmlUnserializable;
 import java.util.TreeMap;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 /**
- * Allows different types of seats to be booked for different prices. The 
- * price for the seat is determined by the price of the SeatType and the 
+ * Allows different types of seats to be booked for different prices. The price
+ * for the seat is determined by the price of the SeatType and the
  * priceMultiplier of the CustomerType.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -27,7 +26,7 @@ public class SeatType implements XmlUnserializable<Character> {
     private TreeMap<SeatState, String> icons;
 
     /**
-     * loads seat type data from XML
+     * Loads seat type data from XML
      *
      * @param n an XML node which contains seat type data
      */
@@ -54,7 +53,7 @@ public class SeatType implements XmlUnserializable<Character> {
     }
 
     /**
-     * get seat type name
+     * Gets seat type name
      *
      * @return seat type name
      */
@@ -63,7 +62,7 @@ public class SeatType implements XmlUnserializable<Character> {
     }
 
     /**
-     * get seat type ID
+     * Gets seat type ID
      *
      * @return seat type ID
      */
@@ -73,16 +72,16 @@ public class SeatType implements XmlUnserializable<Character> {
     }
 
     /**
-     * set seat type name
+     * Sets seat type name
      *
      * @param name name to set to seat type
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name_) {
+        name = name_;
     }
 
     /**
-     * get seat type price
+     * Gets seat type price
      *
      * @return seat type price
      */
@@ -91,21 +90,21 @@ public class SeatType implements XmlUnserializable<Character> {
     }
 
     /**
-     * set seat type price
+     * Gets seat type price
      *
      * @param price price to give this seat type
      */
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(double price_) {
+        price = price_;
     }
 
     /**
-     * set seat type id
+     * Sets seat type id
      *
      * @param id id to give this seat type
      */
-    public void setId(Character id) {
-        this.id = id;
+    public void setId(Character id_) {
+        id = id_;
     }
 
     /**
@@ -119,11 +118,11 @@ public class SeatType implements XmlUnserializable<Character> {
     }
 
     /**
-     * Get the path to the Icon image for this SeatType for a specified 
+     * Get the path to the Icon image for this SeatType for a specified
      * SeatState
-     * 
+     *
      * @param ss the SeatState to get the path to the Icon image for
-     * @return the path to the Icon image for this SeatTypefor a specified 
+     * @return the path to the Icon image for this SeatTypefor a specified
      * SeatState
      */
     public String getIcon(SeatState ss) {
