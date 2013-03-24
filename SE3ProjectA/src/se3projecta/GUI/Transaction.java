@@ -1,18 +1,16 @@
 package se3projecta.GUI;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.event.EventListenerList;
-import se3projecta.Model.SeatType;
-import se3projecta.Model.TheatreSession;
+import se3projecta.Model.*;
 import se3projecta.Money;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import se3projecta.Model.Seat;
-import se3projecta.Model.SeatState;
 
 /**
  * Stores information about the current transaction.
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Transaction {
@@ -33,17 +31,18 @@ public class Transaction {
         }
 
         cost = total;
-        
+
         fireAllocationsChanged();
     }
 
     /**
      * Get the number of allocated Seats for each SeatType.
+     *
      * @return the number of allocated Seats for each SeatType.
      */
     public Map<SeatType, Integer> countAllocatedBySeatType() {
         HashMap<SeatType, Integer> counts = new HashMap<SeatType, Integer>();
-        
+
         for (Allocation a : allocations) {
             SeatType type = a.getSeatType();
 
@@ -58,11 +57,11 @@ public class Transaction {
     }
 
     /**
-     * Counts how many more seats for this allocation need to be
-     * placed in a map indexed by SeatType.
-     * 
-     * @return how many more seats for this allocation need to be
-     * placed in a map indexed by SeatType
+     * Counts how many more seats for this allocation need to be placed in a map
+     * indexed by SeatType.
+     *
+     * @return how many more seats for this allocation need to be placed in a
+     * map indexed by SeatType
      */
     public Map<SeatType, Integer> countUnplacedBySeatTypes() {
         // this could be made more efficient by keeping a cache in TheatreSession
@@ -89,17 +88,19 @@ public class Transaction {
 
         return sum;
     }
-    
+
     /**
      * Check whether all allocated seats have been placed.
+     *
      * @return true if all allocated seats have been placed else false.
      */
     public boolean placedAll() {
         return sumSeatTypeMap(countUnplacedBySeatTypes()) == 0;
     }
-    
+
     /**
      * Check whether any allocated seats have been placed.
+     *
      * @return true if any allocated seats have been placed else false.
      */
     public boolean placedAny() {
@@ -108,12 +109,13 @@ public class Transaction {
                 return true;
             }
         }
-        
+
         return false;
     }
 
     /**
      * Get the number of unplaced seats for the specified SeatType.
+     *
      * @param type the SeatType to get the number of unplaced seats for
      * @return the number of unplaced seats for the specified SeatType
      */
@@ -129,6 +131,7 @@ public class Transaction {
 
     /**
      * Get the TheatreSession linked to this Transaction.
+     *
      * @return the TheatreSession linked to this Transaction
      */
     public TheatreSession getTheatreSession() {
@@ -137,6 +140,7 @@ public class Transaction {
 
     /**
      * Set the TheatreSession linked to this Transaction.
+     *
      * @param ts TheatreSession to link to this Transaction
      */
     public void setTheatreSession(TheatreSession ts) {
@@ -147,7 +151,8 @@ public class Transaction {
     }
 
     /**
-     * get the cost of this Transaction.
+     * Get the cost of this Transaction.
+     *
      * @return the cost of this Transaction
      */
     public Money getCost() {
@@ -156,6 +161,7 @@ public class Transaction {
 
     /**
      * Add another allocation to this Transaction.
+     *
      * @param allocation to add to this Transaction.
      */
     public void addAllocation(Allocation allocation) {
@@ -172,6 +178,7 @@ public class Transaction {
 
     /**
      * Set state of specified Seat to Held if it is Empty.
+     *
      * @param seat seat to Hold.
      * @throws IllegalArgumentException
      */
@@ -192,10 +199,11 @@ public class Transaction {
 
     /**
      * Set state of specified Seat to Empty if it is Held.
+     *
      * @param seat seat to Release.
      * @throws IllegalArgumentException
      */
-    public void releaseSeat(Seat seat) throws IllegalArgumentException{
+    public void releaseSeat(Seat seat) throws IllegalArgumentException {
         if (!theatreSession.ownsSeat(seat)) {
             throw new IllegalArgumentException("Specified seat does not belong to active theatre session!");
         }
@@ -236,6 +244,7 @@ public class Transaction {
 
     /**
      * Remove the specified Allocation from this Transaction.
+     *
      * @param allocation the Allocation to remove from this Transaction
      */
     public void removeAllocation(Allocation allocation) {
@@ -245,6 +254,7 @@ public class Transaction {
 
     /**
      * Add the specified TransactionListener to this Transaction
+     *
      * @param l the TransactionListener to add to this Transaction
      */
     public void addTransactionListener(TransactionListener l) {
@@ -253,6 +263,7 @@ public class Transaction {
 
     /**
      * Remove the specified TransactionListener from this Transaction.
+     *
      * @param l the TransactionListener to remove from this Transaction
      */
     public void removeTransactionListener(TransactionListener l) {
@@ -261,6 +272,7 @@ public class Transaction {
 
     /**
      * Get all TransactionListeners linked to this Transaction.
+     *
      * @return all TransactionListeners linked to this Transaction
      */
     public TransactionListener[] getTransactionListeners() {
