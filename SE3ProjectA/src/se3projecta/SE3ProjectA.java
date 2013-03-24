@@ -48,9 +48,6 @@ public class SE3ProjectA {
                 } catch (ImportException e) {
                     ie = e;
                 }
-                if (repository != null) {
-                    repository.testDump();
-                }
                 new se3projecta.GUI.GUI(repository, ie).setVisible(true);
             }
         });

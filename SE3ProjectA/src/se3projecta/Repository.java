@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta;
 
 import se3projecta.Persistence.ImportException;
@@ -15,7 +11,11 @@ import se3projecta.Persistence.XmlFileSaver;
 
 /**
  * Creates an interface with XML storage of persistent data.
- * @author Tobias
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Repository {
 
@@ -28,6 +28,7 @@ public class Repository {
 
     /**
      * Get all stored Movies.
+     *
      * @return all stored Movies
      */
     public Collection<Movie> getMovies() {
@@ -36,6 +37,7 @@ public class Repository {
 
     /**
      * Get all stored SessionTimes.
+     *
      * @return all stored SessionTimes
      */
     public Collection<SessionTime> getSessionTimes() {
@@ -44,6 +46,7 @@ public class Repository {
 
     /**
      * Get all stored SeatTypes.
+     *
      * @return all stored SeatTypes
      */
     public Collection<SeatType> getSeatTypes() {
@@ -52,6 +55,7 @@ public class Repository {
 
     /**
      * Get all stored CustomerTypes.
+     *
      * @return all stored CustomerTypes
      */
     public Collection<CustomerType> getCustomerTypes() {
@@ -60,9 +64,10 @@ public class Repository {
 
     /**
      * Get all stored TheatreSessions for the specified Movie and SessionTime.
+     *
      * @param movie the Movie to get TheatreSessions for
      * @param sessionTime the SessionTime to get TheatreSessions for
-     * @return all stored TheatreSessions for the specified Movie and 
+     * @return all stored TheatreSessions for the specified Movie and
      * SessionTime
      */
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
@@ -94,7 +99,8 @@ public class Repository {
     private static final String THEATRE_SESSION_TAG = "TheatreSession";
 
     /**
-     * Create the repository by importing persistent data from XML.
+     * Create a repository by importing persistent data from XML.
+     *
      * @throws ImportException
      */
     public Repository() throws ImportException {
@@ -286,7 +292,7 @@ public class Repository {
                 }
             }
         }
-        
+
         //load movies, theatres and sessiontimes to sessions
         if (theatres != null && movies != null && sessionTimes != null) {
             for (TheatreSession ts : theatreSessions.values()) {
@@ -309,41 +315,12 @@ public class Repository {
 
     /**
      * Save booking to XML by saving TheatreSession changes.
-     * 
+     *
      * @throws javax.xml.transform.TransformerConfigurationException
      * @throws javax.xml.parsers.ParserConfigurationException
      * @throws javax.xml.transform.TransformerException
      */
     public void save() throws javax.xml.transform.TransformerConfigurationException, javax.xml.parsers.ParserConfigurationException, javax.xml.transform.TransformerException {
         XmlFileSaver.save(theatreSessions, "data/TheatreSessions.xml");
-    }
-
-    public void testDump() {
-        theatreSessions.get(0).getSeats()[0].setState(SeatState.Occupied);
-        try {
-            save();
-        } catch (Exception e) {
-        } //TODO add good error handling when this code is actually used
-        // TODO remove later
-        for (int i = 0; i < seatTypes.size(); i++) {
-            System.out.println(seatTypes.values().toArray(new SeatType[1])[i].toString());
-        }
-
-        for (CustomerType ct : customerTypes.values()) {
-            System.out.println(ct.toString());
-        }
-
-        for (int i = 0; i < movies.size(); i++) {
-            System.out.println(movies.values().toArray(new Movie[1])[i].toString());
-        }
-
-        for (int i = 0; i < sessionTimes.size(); i++) {
-            System.out.println(sessionTimes.values().toArray(new SessionTime[1])[i].toString());
-        }
-
-        for (int i = 0; i < theatres.size(); i++) {
-            System.out.println(theatres.values().toArray(new Theatre[1])[i].toString());
-        }
-
     }
 }
