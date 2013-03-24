@@ -59,6 +59,7 @@ public class GUI extends javax.swing.JFrame {
      * @param ie import exceptions which may possibly have occurred else null
      */
     public GUI(Repository repository_, ImportException ie) {
+        setTitle("Movie Booking System");
         if (ie != null) {
             Object[] options = {"Yes", "No"};
             int choice = JOptionPane.showOptionDialog(this,

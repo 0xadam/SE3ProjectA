@@ -44,10 +44,18 @@ public class JMoviePanel extends javax.swing.JPanel {
 
         //set layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        gui.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) { //on first pack get right size for promoImage
+                promoImage.setPreferredSize(new Dimension(getWidth(), 230));
+                promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
+                gui.removeComponentListener(this);
+            }
+        });
 
         add(promoImage);
-        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
-        promoImage.setMaximumSize(new Dimension(100, 150));
+        //promoImage.setPreferredSize(new Dimension(120, 150)); //TODO don't hardcode these two lines
+        //promoImage.setMaximumSize(new Dimension(120, 150));
         promoImage.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
 
@@ -101,6 +109,8 @@ public class JMoviePanel extends javax.swing.JPanel {
             }
         });
 
+
+
     }
 
     /**
@@ -138,10 +148,10 @@ public class JMoviePanel extends javax.swing.JPanel {
             promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(100, 150, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow based on image size
+            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(184, 230, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow based on image size
         } catch (IOException e) {
             //if image can not be found then image is no longer visible.
-            System.out.println("Unable to load image.");   
+            System.out.println("Unable to load image.");
         } finally {
             return lpromoImage;
         }
