@@ -45,11 +45,12 @@ public class JAllocationPanel extends JPanel {
      */
     public JAllocationPanel(int id, Repository repository, JTransactionPanel jtp_, Allocation allocation_) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setMaximumSize(new Dimension(493, 45)); //TODO remove hardcodedness
 
         jtp = jtp_;
         allocation = allocation_;
 
+        setMaximumSize(new Dimension(493, 45));
+        
         ticketTypeLabel = new JLabel("Ticket Type");
 
         seatTypeLabel = new JLabel("Seat Type");
@@ -76,7 +77,7 @@ public class JAllocationPanel extends JPanel {
         costTextField = new JTextField(new Money(0).toString());
         costTextField.setEditable(false);
         costTextField.setFocusable(false);
-        costTextField.setPreferredSize(new Dimension(60, 0)); //TODO fix hardcodedness (allows for big money values)
+        costTextField.setPreferredSize(new Dimension(60, 0));
         removeAllocationButton = new JButton("-");
         final JAllocationPanel allocationPanel = this;
         final ActionListener removeListener = new ActionListener() {
