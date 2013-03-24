@@ -4,5 +4,5 @@
     <Movie id="1" Name="Avatar" promotionalImage="" />
     <Movie id="2" Name="Star Wars: A New Hope" promotionalImage="" />
     <Movie id="3" Name="The Incredibles" promotionalImage="" />
-    <Movie id="4" Name="The Dark Knight" promotionalImage="data/asdf.jpg" />
+    <Movie id="4" Name="The Dark Knight" promotionalImage="data/images/promoimage/Darkknight.jpg" />
 </Movies>
