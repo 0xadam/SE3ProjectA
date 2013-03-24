@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
 import se3projecta.Persistence.XmlUnserializable;
@@ -9,7 +5,7 @@ import org.w3c.dom.Element;
 
 /**
  * A movie which may be viewable in multiple TheatreSessions.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -22,7 +18,7 @@ public class Movie implements XmlUnserializable<Integer> {
     private String promotionalImage;
 
     /**
-     * gets the movie name
+     * Gets the movie name
      *
      * @return the movie name
      */
@@ -40,19 +36,19 @@ public class Movie implements XmlUnserializable<Integer> {
     }
 
     /**
-     * loads movie data from XML
+     * Loads movie data from XML
      *
      * @param n an XML node which contains movie data
      */
     @Override
     public void load(Element n) {
-        this.id = Integer.parseInt(n.getAttribute("id"));
-        this.movieName = n.getAttribute("Name");
-        this.promotionalImage = n.getAttribute("promotionalImage");
+        id = Integer.parseInt(n.getAttribute("id"));
+        movieName = n.getAttribute("Name");
+        promotionalImage = n.getAttribute("promotionalImage");
     }
 
     /**
-     * gets the movie ID
+     * Gets the movie ID
      *
      * @return the movie ID
      */
