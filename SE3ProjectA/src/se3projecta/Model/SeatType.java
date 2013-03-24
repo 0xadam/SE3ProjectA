@@ -70,7 +70,7 @@ public class SeatType implements XmlUnserializable<Character> {
     /**
      * Sets seat type name
      *
-     * @param name name to set to seat type
+     * @param name_ name to set to seat type
      */
     public void setName(String name_) {
         name = name_;
@@ -88,7 +88,7 @@ public class SeatType implements XmlUnserializable<Character> {
     /**
      * Gets seat type price
      *
-     * @param price price to give this seat type
+     * @param price_ price to give this seat type
      */
     public void setPrice(double price_) {
         price = price_;
@@ -97,7 +97,7 @@ public class SeatType implements XmlUnserializable<Character> {
     /**
      * Sets seat type id
      *
-     * @param id id to give this seat type
+     * @param id_ id to give this seat type
      */
     public void setId(Character id_) {
         id = id_;

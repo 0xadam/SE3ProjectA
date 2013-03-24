@@ -90,7 +90,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     /**
      * Load a theatre seat plan from a TreeMap of seat types
      *
-     * @param seatTypes a TreeMap of seat types representing a seating plan
+     * @param seatTypes_ a TreeMap of seat types representing a seating plan
      */
     public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes_) {
         seatTypes = parseSeats(rawSeatPlan.toCharArray(), width, height, seatTypes_);

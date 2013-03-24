@@ -54,7 +54,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      *
      * @param t the theatre which is part of this theatre session
      * @param st the session time which is part of this theatre session
-     * @param id id of this theatre session
+     * @param id_ id of this theatre session
      */
     public TheatreSession(Theatre t, SessionTime st, int id_) {
         id = id_;

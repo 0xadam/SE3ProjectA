@@ -20,7 +20,7 @@ public class JTheatreSessionPanel extends javax.swing.JPanel {
     /**
      * Creates JTheatreSessionPanel.
      *
-     * @param transaction stores information about the current transaction -
+     * @param transaction_ stores information about the current transaction -
      * JTheatreSessionPanel must be updated when transaction is.
      */
     public JTheatreSessionPanel(Transaction transaction_) {
