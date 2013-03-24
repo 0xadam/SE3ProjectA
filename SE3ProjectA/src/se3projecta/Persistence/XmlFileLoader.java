@@ -64,7 +64,7 @@ public class XmlFileLoader {
      * @throws se3projecta.Model.ExistingKeyException
      */
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)
-            throws InstantiationException, java.lang.IllegalAccessException, se3projecta.Model.ExistingKeyException {
+            throws InstantiationException, java.lang.IllegalAccessException, se3projecta.Persistence.ExistingKeyException {
 
         TreeMap<K, V> list = new TreeMap<K, V>();
         for (int temp = 0; temp < nodes.getLength(); temp++) {
@@ -76,7 +76,7 @@ public class XmlFileLoader {
                 V entity = entityClass.newInstance();
                 entity.load(eElement);
                 if (list.containsKey(entity.getId())) {
-                    throw new se3projecta.Model.ExistingKeyException("the key: " + entity.getId() + " alread exists in the collection.");
+                    throw new se3projecta.Persistence.ExistingKeyException("the key: " + entity.getId() + " alread exists in the collection.");
                 }
                 list.put(entity.getId(), entity);
             }

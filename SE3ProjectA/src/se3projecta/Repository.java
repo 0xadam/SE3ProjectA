@@ -142,7 +142,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SeatType.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading seat type data", e));
@@ -170,7 +170,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + CustomerType.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading customer type data", e));
@@ -198,7 +198,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Movie.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading movie data", e));
@@ -226,7 +226,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SessionTime.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading session time data", e));
@@ -254,7 +254,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Theatre.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading theatre data", e));
@@ -291,7 +291,7 @@ public class Repository {
                 ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + TheatreSession.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
                 ie.addSuppressedBackport(IAE);
-            } catch (se3projecta.Model.ExistingKeyException EKE) {
+            } catch (se3projecta.Persistence.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
                 ie.addSuppressedBackport(new Exception("An error occured when loading theatre session data", e));

@@ -1,4 +1,4 @@
-package se3projecta.Model;
+package se3projecta.Persistence;
 
 /**
  * Exception class for exception thrown when an element is inserted into a
