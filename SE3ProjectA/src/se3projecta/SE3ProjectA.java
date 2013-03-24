@@ -43,7 +43,6 @@ public class SE3ProjectA {
                 try {
                     repository = new Repository();
                 } catch (ImportException e) {
-                    //TODO deal with errors.
                     ie = e;
                 }
                 new se3projecta.GUI.GUI(repository, ie).setVisible(true);
