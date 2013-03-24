@@ -20,5 +20,5 @@ For detailed instructions on how to use the program, see UserGuide.pdf
 
 ## Further Information
 
-within the docs subfolder of the project is the developement guide and javadoc files which give details regarding
+Within the docs subfolder of the project is the developement guide and javadoc files which give details regarding
 our choices throughout the creation on the project as well as code information.
