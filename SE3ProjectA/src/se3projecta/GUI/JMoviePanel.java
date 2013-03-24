@@ -30,6 +30,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JButton bookTicketsButton = new JButton();
     private Transaction transaction;
     private static final long serialVersionUID = 0; //remove warning in netbeans build process
+    private static final String PROMOIMAGE_MISING_PATH = "data\\noimage.jpg";
 
     /**
      *
@@ -145,7 +146,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         ImageIcon lpromoImage = new ImageIcon();
         File promoImageFile = new File(promoImageURI);
         if (!promoImageFile.exists()) {
-            promoImageFile = new File("data\\noimage.jpg");
+            promoImageFile = new File(PROMOIMAGE_MISING_PATH);
         }
         try {
             int width = getWidth() != 0 ? getWidth() : 184;
