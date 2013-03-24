@@ -9,16 +9,16 @@ To run the project, having opened the project in netbeans, press the "Run Projec
 
 ## Usage
 
-The main program window consist of an interactive seatplan taking the majority of the window space
-the right side of the window changes between 3 panels.
-  1. the movie selection panel where you select the movie, session time and theatre for booking.
-  2. the ticket selection panel where you choose the tickets and review prices
-  3. the seat allocation panel which allows for selecting your own and random contiguous placing of seats
-the data is saved on closing of the window.
+The main program window consists of an interactive seating plan, which takes up the majority of the window space.
+The right side of the window transitions between 3 panels.
+  1. The movie selection panel, where you are able to select the movie, session time and theatre for booking.
+  2. The ticket selection panel, where you are able to choose your tickets and review prices.
+  3. The seat allocation panel, which allows for the selection of your own and also a random contiguous placing of seats.
+All data is saved on application exit.
 
 For detailed instructions on how to use the program, see UserGuide.pdf
 
 ## Further Information
 
 Within the docs subfolder of the project is the developement guide and javadoc files which give details regarding
-our choices throughout the creation on the project as well as code information.
+our choices throughout the creation on the project as well as code documentation.
