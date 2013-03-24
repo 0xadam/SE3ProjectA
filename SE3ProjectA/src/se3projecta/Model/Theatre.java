@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
 import se3projecta.Persistence.XmlUnserializable;
@@ -12,7 +8,7 @@ import org.w3c.dom.Element;
 /**
  * Allows description of a Seating Plan for a specific Theatre. One movie is
  * viewable at each Theatre.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -29,7 +25,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     private SeatType[] seatTypes;
 
     /**
-     * get theatre width
+     * Gets theatre width
      *
      * @return theatre width
      */
@@ -38,7 +34,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get theatre height
+     * Gets theatre height
      *
      * @return theatre height
      */
@@ -47,7 +43,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get the ID of the movie that theatre is showing
+     * Gets the ID of the movie that theatre is showing
      *
      * @return the ID of the movie that theatre is showing
      */
@@ -56,23 +52,23 @@ public class Theatre implements XmlUnserializable<Integer> {
     }
 
     /**
-     * loads theatre data from XML
+     * Loads theatre data from XML
      *
      * @param n an XML node which contains theatre data
      */
     @Override
     public void load(Element n) {
-        this.id = Integer.parseInt(n.getAttribute("id"));
-        this.name = n.getAttribute("name");
-        this.movieId = Integer.parseInt(n.getAttribute("movie"));
-        this.height = Integer.parseInt(n.getAttribute("height"));
-        this.width = Integer.parseInt(n.getAttribute("width"));
-        this.rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
+        id = Integer.parseInt(n.getAttribute("id"));
+        name = n.getAttribute("name");
+        movieId = Integer.parseInt(n.getAttribute("movie"));
+        height = Integer.parseInt(n.getAttribute("height"));
+        width = Integer.parseInt(n.getAttribute("width"));
+        rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
 
     }
 
     /**
-     * get theatre ID
+     * Get theatre ID
      *
      * @return theatre ID
      */
@@ -82,7 +78,7 @@ public class Theatre implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get the seat type of the seat at the specified index in the theatre
+     * Get the seat type of the seat at the specified index in the theatre
      *
      * @param index specifies which seat to get the seat type of
      * @return the seat type of the seat at the specified index in the theatre
@@ -92,26 +88,26 @@ public class Theatre implements XmlUnserializable<Integer> {
     }
 
     /**
-     * load a theatre seat plan from a TreeMap of seat types
+     * Load a theatre seat plan from a TreeMap of seat types
      *
      * @param seatTypes a TreeMap of seat types representing a seating plan
      */
-    public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes) {
-        this.seatTypes = parseSeats(this.rawSeatPlan.toCharArray(), this.width, this.height, seatTypes);
+    public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes_) {
+        seatTypes = parseSeats(rawSeatPlan.toCharArray(), width, height, seatTypes_);
     }
 
     /**
-     * returns a string representation of the theatre
+     * Returns a string representation of the theatre
      *
      * @return a string representation of the theatre
      */
     @Override
     public String toString() {
-        return this.name;
+        return name;
     }
 
     /**
-     * returns a detailed string representation of the theatre for debugging
+     * Returns a detailed string representation of the theatre for debugging
      * purposes
      *
      * @return a detailed string representation of the theatre for debugging

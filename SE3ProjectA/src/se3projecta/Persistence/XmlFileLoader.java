@@ -1,25 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Persistence;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.TreeMap;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 /**
- * allows a collection of Objects to be loaded from an XML file.
- * 
- * @author Russell
+ * Allows a collection of Objects to be loaded from an XML file.
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class XmlFileLoader {
 
@@ -36,11 +29,12 @@ public class XmlFileLoader {
     }
 
     /**
-     * gets the elements from an XML file with the specified tag names and
+     * Gets the elements from an XML file with the specified tag names and
      * returns them as a NodeList
+     *
      * @param Path the path to the XML file
      * @param NodeNames the names of which tags to get from the XML file
-     * @return the elements from an XML file with the specified tag names  as a 
+     * @return the elements from an XML file with the specified tag names as a
      * NodeList
      * @throws ParserConfigurationException
      * @throws SAXException
@@ -51,22 +45,23 @@ public class XmlFileLoader {
         Document doc = readXml(Path);
         return doc.getElementsByTagName(NodeNames);
     }
-    
+
     /**
-     * loads a collection of objects which are instances of a specified class 
+     * Loads a collection of objects which are instances of a specified class
      * from a NodeList.
-     * @param <K> the Data type of the key of the returned collection. Data 
-     * type is that of the object ID.
-     * @param <V> the Data type of the value of the returned collection. Data 
+     *
+     * @param <K> the Data type of the key of the returned collection. Data type
+     * is that of the object ID.
+     * @param <V> the Data type of the value of the returned collection. Data
      * type is that of the object itself (specified in entityClass).
-     * @param nodes NodeList that collection of objects is loaded from 
-     * @param entityClass a class which the collection objects will be 
-     * instances of
-     * @return a collection of objects which are instances of a specified class 
+     * @param nodes NodeList that collection of objects is loaded from
+     * @param entityClass a class which the collection objects will be instances
+     * of
+     * @return a collection of objects which are instances of a specified class
      * loaded from a NodeList
      * @throws InstantiationException
      * @throws java.lang.IllegalAccessException
-     * @throws se3projecta.Model.ExistingKeyException 
+     * @throws se3projecta.Model.ExistingKeyException
      */
     public static <K, V extends XmlUnserializable<K>> TreeMap<K, V> loadIndexEntities(NodeList nodes, Class<V> entityClass)
             throws InstantiationException, java.lang.IllegalAccessException, se3projecta.Model.ExistingKeyException {

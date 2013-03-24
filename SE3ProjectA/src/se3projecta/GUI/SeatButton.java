@@ -4,8 +4,10 @@ import javax.swing.*;
 import se3projecta.Model.*;
 
 /**
- * JButton which represents Seat can be clicked to book or unbook. Icon depends
- * SeatState and SeatType.
+ * JButton which wraps a Seat object and can be clicked to book or un-book.
+ * Icon reflects the SeatState and SeatType, though care must be taken to ensure
+ * that the icon displayed reflects that of the internal Seat object (through
+ * the usage of refreshIcon)
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
