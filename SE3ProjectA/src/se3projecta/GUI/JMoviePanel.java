@@ -55,8 +55,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         });
 
         add(promoImage);
-        //promoImage.setPreferredSize(new Dimension(120, 150)); //TODO don't hardcode these two lines
-        //promoImage.setMaximumSize(new Dimension(120, 150));
         promoImage.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
 
@@ -93,7 +91,7 @@ public class JMoviePanel extends javax.swing.JPanel {
 
 
         add(dropdownPanel);
-        dropdownPanel.setMaximumSize(new Dimension(184, 110)); //TODO don't hardcode?
+        dropdownPanel.setMaximumSize(new Dimension(184, 110));
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
 
 
