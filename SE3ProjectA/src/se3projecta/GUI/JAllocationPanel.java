@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
 import java.awt.Dimension;
@@ -16,7 +12,11 @@ import se3projecta.Model.CustomerType;
 
 /**
  * JPanel which holds allocation widgets.
- * @author Adam
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JAllocationPanel extends JPanel {
 
@@ -26,27 +26,8 @@ public class JAllocationPanel extends JPanel {
     private JTextField costTextField;
     private JButton removeAllocationButton;
     private JTransactionPanel jtp;
-    //private int id;
     private Allocation allocation;
 
-    /*@Override
-     public boolean equals(Object obj) { //enables removal from ArrayList
-     if (obj == null) {
-     return false;
-     }
-     if (obj == this) {
-     return true;
-     }
-     if (!(obj instanceof JAllocationPanel)) {
-     return false;
-     }
-     JAllocationPanel o = (JAllocationPanel) obj;
-     return o.getID() == this.getID();
-     }
-
-     public int getID() {
-     return id;
-     }*/
     /**
      * Enables (or disables) the removal of the JAllocationPanel.
      *
@@ -59,6 +40,7 @@ public class JAllocationPanel extends JPanel {
 
     /**
      * Create a JAllocationPanel
+     *
      * @param id
      * @param repository where to get widget values from
      * @param jtp_ parent of this JAllocationPanel
@@ -70,8 +52,6 @@ public class JAllocationPanel extends JPanel {
 
         jtp = jtp_;
         allocation = allocation_;
-
-        // this.id = id;
 
         ticketTypeLabel = new JLabel("Ticket Type");
 
@@ -165,7 +145,7 @@ public class JAllocationPanel extends JPanel {
         update();
     }
 
-    private void update() { //TODO need to add more checks for things not existing due to being called when textboxes populated
+    private void update() {
         allocation.setNumberOfTickets(getNumberofSeats());
         allocation.setSeatType(getSeatType());
         allocation.setCustomerType((CustomerType) ticketTypeComboBox.getSelectedItem());
@@ -185,6 +165,7 @@ public class JAllocationPanel extends JPanel {
 
     /**
      * get Allocation for this JAllocationPanel.
+     *
      * @return Allocation for this JAllocationPanel
      */
     public Allocation getAllocation() {
