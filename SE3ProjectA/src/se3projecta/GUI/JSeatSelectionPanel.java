@@ -22,6 +22,7 @@ public class JSeatSelectionPanel extends JPanel {
     Map<SeatType, JSeatSelectionSubPanel> seatsRemainingSubPanels;
     JButton bookButton, randomAllocationButton, backButton;
     GUI gui;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Create JSeatSelectionPanel.

@@ -2,7 +2,6 @@ package se3projecta.Model;
 
 import se3projecta.Persistence.*;
 import org.w3c.dom.*;
-import java.lang.UnsupportedOperationException;
 
 /**
  * Allows individual seats to be booked as part of a TheatreSession.

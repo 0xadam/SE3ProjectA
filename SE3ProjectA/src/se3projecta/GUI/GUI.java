@@ -51,6 +51,7 @@ public class GUI extends javax.swing.JFrame {
     private Container contentPane;
     private JScrollPane transactionHolder;
     private Transaction transaction;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Creates new GUI form

@@ -22,6 +22,7 @@ public class JAllocationPanelNavigation extends JPanel {
     private JButton navigateBack;
     private JButton navigateForward;
     private Transaction transaction;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Creates JAllocationPanelNavigation.

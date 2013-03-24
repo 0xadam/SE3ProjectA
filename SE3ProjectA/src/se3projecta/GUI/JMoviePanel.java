@@ -29,6 +29,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     private JComboBox sessionTimeDropdown = new JComboBox();
     private JButton bookTicketsButton = new JButton();
     private Transaction transaction;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      *

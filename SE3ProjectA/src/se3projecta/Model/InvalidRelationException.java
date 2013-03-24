@@ -11,6 +11,8 @@ package se3projecta.Model;
  */
 public class InvalidRelationException extends Exception {
 
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
+
     public InvalidRelationException(String message) {
         super(message);
     }

@@ -15,6 +15,7 @@ import java.util.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class ImportException extends Throwable {
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Whether or not any Exceptions have been suppressed.

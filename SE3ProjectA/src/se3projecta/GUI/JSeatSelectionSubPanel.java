@@ -17,6 +17,7 @@ public class JSeatSelectionSubPanel extends JPanel {
     private SeatType seatType;
     private JLabel seatsRemainingLabel;
     private JTextField seatsRemainingTextField;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Create JSeatSelectionSubPanel.
