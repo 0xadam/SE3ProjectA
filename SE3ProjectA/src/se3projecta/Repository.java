@@ -10,7 +10,21 @@ import se3projecta.Persistence.XmlFileLoader;
 import se3projecta.Persistence.XmlFileSaver;
 
 /**
- * Creates an interface with XML storage of persistent data.
+ * A Repository class stores data for a set of theatre bookings.
+ * 
+ * The current implementation of Repository simply stores a Map for each data-
+ * type, allowing it to be retrieved by its primary key or iterated over.
+ * 
+ * The Repository class is presently responsible for both granting access to the
+ * data and managing the persistence of data; i.e. saving and loading of
+ * entities.
+ * 
+ * Because data loading and access is centralized to the one location, the
+ * replacement of this class would enable the project to use a DBMS rather
+ * than XML file storage in future, with minimal changes to the rest of the
+ * project's code. Ideally, this would be achieved by turning Repository into
+ * an interface and with subclasses implementing respective entity storage (XML
+ * or database) as appropriate.
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>

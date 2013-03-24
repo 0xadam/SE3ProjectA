@@ -4,8 +4,20 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * Represents money (Dollars and 2 decimal places for cents).
+ * Represents money in the system
+ * 
+ * Not only is this used for formatting currency, but it also means that
+ * money is rounded to the lowest unit of currency (e.g. cents) before
+ * mathematical operations are performed. For example, $1.255 and $1.255 would
+ * each individually be displayed as $1.26 and $1.26 but would display as only
+ * $2.51 when added together.
+ * 
+ * This class also helps to enforce stronger typing (as "Money" is unambiguous,
+ * unlike int or double, which may represent other things)
  *
+ * In future, this class should be modified to support operations between two
+ * Money instances.
+ * 
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
