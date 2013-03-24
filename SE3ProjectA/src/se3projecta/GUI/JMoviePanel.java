@@ -152,7 +152,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         } catch (IOException e) {
             System.out.println("Unable to load image.");
         }
-        
         return lpromoImage;
     }
 }
