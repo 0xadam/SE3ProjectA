@@ -12,7 +12,7 @@ To run the project, having opened the project in netbeans, press the "Run Projec
 The main program window consist of an interactive seatplan taking the majority of the window space
 the right side of the window changes between 3 panels.
   1. the movie selection panel where you select the movie, session time and theatre for booking.
-  2. the ticket selection panel where you place the tickets and review prices
+  2. the ticket selection panel where you choose the tickets and review prices
   3. the seat allocation panel which allows for selecting your own and random contiguous placing of seats
 the data is saved on closing of the window.
 
