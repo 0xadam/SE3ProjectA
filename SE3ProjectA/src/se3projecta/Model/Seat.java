@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
-import se3projecta.Persistence.XmlSerializable;
-import se3projecta.Persistence.XmlUnserializable;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import se3projecta.Persistence.*;
+import org.w3c.dom.*;
 
 /**
  * Allows individual seats to be booked as part of a TheatreSession.
@@ -34,7 +28,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * loads seat data from XML
+     * Loads seat data from XML
      *
      * @param n an XML node which contains seat data
      */
@@ -52,7 +46,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     private SeatState state = SeatState.Empty;
 
     /**
-     * sets seat state
+     * Sets seat state
      *
      * @param s state to set seat to
      */
@@ -61,7 +55,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * sets seat type
+     * Sets seat type
      *
      * @param s type to set seat type to
      */
@@ -70,7 +64,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * gets seat type
+     * Gets seat type
      *
      * @return seat type
      */
@@ -79,7 +73,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * gets seat state
+     * Sets seat state
      *
      * @return seat state
      */
@@ -88,7 +82,7 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * get seat ID
+     * Gets seat ID
      *
      * @return seat ID
      */
