@@ -1,14 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta;
 
 import se3projecta.Persistence.ImportException;
 
 /**
  * Main class that runs the Application.
- * @author Tobias
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class SE3ProjectA {
 
@@ -16,7 +16,6 @@ public class SE3ProjectA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -34,8 +33,6 @@ public class SE3ProjectA {
             java.util.logging.Logger.getLogger(se3projecta.GUI.GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-
-        //</editor-fold>
         /* Create and display the form */
 
         java.awt.EventQueue.invokeLater(new Runnable() {
