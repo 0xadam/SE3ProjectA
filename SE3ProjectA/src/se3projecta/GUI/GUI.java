@@ -125,7 +125,7 @@ public class GUI extends javax.swing.JFrame {
                 contentPane.add(transactionHolder, BorderLayout.LINE_END);
                 break;
             case PlaceSeats:
-                seatSelectionPanel.setSeatSubPanelsVisible(false);
+                seatSelectionPanel.setAllSeatSubPanelsVisible(false);
                 seatSelectionPanel.updateAllSeatsRemaining();
                 contentPane.add(seatSelectionPanel, BorderLayout.LINE_END);
                 theatreSessionPanel.enableSelection();
