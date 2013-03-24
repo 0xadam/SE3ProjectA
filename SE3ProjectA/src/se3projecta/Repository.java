@@ -145,7 +145,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading seat type data", e));
             }
         }
 
@@ -173,7 +173,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading customer type data", e));
             }
         }
 
@@ -201,7 +201,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading movie data", e));
             }
         }
 
@@ -229,7 +229,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading session time data", e));
             }
         }
 
@@ -257,7 +257,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading theatre data", e));
             }
         }
 
@@ -294,7 +294,7 @@ public class Repository {
             } catch (se3projecta.Model.ExistingKeyException EKE) {
                 ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading theatre session data", e));
             }
         } else {
             int i = 0;
