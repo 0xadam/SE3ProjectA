@@ -17,7 +17,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     private String name;
 
     /**
-     * returns a string representation of the session time
+     * Returns a string representation of the session time
      *
      * @return a string representation of the session time
      */
@@ -27,7 +27,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * loads session time data from XML
+     * Loads session time data from XML
      *
      * @param n an XML node which contains session time data
      */
@@ -38,7 +38,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get session time ID
+     * Gets session time ID
      *
      * @return session time ID
      */
@@ -48,7 +48,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get session time name
+     * Gets session time name
      *
      * @return session time name
      */

@@ -6,7 +6,15 @@ import se3projecta.Model.*;
 import se3projecta.Money;
 
 /**
- * Stores information about the current transaction.
+ * Stores information about the current transaction; particularly what
+ * allocations of seats there are, which TheatreSession the transaction is for.
+ *
+ * Also contains many helper functions relating to the transaction; for example,
+ * methods which clear placed seats or return the total price of the
+ * transaction.
+ * 
+ * The Transaction class can be subscribed to by sub-classing
+ * TransactionListener.
  *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>

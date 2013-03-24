@@ -1,18 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
-import java.util.ArrayList;
-import se3projecta.Persistence.XmlSerializable;
-import se3projecta.Persistence.XmlUnserializable;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.TreeMap;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import se3projecta.Persistence.*;
+import java.util.*;
+import org.w3c.dom.*;
 
 /**
  * Allows Booking of Seats for a particular SessionTime for a particular
@@ -35,7 +25,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     private Seat[] seats;
 
     /**
-     * loads theatre session data from XML
+     * Loads theatre session data from XML
      *
      * @param n an XML node which contains theatre session data
      */
@@ -114,7 +104,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * get theatre session ID
+     * Gets theatre session ID
      *
      * @return theatre session ID
      */
@@ -153,7 +143,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Load the Movie object from movieID
+     * Loads the Movie object from movieID
      *
      * @param movies collection of movies
      */
@@ -166,7 +156,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Get all seats in the TheatreSession
+     * Gets all seats in the TheatreSession
      *
      * Clones the array to prevent movement of seats within array
      *
@@ -177,7 +167,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Get two-dimensional array of Seats
+     * Gets two-dimensional array of Seats
      *
      * @return Seat[][] two-dimensional array of seats
      */
@@ -195,7 +185,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Set all the state of all held seats in this TheatreSession to empty *
+     * Sets all the state of all held seats in this TheatreSession to empty *
      */
     public void clearHeld() {
         for (Seat s : seats) {
@@ -405,7 +395,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Get session time for this theatre session
+     * Gets session time for this theatre session
      *
      * @return session time for this theatre session
      */
@@ -423,7 +413,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
     }
 
     /**
-     * Get theatre for this theatre session
+     * Gets theatre for this theatre session
      *
      * @return theatre for this theatre session
      */
