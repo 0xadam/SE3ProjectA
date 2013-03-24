@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
 import java.awt.*;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import se3projecta.*;
+import javax.swing.*;
 import se3projecta.Persistence.ImportException;
+import se3projecta.Repository;
 
 /**
  * Main GUI Frame which allows the entire booking process to take place.
@@ -84,15 +79,14 @@ public class GUI extends javax.swing.JFrame {
 
     public void fixWindowSize() { //TODO Fix this ugly hack
         if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) { //if window is not maximized
-            int oldPaneWidth = contentPane.getWidth();
-            int oldPaneHeight = contentPane.getHeight();
-            setVisible(false);
-            setMinimumSize(new Dimension(0, 0)); //allow minimum so pack works for smaller theatres
+            int oldPaneWidth = contentPane.getWidth() + getInsets().left + getInsets().right;
+            int oldPaneHeight = contentPane.getHeight() + getInsets().top + getInsets().bottom;
+            setMinimumSize(new Dimension(0, 0)); //allow minimum so pack works when going from bigger window to smaller one
             pack();
-            int newPaneWidth = contentPane.getWidth();
-            int newPaneHeight = contentPane.getHeight();
-            setMinimumSize(new Dimension(newPaneWidth + getInsets().left + getInsets().right, newPaneHeight + getInsets().top + getInsets().bottom));
-            setSize(new Dimension((newPaneWidth > oldPaneWidth ? newPaneWidth : oldPaneWidth) + getInsets().left + getInsets().right, (newPaneHeight > oldPaneHeight ? newPaneHeight : oldPaneHeight) + getInsets().top + getInsets().bottom));
+            int newPaneWidth = contentPane.getWidth() + getInsets().left + getInsets().right;//width is width of pane + the border size
+            int newPaneHeight = contentPane.getHeight() + getInsets().top + getInsets().bottom; //height is height of pane + the border size
+            setMinimumSize(new Dimension(newPaneWidth, newPaneHeight));
+            setSize(new Dimension((newPaneWidth > oldPaneWidth ? newPaneWidth : oldPaneWidth), (newPaneHeight > oldPaneHeight ? newPaneHeight : oldPaneHeight)));
             setVisible(true);
         }
 
@@ -155,7 +149,7 @@ public class GUI extends javax.swing.JFrame {
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
         transactionHolder.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        
+
         seatSelectionPanel = new JSeatSelectionPanel(repository, transaction, this);
 
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
@@ -167,6 +161,5 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         pack();
-        //setMinimumSize(getSize()); //minimum size is packed size
     }
 }
