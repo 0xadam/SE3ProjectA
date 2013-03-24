@@ -47,7 +47,8 @@ public class JMoviePanel extends javax.swing.JPanel {
         gui.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) { //on first pack get right size for promoImage
-                promoImage.setPreferredSize(new Dimension(getWidth(), 230));
+                int width = getWidth();
+                promoImage.setPreferredSize(new Dimension(width, width + 46));
                 promoImage.setIcon(loadPromoImage(((Movie) movieDropdown.getSelectedItem()).getPromotionalImage()));
                 gui.removeComponentListener(this);
             }
@@ -148,9 +149,9 @@ public class JMoviePanel extends javax.swing.JPanel {
             promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(184, 230, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow based on image size
+            int width = getWidth() != 0 ? getWidth() : 184;
+            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(width, width + 46, Image.SCALE_DEFAULT));
         } catch (IOException e) {
-            //if image can not be found then image is no longer visible.
             System.out.println("Unable to load image.");
         } finally {
             return lpromoImage;
