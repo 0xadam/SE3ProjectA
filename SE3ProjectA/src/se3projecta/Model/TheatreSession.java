@@ -202,16 +202,18 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         Seat[] allocation = null;
 
-        // Make a shuffled list of indicies
+        // Make a shuffled list of indicies so we can place at a random point within a row
         ArrayList<Integer> startIndicies = new ArrayList<Integer>(row.length - spanLength + 1);
         for (int spanStart = 0; spanStart <= row.length - spanLength; spanStart++) {
             startIndicies.add(spanStart);
         }
         Collections.shuffle(startIndicies);
 
+        // Check each of the indicies to see if this allocation fits
         for (int spanStart : startIndicies) {
             boolean found = true;
 
+            // Test if we can fit the contiguous allocation of seats in here
             for (int spanOffset = 0; spanOffset < spanLength; spanOffset++) {
                 int index = spanStart + spanOffset;
                 if (!(row[index].getState() == SeatState.Empty && row[index].getType() == type)) {
@@ -221,6 +223,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             }
 
             if (found == true) {
+                // Copy the allocation so we can return which seats were randomly allocated
                 allocation = Arrays.copyOfRange(row, spanStart, spanStart + spanLength);
 
                 for (Seat seat : allocation) {
@@ -273,6 +276,8 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
 
         Seat[][] rows = getSeatRows();
 
+        // Shuffle the rows to make the chosen row random
+        // It's done here so it only needs to be done once
         rows = Arrays.copyOf(rows, rows.length);
         Collections.shuffle(Arrays.asList(rows));
 
@@ -282,9 +287,12 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
         /* allocate seats using a random fit algorithm (choose a random place,
          see if allocation fits) */
         for (int spanLength = Math.min(theatre.getWidth(), remainingSeats); spanLength > 0; spanLength--) {
+            // Don't decrease spanLength until we know that it will no longer
+            // fit!
             while (remainingSeats >= spanLength) {
                 Seat[] allocation = getContiguousAllocation(rows, type, spanLength);
 
+                // If we couldn't find a contiguous allocation, that means that what we want won't fit -- so we should look for a smaller one
                 if (allocation == null) {
                     break;
                 }
@@ -294,6 +302,7 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
             }
         }
 
+        // Cast the allocated list to an array
         Seat[] allocated = new Seat[allocations.size()];
         allocations.toArray(allocated);
         return allocated;
