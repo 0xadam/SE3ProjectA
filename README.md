@@ -1,11 +1,13 @@
 SE3ProjectA
 ===========
 ## Running
+*Note that the project was developed using Java 1.6 (as it is available on the unix machines),
+and unexpected warnings or errors may occur if using Java 1.7*
+
 To build the project, open the project in netbeans and press the "Clean and Build Project"
 button
 
 To run the project, having opened the project in netbeans, press the "Run Project" button.
-
 
 ## Usage
 
@@ -16,9 +18,10 @@ The right side of the window transitions between 3 panels.
   3. The seat allocation panel, which allows for the selection of your own and also a random contiguous placing of seats.
 All data is saved on application exit.
 
-For detailed instructions on how to use the program, see UserGuide.pdf
+For detailed instructions on how to use the program, see SE3ProjectA/docs/UserGuide.pdf
 
 ## Further Information
 
-Within the docs subfolder of the project is the developement guide and javadoc files which give details regarding
-our choices throughout the creation on the project as well as code documentation.
+SE3ProjectA/docs also contains a developer's guide (DeveloperGuide.pdf) and javadoc files,
+which give details regarding our choices throughout the creation on the project and explainations
+of the purpose of each function.
