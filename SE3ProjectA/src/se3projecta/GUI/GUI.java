@@ -147,6 +147,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
         final JFrame gui = this;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 boolean success = true;
                 try {

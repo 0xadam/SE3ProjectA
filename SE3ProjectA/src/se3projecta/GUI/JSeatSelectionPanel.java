@@ -3,8 +3,6 @@ package se3projecta.GUI;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
 import se3projecta.Model.*;
 import se3projecta.Repository;
 
