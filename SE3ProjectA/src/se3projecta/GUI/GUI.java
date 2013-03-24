@@ -1,7 +1,11 @@
 package se3projecta.GUI;
 
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import se3projecta.Persistence.ImportException;
 import se3projecta.Repository;
 
@@ -141,25 +145,65 @@ public class GUI extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-        contentPane = getContentPane();
-        contentPane.setLayout(new BorderLayout());
+        final JFrame gui = this;
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                boolean success = true;
+                try {
+                    repository.save();
+                } catch (TransformerConfigurationException ex) { //TODO implement errors here
+                    success = false;
+                } catch (ParserConfigurationException ex) {
+                    success = false;
+                } catch (TransformerException ex) {
+                    success = false;
+                }
+                if (!success) {
+                    Object[] options = {"Abort", "Exit"};
 
-        moviePanel = new JMoviePanel(repository, this, transaction);
+                    int choice = JOptionPane.showOptionDialog(gui,
+                            "There was an error passing the data structure to XML when saving, please try again. \n"
+                            + "If errors persist after closing and reopening the application, please contact technical support.",
+                            "Error on save",
+                            JOptionPane.OK_OPTION,
+                            JOptionPane.ERROR_MESSAGE,
+                            null,
+                            options,
+                            options[0]);
+                    if (choice == 0) //option 1 = abort {
+                    {
+                        return;
+                    }
 
-        transactionPanel = new JTransactionPanel(repository, this, transaction);
-        transactionHolder = new JScrollPane(transactionPanel);
-        transactionHolder.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            }
 
-        seatSelectionPanel = new JSeatSelectionPanel(repository, transaction, this);
-
-        theatreSessionPanel = new JTheatreSessionPanel(transaction);
-
-        contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
-        contentPane.add(moviePanel, BorderLayout.LINE_END);
-
-        moviePanel.updateTheatreSessions();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        pack();
+            gui.setDefaultCloseOperation (javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        }
+        
     }
+    );
+
+        contentPane  = getContentPane();
+
+    contentPane.setLayout (
+    new BorderLayout());
+
+        moviePanel  = new JMoviePanel(repository, this, transaction);
+    transactionPanel  = new JTransactionPanel(repository, this, transaction);
+    transactionHolder  = new JScrollPane(transactionPanel);
+
+    transactionHolder.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    seatSelectionPanel  = new JSeatSelectionPanel(repository, transaction, this);
+    theatreSessionPanel  = new JTheatreSessionPanel(transaction);
+
+    contentPane.add (theatreSessionPanel, BorderLayout.CENTER);
+
+    contentPane.add (moviePanel, BorderLayout.LINE_END);
+
+    moviePanel.updateTheatreSessions ();
+
+    setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+    pack();
+}
 }

@@ -80,13 +80,9 @@ public class JSeatSelectionPanel extends JPanel {
                 }
 
                 transaction.getTheatreSession().commitSeats();
-                try {
-                    repository.save();
-                } catch (TransformerConfigurationException ex) { //TODO implement errors here
-                } catch (ParserConfigurationException ex) {
-                } catch (TransformerException ex) {
-                }
+                
                 gui.setState(GUI.GUIState.SelectTheaterSession);
+
             }
         });
         add(randomAllocationButton);
