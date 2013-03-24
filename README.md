@@ -26,8 +26,8 @@ Once you have chosen your movie, click the "Select Tickets" button, which will t
 screen showing which types of tickets you can book. For example, you might want to choose tickets
 in "Gold" seats for children.
 
-You may choose eats from multiple sections and for multiple people; e.g. by pressing the "+" button,
-another row will appear for you to make further choices within.
+You may choose seats from multiple sections and for multiple people; e.g. by pressing the "+" button,
+another row will appear for further data entry.
 
 Once you chosen your seating arrangements, click the "Forward" button. If you have chosen more
 seats of a certain type than there are available (e.g. chosen 20 gold seats when there are only
