@@ -11,8 +11,8 @@ import se3projecta.*;
 import se3projecta.Persistence.ImportException;
 
 /**
- * Main GUI Frame which allows the entire booking process to take place. 
- * 
+ * Main GUI Frame which allows the entire booking process to take place.
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -32,13 +32,13 @@ public class GUI extends javax.swing.JFrame {
          */
         SelectTheaterSession,
         /**
-         * SelectSeating State allows users to choose how many seats they want 
+         * SelectSeating State allows users to choose how many seats they want
          * of each SeatType and CustomerType.
          */
         SelectSeating,
         /**
          * PlaceSeats State allows users to select which seats the want to sit
-         * in, place the seats randomly or use a combination of the two to 
+         * in, place the seats randomly or use a combination of the two to
          * select seating.
          */
         PlaceSeats
@@ -55,6 +55,7 @@ public class GUI extends javax.swing.JFrame {
 
     /**
      * Creates new GUI form
+     *
      * @param repository_ where to get widget values from
      * @param ie import exceptions which may possibly have occurred else null
      */
@@ -99,6 +100,7 @@ public class GUI extends javax.swing.JFrame {
 
     /**
      * Set the GUIState of this GUI.
+     *
      * @param s the GUIState to set the GUI to.
      */
     public void setState(GUIState s) {
@@ -152,7 +154,8 @@ public class GUI extends javax.swing.JFrame {
 
         transactionPanel = new JTransactionPanel(repository, this, transaction);
         transactionHolder = new JScrollPane(transactionPanel);
-
+        transactionHolder.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        
         seatSelectionPanel = new JSeatSelectionPanel(repository, transaction, this);
 
         theatreSessionPanel = new JTheatreSessionPanel(transaction);
@@ -163,7 +166,6 @@ public class GUI extends javax.swing.JFrame {
         moviePanel.updateTheatreSessions();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         pack();
         //setMinimumSize(getSize()); //minimum size is packed size
     }

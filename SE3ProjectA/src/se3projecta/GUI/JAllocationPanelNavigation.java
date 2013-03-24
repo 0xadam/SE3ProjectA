@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import se3projecta.Money;
 import se3projecta.Model.SeatType;
-import se3projecta.Model.TheatreSession;
 
 /**
  * JPanel which holds JButtons that allow navigation back to 
