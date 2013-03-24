@@ -82,7 +82,12 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void fixWindowSize() { //TODO Fix this ugly hack
+    /**
+     * Set the size of the GUI to fit all of its contents. If optimal size is
+     * smaller, or the window is maximized it does not change size
+     *
+     */
+    public void getOptimalWindowSize() {
         if ((getExtendedState() & MAXIMIZED_BOTH) != MAXIMIZED_BOTH) { //if window is not maximized
             int oldPaneWidth = contentPane.getWidth() + getInsets().left + getInsets().right;
             int oldPaneHeight = contentPane.getHeight() + getInsets().top + getInsets().bottom;
@@ -139,12 +144,11 @@ public class GUI extends javax.swing.JFrame {
 
         state = newState;
 
-        fixWindowSize();
+        getOptimalWindowSize();
         contentPane.validate();
         contentPane.repaint();
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
         final JFrame gui = this;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -177,35 +181,33 @@ public class GUI extends javax.swing.JFrame {
                         return;
                     }
 
+                }
+
+                gui.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             }
+        });
 
-            gui.setDefaultCloseOperation (javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        }
-        
+        contentPane = getContentPane();
+
+        contentPane.setLayout(
+                new BorderLayout());
+
+        moviePanel = new JMoviePanel(repository, this, transaction);
+        transactionPanel = new JTransactionPanel(repository, this, transaction);
+        transactionHolder = new JScrollPane(transactionPanel);
+
+        transactionHolder.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        seatSelectionPanel = new JSeatSelectionPanel(repository, transaction, this);
+        theatreSessionPanel = new JTheatreSessionPanel(transaction);
+
+        contentPane.add(theatreSessionPanel, BorderLayout.CENTER);
+
+        contentPane.add(moviePanel, BorderLayout.LINE_END);
+
+        moviePanel.updateTheatreSessions();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        pack();
     }
-    );
-
-        contentPane  = getContentPane();
-
-    contentPane.setLayout (
-    new BorderLayout());
-
-        moviePanel  = new JMoviePanel(repository, this, transaction);
-    transactionPanel  = new JTransactionPanel(repository, this, transaction);
-    transactionHolder  = new JScrollPane(transactionPanel);
-
-    transactionHolder.setVerticalScrollBarPolicy (JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    seatSelectionPanel  = new JSeatSelectionPanel(repository, transaction, this);
-    theatreSessionPanel  = new JTheatreSessionPanel(transaction);
-
-    contentPane.add (theatreSessionPanel, BorderLayout.CENTER);
-
-    contentPane.add (moviePanel, BorderLayout.LINE_END);
-
-    moviePanel.updateTheatreSessions ();
-
-    setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
-    pack();
-}
 }

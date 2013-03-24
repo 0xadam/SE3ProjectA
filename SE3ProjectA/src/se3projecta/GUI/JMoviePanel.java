@@ -103,7 +103,7 @@ public class JMoviePanel extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (theatreDropdown.getSelectedItem() != null && e.getActionCommand().equalsIgnoreCase("comboboxchanged")) {
                     transaction.setTheatreSession((TheatreSession) theatreDropdown.getSelectedItem());
-                    gui.fixWindowSize();
+                    gui.getOptimalWindowSize();
                 }
             }
         });
