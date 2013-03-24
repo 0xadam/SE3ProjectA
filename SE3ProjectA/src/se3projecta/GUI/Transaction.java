@@ -75,11 +75,11 @@ public class Transaction {
         // this could be made more efficient by keeping a cache in TheatreSession
         Map<SeatType, Integer> unplaced = countAllocatedBySeatType();
 
-        Iterator it = countAllocatedBySeatType().entrySet().iterator();
+        Iterator<Map.Entry<SeatType, Integer>> it = countAllocatedBySeatType().entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
+            Map.Entry<SeatType, Integer> pairs = it.next();
 
-            unplaced.put(pairs.getKey(), pairs.getValue() - theatreSession.countHeld((SeatType) pairs.getKey()));
+            unplaced.put(pairs.getKey(), pairs.getValue() - theatreSession.countHeld(pairs.getKey()));
 
             it.remove();
         }
@@ -230,9 +230,9 @@ public class Transaction {
     public void randomlyAllocate() {
         Map<SeatType, Integer> unplaced = countUnplacedBySeatTypes();
 
-        Iterator it = unplaced.entrySet().iterator();
+        Iterator<Map.Entry<SeatType, Integer>> it = unplaced.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<SeatType, Integer> pairs = (Map.Entry) it.next();
+            Map.Entry<SeatType, Integer> pairs = it.next();
 
             Seat[] allocation = theatreSession.placeRandom(pairs.getKey(), pairs.getValue());
             fireSeatingChanged(allocation);
