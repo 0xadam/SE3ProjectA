@@ -128,7 +128,7 @@ public class Transaction {
      * @return the number of unplaced seats for the specified SeatType
      */
     public int countUnplaced(SeatType type) {
-        Map<SeatType, Integer> unplacedSeatTypes = this.countUnplacedBySeatTypes();
+        Map<SeatType, Integer> unplacedSeatTypes = countUnplacedBySeatTypes();
 
         if (unplacedSeatTypes.get(type) != null) {
             return unplacedSeatTypes.get(type);
@@ -289,7 +289,7 @@ public class Transaction {
 
     private void fireTheatreSessionChanged() {
         for (TransactionListener tl : listeners.getListeners(TransactionListener.class)) {
-            tl.theatreSessionChanged(this.theatreSession);
+            tl.theatreSessionChanged(theatreSession);
         }
     }
 

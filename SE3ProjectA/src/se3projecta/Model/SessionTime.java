@@ -33,8 +33,8 @@ public class SessionTime implements XmlUnserializable<Integer> {
      */
     @Override
     public void load(Element n) {
-        this.id = Integer.parseInt(n.getAttribute("id"));
-        this.name = n.getAttribute("Name");
+        id = Integer.parseInt(n.getAttribute("id"));
+        name = n.getAttribute("Name");
     }
 
     /**

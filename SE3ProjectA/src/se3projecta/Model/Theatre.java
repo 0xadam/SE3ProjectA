@@ -58,12 +58,12 @@ public class Theatre implements XmlUnserializable<Integer> {
      */
     @Override
     public void load(Element n) {
-        this.id = Integer.parseInt(n.getAttribute("id"));
-        this.name = n.getAttribute("name");
-        this.movieId = Integer.parseInt(n.getAttribute("movie"));
-        this.height = Integer.parseInt(n.getAttribute("height"));
-        this.width = Integer.parseInt(n.getAttribute("width"));
-        this.rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
+        id = Integer.parseInt(n.getAttribute("id"));
+        name = n.getAttribute("name");
+        movieId = Integer.parseInt(n.getAttribute("movie"));
+        height = Integer.parseInt(n.getAttribute("height"));
+        width = Integer.parseInt(n.getAttribute("width"));
+        rawSeatPlan = n.getTextContent().replaceAll("\\s", "");
 
     }
 
@@ -92,8 +92,8 @@ public class Theatre implements XmlUnserializable<Integer> {
      *
      * @param seatTypes a TreeMap of seat types representing a seating plan
      */
-    public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes) {
-        this.seatTypes = parseSeats(this.rawSeatPlan.toCharArray(), this.width, this.height, seatTypes);
+    public void loadSeatPlan(TreeMap<Character, SeatType> seatTypes_) {
+        seatTypes = parseSeats(rawSeatPlan.toCharArray(), width, height, seatTypes_);
     }
 
     /**

@@ -31,10 +31,10 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      */
     @Override
     public void load(Element n) {
-        this.id = Integer.parseInt(n.getAttribute("id"));
-        this.movieId = Integer.parseInt(n.getAttribute("movieId"));
-        this.theatreId = Integer.parseInt(n.getAttribute("theatreId"));
-        this.sessionTimeId = Integer.parseInt(n.getAttribute("sessionTimeId"));
+        id = Integer.parseInt(n.getAttribute("id"));
+        movieId = Integer.parseInt(n.getAttribute("movieId"));
+        theatreId = Integer.parseInt(n.getAttribute("theatreId"));
+        sessionTimeId = Integer.parseInt(n.getAttribute("sessionTimeId"));
         //load seats
         Element seatsElement = (Element) n.getElementsByTagName("Seats").item(0);
         NodeList seatNodes = n.getElementsByTagName("Seat");
@@ -56,11 +56,11 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * @param st the session time which is part of this theatre session
      * @param id id of this theatre session
      */
-    public TheatreSession(Theatre t, SessionTime st, int id) {
-        this.id = id;
-        this.theatreId = t.getId();
-        this.sessionTimeId = st.getId();
-        this.movieId = t.getMovieId();
+    public TheatreSession(Theatre t, SessionTime st, int id_) {
+        id = id_;
+        theatreId = t.getId();
+        sessionTimeId = st.getId();
+        movieId = t.getMovieId();
         seats = new Seat[t.getHeight() * t.getWidth()];
     }
 
@@ -149,9 +149,9 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      */
     public void loadMovie(TreeMap<Integer, Movie> movies) {
         if (movies.containsKey(movieId)) {
-            this.movie = movies.get(movieId);
+            movie = movies.get(movieId);
         } else {
-            this.movie = null;
+            movie = null;
         }
     }
 

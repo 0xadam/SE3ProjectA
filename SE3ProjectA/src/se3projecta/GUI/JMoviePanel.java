@@ -43,7 +43,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         transaction = transaction_;
 
         //set layout
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
 
         //create items
