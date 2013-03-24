@@ -15,6 +15,7 @@ import java.util.*;
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class ImportException extends Throwable {
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Whether or not any Exceptions have been suppressed.
@@ -55,10 +56,10 @@ public class ImportException extends Throwable {
      * a constructor}. When suppression is disabled, this method does nothing
      * other than to validate its argument.
      *
-     * <p>Note that when one exception {@linkplain
-     * #initCause(Throwable) causes} another exception, the first exception is
-     * usually caught and then the second exception is thrown in response. In
-     * other words, there is a causal connection between the two exceptions.
+     * <p>Note that when one exception Throwable causes} another exception,
+     * the first exception is usually caught and then the second exception is
+     * thrown in response. In other words, there is a causal connection
+     * between the two exceptions.
      *
      * In contrast, there are situations where two independent exceptions can be
      * thrown in sibling code blocks, in particular in the {@code try} block of
@@ -112,8 +113,7 @@ public class ImportException extends Throwable {
      * typically by the {@code try}-with-resources statement, in order to
      * deliver this exception.
      *
-     * If no exceptions were suppressed or {@linkplain
-     * #Throwable(String, Throwable, boolean, boolean) suppression is
+     * If no exceptions were suppressed or Throwable suppression is
      * disabled}, an empty array is returned. This method is thread-safe. Writes
      * to the returned array do not affect future calls to this method.
      *

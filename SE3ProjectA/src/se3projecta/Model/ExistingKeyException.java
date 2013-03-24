@@ -12,6 +12,8 @@ package se3projecta.Model;
  */
 public class ExistingKeyException extends Exception {
 
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
+
     public ExistingKeyException() {
         super();
     }

@@ -24,6 +24,7 @@ public class JAllocationPanel extends JPanel {
     private JButton removeAllocationButton;
     private JTransactionPanel jtp;
     private Allocation allocation;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      * Enables (or disables) the removal of the JAllocationPanel.
@@ -50,7 +51,7 @@ public class JAllocationPanel extends JPanel {
         allocation = allocation_;
 
         setMaximumSize(new Dimension(493, 45));
-        
+
         ticketTypeLabel = new JLabel("Ticket Type");
 
         seatTypeLabel = new JLabel("Seat Type");

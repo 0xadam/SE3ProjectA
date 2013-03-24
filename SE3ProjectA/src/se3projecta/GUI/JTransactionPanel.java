@@ -22,6 +22,7 @@ public class JTransactionPanel extends JPanel {
     private JAllocationPanelNavigation navigationPanel;
     private Transaction transaction;
     private JButton addAllocationButton;
+    private static final long serialVersionUID = 0; //remove warning in netbeans build process
 
     /**
      *
