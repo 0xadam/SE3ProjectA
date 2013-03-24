@@ -2,6 +2,7 @@ package se3projecta.Model;
 
 import se3projecta.Persistence.*;
 import org.w3c.dom.*;
+import java.lang.UnsupportedOperationException;
 
 /**
  * Allows individual seats to be booked as part of a TheatreSession.
@@ -82,14 +83,13 @@ public class Seat implements XmlSerializable, XmlUnserializable {
     }
 
     /**
-     * Gets seat ID
+     * Gets seat ID.
      *
      * @return seat ID
      */
-    // Crazy Russell hack
     @Override
     public Integer getId() {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     /**
