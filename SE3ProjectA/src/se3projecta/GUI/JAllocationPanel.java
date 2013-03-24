@@ -3,12 +3,9 @@ package se3projecta.GUI;
 import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.event.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import se3projecta.Repository;
-import se3projecta.Model.SeatType;
-import se3projecta.Money;
-import se3projecta.Model.CustomerType;
+import javax.swing.event.*;
+import se3projecta.*;
+import se3projecta.Model.*;
 
 /**
  * JPanel which holds allocation widgets.
