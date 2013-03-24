@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Movies>
-    <Movie id="0" Name="Jaws" promotionalImage="" />
-    <Movie id="1" Name="Avatar" promotionalImage="" />
-    <Movie id="2" Name="Star Wars: A New Hope" promotionalImage="" />
-    <Movie id="3" Name="The Incredibles" promotionalImage="" />
+    <Movie id="0" Name="Jaws" promotionalImage="data/images/promoimage/jaws.jpg" />
+    <Movie id="1" Name="Avatar" promotionalImage="data/images/promoimage/avatar.jpg" />
+    <Movie id="2" Name="Star Wars: A New Hope" promotionalImage="data/images/promoimage/starwars_a_new_hope.jpg" />
+    <Movie id="3" Name="The Incredibles" promotionalImage="data/images/promoimage/incredibles.jpg" />
     <Movie id="4" Name="The Dark Knight" promotionalImage="data/images/promoimage/Darkknight.jpg" />
 </Movies>
