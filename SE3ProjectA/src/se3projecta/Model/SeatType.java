@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
 import se3projecta.Persistence.XmlUnserializable;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.Model;
 
 import se3projecta.Persistence.XmlUnserializable;
@@ -9,7 +5,7 @@ import org.w3c.dom.Element;
 
 /**
  * Allows seats to be booked for different sessions for a Theatre.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -21,7 +17,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     private String name;
 
     /**
-     * returns a string representation of the session time
+     * Returns a string representation of the session time
      *
      * @return a string representation of the session time
      */
@@ -31,7 +27,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * loads session time data from XML
+     * Loads session time data from XML
      *
      * @param n an XML node which contains session time data
      */
@@ -42,7 +38,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get session time ID
+     * Gets session time ID
      *
      * @return session time ID
      */
@@ -52,7 +48,7 @@ public class SessionTime implements XmlUnserializable<Integer> {
     }
 
     /**
-     * get session time name
+     * Gets session time name
      *
      * @return session time name
      */
