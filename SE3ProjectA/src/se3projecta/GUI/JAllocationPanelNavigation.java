@@ -1,13 +1,8 @@
 package se3projecta.GUI;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.event.*;
-import java.util.Iterator;
-import java.util.Map;
-import javax.swing.JOptionPane;
+import java.util.*;
 import se3projecta.Money;
 import se3projecta.Model.SeatType;
 
