@@ -3,6 +3,7 @@ package se3projecta.GUI;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.Map.Entry;
 import se3projecta.Money;
 import se3projecta.Model.SeatType;
 
@@ -75,10 +76,10 @@ public class JAllocationPanelNavigation extends JPanel {
     }
 
     private boolean validateTransaction() {
-        Iterator it = transaction.countAllocatedBySeatType().entrySet().iterator();
+        Iterator<Entry<SeatType, Integer>> it = transaction.countAllocatedBySeatType().entrySet().iterator();
         int totaltickets = 0;
         while (it.hasNext()) {
-            Map.Entry<SeatType, Integer> pairs = (Map.Entry<SeatType, Integer>) it.next();
+            Map.Entry<SeatType, Integer> pairs = it.next();
 
             if (!transaction.getTheatreSession().hasAvailable(pairs.getKey(), pairs.getValue())) {
                 JOptionPane.showMessageDialog(gui, "There are not that many " + pairs.getKey().getName().toLowerCase() + " seats available. Please select fewer and try again.");

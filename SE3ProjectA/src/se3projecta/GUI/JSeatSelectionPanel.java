@@ -2,6 +2,7 @@ package se3projecta.GUI;
 
 import java.awt.event.*;
 import java.util.*;
+import java.util.Map.Entry;
 import javax.swing.*;
 import se3projecta.Model.*;
 import se3projecta.Repository;
@@ -128,9 +129,9 @@ public class JSeatSelectionPanel extends JPanel {
      */
     public void updateAllSeatsRemaining() {
 
-        Iterator it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
+        Iterator<Entry<SeatType, Integer>> it = transaction.countUnplacedBySeatTypes().entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<SeatType, Integer> pairs = (Map.Entry<SeatType, Integer>) it.next();
+            Map.Entry<SeatType, Integer> pairs = it.next();
             JSeatSelectionSubPanel seatsRemainingSubPanel = seatsRemainingSubPanels.get(pairs.getKey());
             seatsRemainingSubPanel.setSeatsRemaining(pairs.getValue());
             seatsRemainingSubPanel.setVisible(true);
