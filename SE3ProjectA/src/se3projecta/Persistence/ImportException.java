@@ -1,7 +1,6 @@
 package se3projecta.Persistence;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class includes a back-ported implementation of Java 1.7's "suppressed"
@@ -10,12 +9,16 @@ import java.util.List;
  * The class also implements several non-standard helper methods for when using
  * the suppressed functionality
  *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class ImportException extends Throwable {
 
     /**
      * Whether or not any Exceptions have been suppressed.
+     *
      * @return whether or not any Exceptions have been suppressed
      */
     public boolean hasSuppressed() {
@@ -23,9 +26,9 @@ public class ImportException extends Throwable {
     }
     /**
      * The list of suppressed exceptions, as returned by {@link
-     * #getSuppressedBackport()}. The list is initialized to a zero-element unmodifiable
-     * sentinel list. When a serialized Throwable is read in, if the
-     * {@code suppressedExceptions} field points to a zero-element list, the
+     * #getSuppressedBackport()}. The list is initialized to a zero-element
+     * unmodifiable sentinel list. When a serialized Throwable is read in, if
+     * the {@code suppressedExceptions} field points to a zero-element list, the
      * field is reset to the sentinel value.
      *
      * @serial
@@ -47,7 +50,8 @@ public class ImportException extends Throwable {
      * called (automatically and implicitly) by the {@code try}-with-resources
      * statement.
      *
-     * <p>The suppression behavior is enabled <em>unless</em> disabled null null null     {@linkplain #Throwable(String, Throwable, boolean, boolean) via
+     * <p>The suppression behavior is enabled <em>unless</em> disabled null null
+     * null null     {@linkplain #Throwable(String, Throwable, boolean, boolean) via
      * a constructor}. When suppression is disabled, this method does nothing
      * other than to validate its argument.
      *
