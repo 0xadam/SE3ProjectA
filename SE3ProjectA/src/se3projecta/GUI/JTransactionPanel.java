@@ -4,17 +4,16 @@
  */
 package se3projecta.GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
 import se3projecta.Repository;
 import java.util.ArrayList;
 import se3projecta.Model.SeatType;
 
 /**
- * JPanel which holds one or more JAllocationPanels, and allows their addition 
+ * JPanel which holds one or more JAllocationPanels, and allows their addition
  * and removal, and also holds a JAllocationPanelNavigation.
- * 
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flidners.edu.au>
@@ -51,7 +50,7 @@ public class JTransactionPanel extends JPanel {
 
         repository = repository_;
         allocationPanels = new ArrayList<JAllocationPanel>();
-        
+
         navigationPanel = new JAllocationPanelNavigation(gui, transaction);
         addAllocationPanel();
         add(navigationPanel);
@@ -59,13 +58,14 @@ public class JTransactionPanel extends JPanel {
 
     /**
      * Remove the specified allocationPanel.
+     *
      * @param allocationPanel the allocationPanel to remove
      */
     public void removeAllocationPanel(JAllocationPanel allocationPanel) {
         transaction.removeAllocation(allocationPanel.getAllocation());
         remove(allocationPanel);
         allocationPanels.remove(allocationPanel);
-        checkAllocationRemoval();
+        checkFirstAllocationRemovable();
     }
 
     /**
@@ -76,7 +76,7 @@ public class JTransactionPanel extends JPanel {
         transaction.addAllocation(allocation);
         allocationPanels.add(new JAllocationPanel(0, repository, this, allocation));
         add(allocationPanels.get(allocationPanels.size() - 1), (allocationPanels.size()));
-        checkAllocationRemoval();
+        checkFirstAllocationRemovable();
     }
 
     /**
@@ -95,6 +95,7 @@ public class JTransactionPanel extends JPanel {
 
     /**
      * Get the number of allocated Seats for the specified SeatType
+     *
      * @param st the SeatType to get the number of allocated Seats for
      * @return the number of allocated Seats for the specified SeatType
      */
@@ -109,7 +110,8 @@ public class JTransactionPanel extends JPanel {
     }
 
     /**
-     * Get the number of Allocation Panels. 
+     * Get the number of Allocation Panels.
+     *
      * @return the number of Allocation Panels
      */
     public int getAllocationCount() {
@@ -120,11 +122,9 @@ public class JTransactionPanel extends JPanel {
      * disable allocation removal button if there is only one allocation left,
      * otherwise enable
      */
-    public void checkAllocationRemoval() {
+    public void checkFirstAllocationRemovable() {
         if (allocationPanels.size() > 0) { //remove possiblilty of error
             allocationPanels.get(0).setRemovable(allocationPanels.size() > 1);
         }
-
-
     }
 }
