@@ -151,8 +151,8 @@ public class JMoviePanel extends javax.swing.JPanel {
             lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(width, width + 88, Image.SCALE_DEFAULT));
         } catch (IOException e) {
             System.out.println("Unable to load image.");
-        } finally {
-            return lpromoImage;
         }
+        
+        return lpromoImage;
     }
 }
