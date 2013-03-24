@@ -46,7 +46,6 @@ public class SE3ProjectA {
                 try {
                     repository = new Repository();
                 } catch (ImportException e) {
-                    //TODO deal with errors.
                     ie = e;
                 }
                 if (repository != null) {
