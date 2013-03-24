@@ -105,27 +105,27 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(SEAT_TYPES_PATH, SEAT_TYPE_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            ie.addSuppressedBackport(FNFE);
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + SEAT_TYPES_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + SEAT_TYPES_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + SEAT_TYPES_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + SEAT_TYPES_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 seatTypes = XmlFileLoader.loadIndexEntities(LoadedNodes, SeatType.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SeatType.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SeatType.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         }
 
@@ -133,27 +133,27 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(CUSTOMER_TYPES_PATH, CUSTOMER_TYPE_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            ie.addSuppressedBackport(FNFE);
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + CUSTOMER_TYPES_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + CUSTOMER_TYPES_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + CUSTOMER_TYPES_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + CUSTOMER_TYPES_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 customerTypes = XmlFileLoader.loadIndexEntities(LoadedNodes, CustomerType.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + CustomerType.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + CustomerType.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         }
 
@@ -161,27 +161,27 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(MOVIES_PATH, MOVIE_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            ie.addSuppressedBackport(FNFE);
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + MOVIES_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + MOVIES_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + MOVIES_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + MOVIES_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 movies = XmlFileLoader.loadIndexEntities(LoadedNodes, Movie.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Movie.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Movie.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         }
 
@@ -189,27 +189,27 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(SESSION_TIMES_PATH, SESSION_TIME_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            ie.addSuppressedBackport(FNFE);
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + SESSION_TIMES_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + SESSION_TIMES_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + SESSION_TIMES_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + SESSION_TIMES_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 sessionTimes = XmlFileLoader.loadIndexEntities(LoadedNodes, SessionTime.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SessionTime.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + SessionTime.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         }
 
@@ -217,27 +217,27 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(THEATRES_PATH, THEATRE_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            ie.addSuppressed(FNFE);
+            ie.addSuppressedBackport(FNFE);
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + THEATRES_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + THEATRES_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + THEATRES_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRES_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 theatres = XmlFileLoader.loadIndexEntities(LoadedNodes, Theatre.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Theatre.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + Theatre.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         }
 
@@ -252,29 +252,29 @@ public class Repository {
         try {
             LoadedNodes = XmlFileLoader.parseXmlFile(THEATRE_SESSIONS_PATH, THEATRE_SESSION_TAG);
         } catch (java.io.FileNotFoundException FNFE) {
-            //ie.addSuppressed(FNFE);
+            //ie.addSuppressedBackport(FNFE);
             //ignore file not found and recreate empty sessions from scratch.
             LoadedNodes = null;
         } catch (javax.xml.parsers.ParserConfigurationException PCE) {
-            ie.addSuppressed(PCE);
+            ie.addSuppressedBackport(PCE);
         } catch (org.xml.sax.SAXException SAXE) {
-            ie.addSuppressed(SAXE);
+            ie.addSuppressedBackport(SAXE);
         } catch (java.io.IOException IOE) {
-            ie.addSuppressed(new java.io.IOException("An error reading file " + THEATRE_SESSIONS_PATH + " from drive", IOE));
+            ie.addSuppressedBackport(new java.io.IOException("An error reading file " + THEATRE_SESSIONS_PATH + " from drive", IOE));
         } catch (Exception e) {
-            ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+            ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
         }
         if (LoadedNodes != null) {
             try {
                 theatreSessions = XmlFileLoader.loadIndexEntities(LoadedNodes, TheatreSession.class);
             } catch (java.lang.InstantiationException IE) {
-                ie.addSuppressed(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + TheatreSession.class.toString()));
+                ie.addSuppressedBackport(new java.lang.InstantiationException("An error occured trying to create a new instance of class:" + TheatreSession.class.toString()));
             } catch (java.lang.IllegalAccessException IAE) {
-                ie.addSuppressed(IAE);
+                ie.addSuppressedBackport(IAE);
             } catch (se3projecta.Model.ExistingKeyException EKE) {
-                ie.addSuppressed(EKE);
+                ie.addSuppressedBackport(EKE);
             } catch (Exception e) {
-                ie.addSuppressed(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
+                ie.addSuppressedBackport(new Exception("An error occured when loading file " + THEATRE_SESSIONS_PATH, e));
             }
         } else {
             int i = 0;
@@ -293,7 +293,7 @@ public class Repository {
                 try {
                     ts.loadRelations(theatres, movies, sessionTimes);
                 } catch (InvalidRelationException e) {
-                    ie.addSuppressed(e);
+                    ie.addSuppressedBackport(e);
                 }
             }
         }

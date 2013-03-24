@@ -23,7 +23,7 @@ public class ImportException extends Throwable {
     }
     /**
      * The list of suppressed exceptions, as returned by {@link
-     * #getSuppressed()}. The list is initialized to a zero-element unmodifiable
+     * #getSuppressedBackport()}. The list is initialized to a zero-element unmodifiable
      * sentinel list. When a serialized Throwable is read in, if the
      * {@code suppressedExceptions} field points to a zero-element list, the
      * field is reset to the sentinel value.
@@ -86,7 +86,7 @@ public class ImportException extends Throwable {
      * @throws NullPointerException if {@code exception} is {@code null}
      * @since 1.7
      */
-    public final synchronized void addSuppressed(Throwable exception) {
+    public final synchronized void addSuppressedBackport(Throwable exception) {
         if (exception == this) {
             throw new IllegalArgumentException(SELF_SUPPRESSION_MESSAGE);
         }
@@ -117,7 +117,7 @@ public class ImportException extends Throwable {
      * deliver this exception.
      * @since 1.7
      */
-    public final synchronized Throwable[] getSuppressed() {
+    public final synchronized Throwable[] getSuppressedBackport() {
         if (suppressedExceptions.isEmpty()) {
             return EMPTY_THROWABLE_ARRAY;
         } else {
