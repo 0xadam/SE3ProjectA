@@ -2,7 +2,7 @@
 <Movies>
     <Movie id="0" Name="Jaws" promotionalImage="data/images/promoimage/jaws.jpg" />
     <Movie id="1" Name="Avatar" promotionalImage="data/images/promoimage/avatar.jpg" />
-    <Movie id="2" Name="Star Wars: A New Hope" promotionalImage="data/images/promoimage/starwars_a_new_hope.jpg" />
+    <Movie id="2" Name="Star Wars: A New Hope" promotionalImage="data/images/promoimage/starwars-a-new-hope.jpg" />
     <Movie id="3" Name="The Incredibles" promotionalImage="data/images/promoimage/incredibles.jpg" />
-    <Movie id="4" Name="The Dark Knight" promotionalImage="data/images/promoimage/Darkknight.jpg" />
+    <Movie id="4" Name="The Dark Knight" promotionalImage="data/images/promoimage/dark-knight.jpg" />
 </Movies>
