@@ -138,9 +138,10 @@ public class JMoviePanel extends javax.swing.JPanel {
             promoImageFile = new File("data\\noimage.jpg");
         }
         try {
-            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(100, 150, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow
-        } catch (IOException e) { //TODO Show actual exception
-            System.out.println("Unable to load image.");
+            lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(100, 150, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow based on image size
+        } catch (IOException e) {
+            //if image can not be found then image is no longer visible.
+            System.out.println("Unable to load image.");   
         } finally {
             return lpromoImage;
         }
