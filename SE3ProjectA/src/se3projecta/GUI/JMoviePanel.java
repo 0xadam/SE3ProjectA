@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
 import javax.swing.*;
@@ -14,8 +10,9 @@ import java.awt.event.*;
 import se3projecta.*;
 
 /**
- * JPanel which holds widgets that allow selection of Movie, Theatre, and 
+ * JPanel which holds widgets that allow selection of Movie, Theatre, and
  * SessionTime
+ *
  * @author Timothy Moore <moor0330@flinders.edu.au>
  * @author Russell Peake <peak0042@flinders.edu.au>
  * @author Adam Rigg <rigg0035@flinders.edu.au>
@@ -36,7 +33,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     /**
      *
      * @param repository_ where to get widget values from
-     * @param gui_ the GUI object which navigation changes the state of  
+     * @param gui_ the GUI object which navigation changes the state of
      * @param transaction_ transaction which is modified as booking details are
      * changed
      */
@@ -102,9 +99,9 @@ public class JMoviePanel extends javax.swing.JPanel {
         });
 
     }
-    
+
     /**
-     * Action Listener listening for changes to the selected move - updates 
+     * Action Listener listening for changes to the selected move - updates
      * promo image and TheatreSessions.
      */
     public class JMoviePanelAL implements ActionListener {
@@ -119,7 +116,7 @@ public class JMoviePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Reload TheaterDropdown from repository using selected movie and 
+     * Reload TheaterDropdown from repository using selected movie and
      * sessionTime
      */
     public void updateTheatreSessions() {
@@ -139,7 +136,7 @@ public class JMoviePanel extends javax.swing.JPanel {
         }
         try {
             lpromoImage.setImage(ImageIO.read(promoImageFile).getScaledInstance(100, 150, Image.SCALE_DEFAULT));// TODO unhardcode this. and it's sloooow
-        } catch (IOException e) {
+        } catch (IOException e) { //TODO Show actual exception
             System.out.println("Unable to load image.");
         } finally {
             return lpromoImage;
