@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Theatres>
-    <Theatre id="0" name="test1" width="23" height="12" movie="0">
+    <Theatre id="0" name="Theatre 1" width="23" height="12" movie="0">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -14,7 +14,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="1" name="test2" width="23" height="12" movie="1">
+    <Theatre id="1" name="Theatre 2" width="23" height="12" movie="1">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -28,7 +28,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="2" name="test3" width="23" height="12" movie="2">
+    <Theatre id="2" name="Theatre 3" width="23" height="12" movie="2">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -42,7 +42,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="3" name="test4" width="23" height="12" movie="3">
+    <Theatre id="3" name="Theatre 4" width="23" height="12" movie="3">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -56,7 +56,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="4" name="test5" width="23" height="12" movie="4">
+    <Theatre id="4" name="Theatre 5" width="23" height="12" movie="4">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -70,7 +70,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="5" name="test6" width="23" height="12" movie="3">
+    <Theatre id="5" name="Theatre 6" width="23" height="12" movie="3">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
@@ -84,7 +84,7 @@
         SSSSSSSGGGGGGGGGSSSSSSS
         SSSSSSSGGGGGGGGGSSSSSSS
     </Theatre>
-    <Theatre id="6" name="test7" width="23" height="12" movie="1">
+    <Theatre id="6" name="Theatre 7" width="23" height="12" movie="1">
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
         BBBB000000000000000BBBB
