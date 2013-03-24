@@ -6,7 +6,7 @@ button
 
 To run the project, having opened the project in netbeans, press the "Run Project" button.
 
-*Note that the project was developed using Java 1.6 (as it is available on the unix machines),
+*Note that the project was **developed using Java 1.6** (as it is available on the unix machines),
 and unexpected warnings or errors may occur if using Java 1.7*
 
 ## Usage
