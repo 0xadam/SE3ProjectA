@@ -8,6 +8,10 @@ import se3projecta.Money;
 /**
  * Links a together a particular SeatType, CustomerType and numberOfTickets,
  * resulting in a particular cost.
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
  * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class Allocation {
@@ -30,12 +34,13 @@ public class Allocation {
         double multiplier = customerType.getPriceMultiplier();
 
         cost = new Money(ticketCost * multiplier * numberOfTickets);
-        
+
         fireChanged();
     }
 
     /**
      * Get the cost of this allocation.
+     *
      * @return the cost of this allocation
      */
     public Money getCost() {
@@ -44,6 +49,7 @@ public class Allocation {
 
     /**
      * Set the SeatType of this allocation.
+     *
      * @param st the SeatType to set this allocation to
      */
     public void setSeatType(SeatType st) {
@@ -53,6 +59,7 @@ public class Allocation {
 
     /**
      * get the SeatType of this allocation.
+     *
      * @return the SeatType of this allocation
      */
     public SeatType getSeatType() {
@@ -61,6 +68,7 @@ public class Allocation {
 
     /**
      * Set the CustomerType of this allocation.
+     *
      * @param ct the CustomerType to set this allocation to
      */
     public void setCustomerType(CustomerType ct) {
@@ -70,6 +78,7 @@ public class Allocation {
 
     /**
      * get the CustomerType of this allocation.
+     *
      * @return the CustomerType of this allocation
      */
     public CustomerType getCustomerType() {
@@ -78,6 +87,7 @@ public class Allocation {
 
     /**
      * Set the numberOfTickets of this allocation.
+     *
      * @param tickets the numberOfTickets to set this allocation to
      */
     public void setNumberOfTickets(int tickets) {
@@ -87,6 +97,7 @@ public class Allocation {
 
     /**
      * get the numberOfTickets of this allocation.
+     *
      * @return the numberOfTickets of this allocation
      */
     public int getNumberOfTickets() {
@@ -95,6 +106,7 @@ public class Allocation {
 
     /**
      * Add an AllocationListener to this Allocation.
+     *
      * @param l the AllocationListener to add to this Allocation
      */
     public void addAllocationListener(AllocationListener l) {
@@ -103,6 +115,7 @@ public class Allocation {
 
     /**
      * Remove an AllocationListener from this Allocation.
+     *
      * @param l the AllocationListener to remove from this Allocation
      */
     public void removeAllocationListener(AllocationListener l) {
@@ -111,6 +124,7 @@ public class Allocation {
 
     /**
      * Get the AllocationListeners linked to this Allocation.
+     *
      * @return the AllocationListeners linked to this Allocation
      */
     public AllocationListener[] getAllocationListeners() {
