@@ -304,7 +304,8 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      *
      * @param type The type of seat to randomly place
      * @param seats The number of seats
-     * @return
+     * 
+     * @return Seat[] the randomly placed seats
      */
     public Seat[] placeRandom(SeatType type, int seats) {
         return findRandomFit(type, seats);
@@ -316,7 +317,8 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      *
      * @param type The type of seat we're looking for
      * @param state The state of the seat we're looking for
-     * @return
+     * 
+     * @return Seat[] a list of seats matching the criteria
      */
     public Seat[] getSeats(SeatType type, SeatState state) {
         ArrayList<Seat> selected = new ArrayList<Seat>();
@@ -370,7 +372,8 @@ public class TheatreSession implements XmlSerializable, XmlUnserializable<Intege
      * Checks whether the passed seat belongs to this TheatreSession.
      *
      * @param seat the seat to check whether it belongs to this TheatreSession
-     * @return
+     
+     * @return boolean whether this TheatreSession owns the seat
      */
     public boolean ownsSeat(Seat seat) {
         //Could be optimized such that Seat holds a reference to TheatreSession 

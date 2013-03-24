@@ -25,7 +25,7 @@ public interface XmlUnserializable<K> {
      * Gets the ID of this Object. ID used in unserialization as the key in the
      * resultant map.
      *
-     * @return
+     * @return K the primary key of the element
      */
     public abstract K getId();
 }
