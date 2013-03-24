@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
 import javax.swing.BoxLayout;
@@ -16,9 +12,13 @@ import se3projecta.Money;
 import se3projecta.Model.SeatType;
 
 /**
- * JPanel which holds JButtons that allow navigation back to 
+ * JPanel which holds JButtons that allow navigation back to
  * SelectTheatreSession state and forward to PlaceSeats State.
- * @author Russell
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JAllocationPanelNavigation extends JPanel {
 
@@ -30,7 +30,8 @@ public class JAllocationPanelNavigation extends JPanel {
 
     /**
      * Creates JAllocationPanelNavigation.
-     * @param _gui the GUI object which navigation changes the state of 
+     *
+     * @param _gui the GUI object which navigation changes the state of
      * @param t the Transaction which must be validated on forward navigation
      */
     public JAllocationPanelNavigation(GUI _gui, Transaction t) {
