@@ -43,8 +43,16 @@ public class JMoviePanel extends javax.swing.JPanel {
         transaction = transaction_;
 
         //set layout
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        add(promoImage);
+        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
+        promoImage.setMaximumSize(new Dimension(100, 150));
+        promoImage.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+
+
         dropdownPanel.setLayout(new BoxLayout(dropdownPanel, BoxLayout.Y_AXIS));
+        dropdownPanel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
         //create items
         //add movies to combobox
@@ -78,11 +86,6 @@ public class JMoviePanel extends javax.swing.JPanel {
         add(dropdownPanel);
         dropdownPanel.setMaximumSize(new Dimension(184, 110)); //TODO don't hardcode?
         dropdownPanel.setAlignmentY(JPanel.TOP_ALIGNMENT);
-
-        add(promoImage);
-        promoImage.setPreferredSize(new Dimension(100, 150)); //TODO don't hardcode these two lines
-        promoImage.setMaximumSize(new Dimension(100, 150));
-        promoImage.setAlignmentY(JPanel.TOP_ALIGNMENT);
 
 
         movieDropdown.addActionListener(new JMoviePanelAL());
