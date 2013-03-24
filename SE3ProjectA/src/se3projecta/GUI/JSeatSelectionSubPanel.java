@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se3projecta.GUI;
 
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import se3projecta.Model.SeatType;
 import java.awt.Dimension;
 
 /**
  * JPanel which shows how many seats are remaining for a specific SeatType
- * @author Adam
+ *
+ * @author Timothy Moore <moor0330@flinders.edu.au>
+ * @author Russell Peake <peak0042@flinders.edu.au>
+ * @author Adam Rigg <rigg0035@flinders.edu.au>
+ * @author Tobias Wooldridge <wool0114@flinders.edu.au>
  */
 public class JSeatSelectionSubPanel extends JPanel {
 
@@ -23,8 +20,9 @@ public class JSeatSelectionSubPanel extends JPanel {
 
     /**
      * Create JSeatSelectionSubPanel.
-     * @param seatType_ SeatType which JSeatSelectionSubPanel shows how many 
-     * seats are remaining for 
+     *
+     * @param seatType_ SeatType which JSeatSelectionSubPanel shows how many
+     * seats are remaining for
      */
     public JSeatSelectionSubPanel(SeatType seatType_) {
         seatType = seatType_;
@@ -35,11 +33,12 @@ public class JSeatSelectionSubPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(seatsRemainingLabel);
         add(seatsRemainingTextField);
-        setMaximumSize(new Dimension(170,42)); //maybe don't hardcode?
+        setMaximumSize(new Dimension(170, 42)); //maybe don't hardcode?
     }
 
     /**
-     * get number of SeatsRemaining 
+     * get number of SeatsRemaining
+     *
      * @return number of SeatsRemaining
      */
     public int getSeatsRemaining() {
@@ -48,6 +47,7 @@ public class JSeatSelectionSubPanel extends JPanel {
 
     /**
      * set number of SeatsRemaining
+     *
      * @param numSeats number of SeatsRemaining to set to
      */
     public void setSeatsRemaining(int numSeats) {
@@ -56,6 +56,7 @@ public class JSeatSelectionSubPanel extends JPanel {
 
     /**
      * get SeatType linked to this JSeatSelectionSubPanel
+     *
      * @return SeatType linked to this JSeatSelectionSubPanel
      */
     public SeatType getSeatType() {
