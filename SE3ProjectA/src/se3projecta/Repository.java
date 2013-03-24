@@ -87,12 +87,12 @@ public class Repository {
     public Collection<TheatreSession> getTheatreSessions(Movie movie, SessionTime sessionTime) {
         ArrayList<TheatreSession> theatreSessionsList = new ArrayList<TheatreSession>();
 
-        if (movie == null || sessionTime == null) {
+        if (movie == null || sessionTime == null) { //if we have a movie or sessionTime that is unknown
             throw new IllegalArgumentException();
         }
 
         for (TheatreSession ts : theatreSessions.values()) {
-            if (ts.getSessionTime().getId().equals(sessionTime.getId()) && ts.getMovie().getId().equals(movie.getId())) {
+            if (ts.getSessionTime().getId().equals(sessionTime.getId()) && ts.getMovie().getId().equals(movie.getId())) { //if the movie id and sessionTime id match
                 theatreSessionsList.add(ts);
             }
         }
